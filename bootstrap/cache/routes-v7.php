@@ -304,7 +304,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::qLUYzJR16Gy0QtA8',
+            '_route' => 'generated::fW0lJq4IujcjxYUp',
           ),
           1 => NULL,
           2 => 
@@ -323,7 +323,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::a7ptGDCoAWQ94IRj',
+            '_route' => 'generated::b9flbVMxibsGW8DX',
           ),
           1 => NULL,
           2 => 
@@ -342,7 +342,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::ZTcCy2vvbdDD9L1S',
+            '_route' => 'generated::HfwgCcM7vwG5KKfc',
           ),
           1 => NULL,
           2 => 
@@ -362,13 +362,32 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::im2iz0VtBUqrSEn8',
+            '_route' => 'generated::M2hXamfNBUdcL5J1',
           ),
           1 => NULL,
           2 => 
           array (
             'GET' => 0,
             'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/api/auth/me' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'generated::LYtxpJRoCPngWa99',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
           ),
           3 => NULL,
           4 => false,
@@ -1319,7 +1338,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::qLUYzJR16Gy0QtA8' => 
+    'generated::fW0lJq4IujcjxYUp' => 
     array (
       'methods' => 
       array (
@@ -1339,7 +1358,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::qLUYzJR16Gy0QtA8',
+        'as' => 'generated::fW0lJq4IujcjxYUp',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1355,7 +1374,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::a7ptGDCoAWQ94IRj' => 
+    'generated::b9flbVMxibsGW8DX' => 
     array (
       'methods' => 
       array (
@@ -1375,7 +1394,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::a7ptGDCoAWQ94IRj',
+        'as' => 'generated::b9flbVMxibsGW8DX',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1391,7 +1410,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ZTcCy2vvbdDD9L1S' => 
+    'generated::HfwgCcM7vwG5KKfc' => 
     array (
       'methods' => 
       array (
@@ -1413,7 +1432,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::ZTcCy2vvbdDD9L1S',
+        'as' => 'generated::HfwgCcM7vwG5KKfc',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1429,7 +1448,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::im2iz0VtBUqrSEn8' => 
+    'generated::M2hXamfNBUdcL5J1' => 
     array (
       'methods' => 
       array (
@@ -1451,7 +1470,44 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::im2iz0VtBUqrSEn8',
+        'as' => 'generated::M2hXamfNBUdcL5J1',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'generated::LYtxpJRoCPngWa99' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'api/auth/me',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'api',
+          1 => 'auth:api',
+        ),
+        'uses' => 'App\\Http\\Controllers\\pages\\HomePage@me',
+        'controller' => 'App\\Http\\Controllers\\pages\\HomePage@me',
+        'namespace' => NULL,
+        'prefix' => 'api/auth',
+        'where' => 
+        array (
+        ),
+        'as' => 'generated::LYtxpJRoCPngWa99',
       ),
       'fallback' => false,
       'defaults' => 

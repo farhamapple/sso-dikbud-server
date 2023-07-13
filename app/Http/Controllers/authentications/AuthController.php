@@ -58,7 +58,8 @@ class AuthController extends Controller
     }
 
     $user = $request->user();
-    $tokenResult = $user->createToken('Personal Access Token');
+    $personal_akses_token = $user->name . ' | PAT - From Client';
+    $tokenResult = $user->createToken($personal_akses_token);
     $token = $tokenResult->token;
 
     if ($request->remember_me) {

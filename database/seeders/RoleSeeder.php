@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -16,12 +17,18 @@ class RoleSeeder extends Seeder
   {
     //
     DB::table('roles')->insert([
-      'name' => 'Admin',
+      'id' => 0,
+      'name' => 'ADMIN',
+      'created_at' => Carbon::now()->toDateTimeString(),
+      'updated_at' => Carbon::now()->toDateTimeString(),
       'ref' => Str::uuid(),
     ]);
 
     DB::table('roles')->insert([
-      'name' => 'Guest',
+      'id' => 1,
+      'name' => 'GUEST',
+      'created_at' => Carbon::now()->toDateTimeString(),
+      'updated_at' => Carbon::now()->toDateTimeString(),
       'ref' => Str::uuid(),
     ]);
   }

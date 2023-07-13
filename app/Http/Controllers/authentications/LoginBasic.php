@@ -37,7 +37,7 @@ class LoginBasic extends Controller
       $user = $request->user();
 
       // Create Personal Akses Token
-      $personal_akses_token = $user->name . '- Personal Access Token';
+      $personal_akses_token = $user->name . ' | PAT - WEB SSO Server';
       $tokenResult = $user->createToken($personal_akses_token);
       $token = $tokenResult->token;
 
