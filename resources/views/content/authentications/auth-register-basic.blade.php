@@ -38,17 +38,41 @@ $customizerHidden = 'customizer-hide';
           <div class="app-brand justify-content-center mb-4 mt-2">
             <a href="{{url('/')}}" class="app-brand-link gap-2">
               <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
-              <span class="app-brand-text demo text-body fw-bold ms-1">{{config('variables.templateName')}}</span>
+              <span class="app-brand-text demo text-body fw-bold ms-1">Register SSO</span>
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-1 pt-2">Adventure starts here 🚀</h4>
-          <p class="mb-4">Make your app management easy and fun!</p>
-
-          <form id="formAuthentication" class="mb-3" action="{{url('/')}}" method="POST">
+          {{-- <h4 class="mb-1 pt-2">Adventure starts here 🚀</h4> --}}
+          <p class="mb-4">Silahkan melakukan Registrasi SSO</p>
+          @if ($errors->any())
+            <div class="alert alert-danger">
+              <div class="alert-title"><h4>Whoops!</h4></div>
+                There are some problems with your input.
+                <ul>
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+            </div>
+          @endif
+          @if (session('success'))
+            <div class="alert alert-success">
+                {!! session('success') !!}
+            </div>
+        @endif
+          <form id="formAuthentication" class="mb-3" action="{{ route('auth-register-store')}}" method="POST">
+            @csrf
             <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus>
+              <label for="first_name" class="form-label">Nama Depan / First Name</label>
+              <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your First Name" autofocus required>
+            </div>
+            <div class="mb-3">
+              <label for="last_name" class="form-label">Nama Belakang / Last Name</label>
+              <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter your Last Name" autofocus>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter your Phone Number" autofocus required>
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
@@ -62,7 +86,7 @@ $customizerHidden = 'customizer-hide';
               </div>
             </div>
 
-            <div class="mb-3">
+            {{-- <div class="mb-3">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms">
                 <label class="form-check-label" for="terms-conditions">
@@ -70,7 +94,7 @@ $customizerHidden = 'customizer-hide';
                   <a href="javascript:void(0);">privacy policy & terms</a>
                 </label>
               </div>
-            </div>
+            </div> --}}
             <button class="btn btn-primary d-grid w-100">
               Sign up
             </button>
@@ -83,23 +107,7 @@ $customizerHidden = 'customizer-hide';
             </a>
           </p>
 
-          <div class="divider my-4">
-            <div class="divider-text">or</div>
-          </div>
 
-          <div class="d-flex justify-content-center">
-            <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-              <i class="tf-icons fa-brands fa-facebook-f fs-5"></i>
-            </a>
-
-            <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
-              <i class="tf-icons fa-brands fa-google fs-5"></i>
-            </a>
-
-            <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-              <i class="tf-icons fa-brands fa-twitter fs-5"></i>
-            </a>
-          </div>
         </div>
       </div>
       <!-- Register Card -->

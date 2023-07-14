@@ -42,3 +42,4 @@ Route::post('auth/login-post', $controller_path . '\authentications\LoginBasic@s
 Route::get('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@index')->name(
   'auth-register-basic'
 );
+Route::post('auth/register-store', $controller_path . '\authentications\RegisterBasic@store')->name('auth-register-store');
