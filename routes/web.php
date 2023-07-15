@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\pages\HomePage;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,10 +27,17 @@ Route::group(
     'middleware' => 'auth',
   ],
   function () {
+    // Role Guest
     Route::get('/home', [HomePage::class, 'index'])->name('pages-home');
-
     // Logout
     Route::post('/logout', [LoginBasic::class, 'logout'])->name('logout');
+
+    // Route Middleware for ADMIN
+    Route::group([
+      'middleware' => 'admin'
+    ], function(){
+        Route::get('/user-show-all', [UserController::class, 'showAll'])->name('user-show-all');
+    });
   }
 );
 
@@ -42,3 +50,4 @@ Route::post('auth/login-post', $controller_path . '\authentications\LoginBasic@s
 Route::get('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@index')->name(
   'auth-register-basic'
 );
+Route::post('auth/register-store', $controller_path . '\authentications\RegisterBasic@store')->name('auth-register-store');

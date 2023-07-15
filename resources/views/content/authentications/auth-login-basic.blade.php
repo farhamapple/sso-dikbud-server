@@ -37,11 +37,11 @@ $customizerHidden = 'customizer-hide';
           <div class="app-brand justify-content-center mb-4 mt-2">
             <a href="{{url('/')}}" class="app-brand-link gap-2" act>
               <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
-              <span class="app-brand-text demo text-body fw-bold ms-1">{{config('variables.templateName')}}</span>
+              <span class="app-brand-text demo text-body fw-bold ms-1">SSO Kemendikbud Ristek</span>
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-1 pt-2 text-center">Welcome to <br>SSO Kemendikbud Ristek</h4>
+          {{-- <h4 class="mb-1 pt-2 text-center">Welcome to <br>SSO Kemendikbud Ristek</h4> --}}
           <p class="mb-4">Please sign-in to your account</p>
 
           <form id="formAuthentication" class="mb-3" action="{{ route('auth-login-store')}}" method="POST">
@@ -78,7 +78,7 @@ $customizerHidden = 'customizer-hide';
 
           <p class="text-center">
             <span>External User ?</span>
-            <a href="{{url('auth/register-basic')}}">
+            <a href="{{ route('auth-register-basic') }}">
               <span>Create an account</span>
             </a>
           </p>
