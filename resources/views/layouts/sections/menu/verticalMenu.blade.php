@@ -24,16 +24,103 @@ $configData = Helper::appClasses();
 
   <div class="menu-inner-shadow"></div>
 
-  <ul class="menu-inner py-1">
-    <li class="menu-header small text-uppercase">
-      <span class="menu-header-text">Header</span>
+  <ul class="menu-inner">
+    {{-- <li class="menu-item">
+      <a class="menu-link" href="javascript:void(0)"><i class="menu-icon ti ti-file-text"></i>
+      <div>
+        Lorem Ipsum Long Long Long Text
+      </div></a>
+    </li> --}}
+    {{-- <li class="menu-item">
+      <a class="menu-link menu-toggle" href="javascript:void(0)"><i class="menu-icon ti ti-smart-home"></i>
+      <div>
+        Dashboards
+      </div></a>
+      <ul class="menu-sub">
+        <li class="menu-item">
+          <a class="menu-link" href="javascript:void(0)">
+          <div>
+            Dashboard 1
+          </div></a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link" href="javascript:void(0)">
+          <div>
+            Dashboard 2
+          </div></a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link" href="javascript:void(0)">
+          <div>
+            Dashboard 3
+          </div></a>
+        </li>
+      </ul>
+    </li> --}}
+    <li class="menu-item active">
+      <a class="menu-link" href="javascript:void(0)"><i class="menu-icon ti ti-smart-home"></i>
+      <div>
+        Dashboard
+      </div></a>
     </li>
+    {{-- Admin Access --}}
     <li class="menu-item">
-      <a href="#">
-        Test
-      </a>
+      <a class="menu-link menu-toggle" href="javascript:void(0)"><i class="menu-icon ti ti-users"></i>
+      <div>
+        All User
+      </div></a>
+      <ul class="menu-sub">
+        <li class="menu-item">
+          <a class="menu-link" href="javascript:void(0)">
+          <div>
+            User Eksternal
+          </div></a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link" href="javascript:void(0)">
+          <div>
+            User Internal
+          </div></a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link" href="javascript:void(0)">
+          <div>
+            Account Inactive
+          </div></a>
+        </li>
+
+      </ul>
     </li>
 
+    <li class="menu-item">
+      <a class="menu-link" href="javascript:void(0)"><i class="menu-icon ti ti-receipt"></i>
+      <div>
+        Oauth Client
+      </div></a>
+    </li>
+
+    <li class="menu-item">
+      <a class="menu-link menu-toggle" href="javascript:void(0)"><i class="menu-icon ti ti-database"></i>
+      <div>
+        Master Ref
+      </div></a>
+      <ul class="menu-sub">
+        <li class="menu-item">
+          <a class="menu-link" href="javascript:void(0)">
+          <div>
+            Role
+          </div></a>
+        </li>
+
+      </ul>
+    </li>
+
+    <li class="menu-item">
+      <a class="menu-link" href="javascript:void(0)"><i class="menu-icon ti ti-history"></i>
+      <div>
+        Log Access Token
+      </div></a>
+    </li>
   </ul>
 
 </aside>
