@@ -304,7 +304,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::TKK1luZV1xUSZLNH',
+            '_route' => 'generated::cJcXETCsmMx4FlTI',
           ),
           1 => NULL,
           2 => 
@@ -323,7 +323,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::jhKpOBglxsEs3zkE',
+            '_route' => 'generated::NHHsvnVpK94IQKHH',
           ),
           1 => NULL,
           2 => 
@@ -342,7 +342,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::SHGGmOPar9e3G2Sc',
+            '_route' => 'generated::XrVuFqfnWiPdnYOi',
           ),
           1 => NULL,
           2 => 
@@ -362,7 +362,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::0riqzt8HX0hsO13C',
+            '_route' => 'generated::109lkMwEGedUfn63',
           ),
           1 => NULL,
           2 => 
@@ -382,7 +382,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::ZXTnlyOvXGfSXqPp',
+            '_route' => 'generated::jsBzYFDKh6OtV3Nn',
           ),
           1 => NULL,
           2 => 
@@ -526,6 +526,46 @@ app('router')->setCompiledRoutes(
           2 => 
           array (
             'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/auth/forgot-password' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'auth-forgot-password',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/auth/forgot-password-store' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'auth-forgot-password-store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
           ),
           3 => NULL,
           4 => false,
@@ -1400,7 +1440,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::TKK1luZV1xUSZLNH' => 
+    'generated::cJcXETCsmMx4FlTI' => 
     array (
       'methods' => 
       array (
@@ -1420,7 +1460,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::TKK1luZV1xUSZLNH',
+        'as' => 'generated::cJcXETCsmMx4FlTI',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1436,7 +1476,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::jhKpOBglxsEs3zkE' => 
+    'generated::NHHsvnVpK94IQKHH' => 
     array (
       'methods' => 
       array (
@@ -1456,7 +1496,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::jhKpOBglxsEs3zkE',
+        'as' => 'generated::NHHsvnVpK94IQKHH',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1472,7 +1512,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::SHGGmOPar9e3G2Sc' => 
+    'generated::XrVuFqfnWiPdnYOi' => 
     array (
       'methods' => 
       array (
@@ -1494,7 +1534,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::SHGGmOPar9e3G2Sc',
+        'as' => 'generated::XrVuFqfnWiPdnYOi',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1510,7 +1550,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::0riqzt8HX0hsO13C' => 
+    'generated::109lkMwEGedUfn63' => 
     array (
       'methods' => 
       array (
@@ -1532,7 +1572,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::0riqzt8HX0hsO13C',
+        'as' => 'generated::109lkMwEGedUfn63',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1548,7 +1588,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ZXTnlyOvXGfSXqPp' => 
+    'generated::jsBzYFDKh6OtV3Nn' => 
     array (
       'methods' => 
       array (
@@ -1569,7 +1609,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::ZXTnlyOvXGfSXqPp',
+        'as' => 'generated::jsBzYFDKh6OtV3Nn',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1869,6 +1909,80 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'auth-login-store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'auth-forgot-password' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'auth/forgot-password',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password',
+        'controller' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'auth-forgot-password',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'auth-forgot-password-store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'auth/forgot-password-store',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_store',
+        'controller' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_store',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'auth-forgot-password-store',
       ),
       'fallback' => false,
       'defaults' => 

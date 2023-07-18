@@ -49,9 +49,17 @@ Route::group(
 // pages
 Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->name('pages-misc-error');
 
-// authentication
+// Login
 Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('auth-login-basic');
-Route::post('auth/login-post', $controller_path . '\authentications\LoginBasic@store')->name('auth-login-store');
+Route::post('/auth/login-post', $controller_path . '\authentications\LoginBasic@store')->name('auth-login-store');
+Route::get('/auth/forgot-password', $controller_path . '\authentications\LoginBasic@forgot_password')->name(
+  'auth-forgot-password'
+);
+Route::get('/auth/forgot-password-store', $controller_path . '\authentications\LoginBasic@forgot_password_store')->name(
+  'auth-forgot-password-store'
+);
+
+// Register
 Route::get('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@index')->name(
   'auth-register-basic'
 );
