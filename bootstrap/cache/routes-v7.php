@@ -304,7 +304,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::iPpiu09N1leM5ZZk',
+            '_route' => 'generated::79L30kMBX4RG739J',
           ),
           1 => NULL,
           2 => 
@@ -323,7 +323,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::4gwl9SpS37UiJt8j',
+            '_route' => 'generated::tst36iIupJtCdTpe',
           ),
           1 => NULL,
           2 => 
@@ -342,7 +342,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::MRqGgEfQMukzrR39',
+            '_route' => 'generated::iepauWvMFBbShbNW',
           ),
           1 => NULL,
           2 => 
@@ -362,7 +362,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::D1Y7qZaToTUVC8Yc',
+            '_route' => 'generated::fQuPRFsmiBliPioK',
           ),
           1 => NULL,
           2 => 
@@ -382,7 +382,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::2c8Tc3bTYbjPIFMA',
+            '_route' => 'generated::SVavbyvAuPtaxPA6',
           ),
           1 => NULL,
           2 => 
@@ -454,13 +454,53 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/user-show-all' => 
+      '/user/user-show-all' => 
       array (
         0 => 
         array (
           0 => 
           array (
             '_route' => 'user-show-all',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/user/user-inactive' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'pages-user-inactive',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/oauth-client' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'oauth-client.index',
           ),
           1 => NULL,
           2 => 
@@ -633,7 +673,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/oauth/(?|tokens/([^/]++)(*:32)|clients/([^/]++)(?|(*:58))|personal\\-access\\-tokens/([^/]++)(*:99))|/profile/([^/]++)(*:124)|/auth/(?|forgot\\-password\\-form/([^/]++)(*:172)|register\\-activation/([^/]++)(*:209)))/?$}sDu',
+      0 => '{^(?|/oauth/(?|tokens/([^/]++)(*:32)|clients/([^/]++)(?|(*:58))|personal\\-access\\-tokens/([^/]++)(*:99))|/profile/([^/]++)(*:124)|/user/user\\-show/([^/]++)(*:157)|/auth/(?|forgot\\-password\\-form/([^/]++)(*:205)|register\\-activation/([^/]++)(*:242)))/?$}sDu',
     ),
     3 => 
     array (
@@ -745,7 +785,30 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      172 => 
+      157 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'pages-user-show',
+          ),
+          1 => 
+          array (
+            0 => 'is_external_account',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      205 => 
       array (
         0 => 
         array (
@@ -768,7 +831,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      209 => 
+      242 => 
       array (
         0 => 
         array (
@@ -1504,7 +1567,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::iPpiu09N1leM5ZZk' => 
+    'generated::79L30kMBX4RG739J' => 
     array (
       'methods' => 
       array (
@@ -1524,7 +1587,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::iPpiu09N1leM5ZZk',
+        'as' => 'generated::79L30kMBX4RG739J',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1540,7 +1603,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::4gwl9SpS37UiJt8j' => 
+    'generated::tst36iIupJtCdTpe' => 
     array (
       'methods' => 
       array (
@@ -1560,7 +1623,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::4gwl9SpS37UiJt8j',
+        'as' => 'generated::tst36iIupJtCdTpe',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1576,7 +1639,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::MRqGgEfQMukzrR39' => 
+    'generated::iepauWvMFBbShbNW' => 
     array (
       'methods' => 
       array (
@@ -1598,7 +1661,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::MRqGgEfQMukzrR39',
+        'as' => 'generated::iepauWvMFBbShbNW',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1614,7 +1677,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::D1Y7qZaToTUVC8Yc' => 
+    'generated::fQuPRFsmiBliPioK' => 
     array (
       'methods' => 
       array (
@@ -1636,7 +1699,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::D1Y7qZaToTUVC8Yc',
+        'as' => 'generated::fQuPRFsmiBliPioK',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1652,7 +1715,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::2c8Tc3bTYbjPIFMA' => 
+    'generated::SVavbyvAuPtaxPA6' => 
     array (
       'methods' => 
       array (
@@ -1673,7 +1736,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::2c8Tc3bTYbjPIFMA',
+        'as' => 'generated::SVavbyvAuPtaxPA6',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1846,7 +1909,7 @@ app('router')->setCompiledRoutes(
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'user-show-all',
+      'uri' => 'user/user-show-all',
       'action' => 
       array (
         'middleware' => 
@@ -1863,6 +1926,123 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'user-show-all',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'pages-user-show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'user/user-show/{is_external_account}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\pages\\UserPage@index',
+        'controller' => 'App\\Http\\Controllers\\pages\\UserPage@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'pages-user-show',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'pages-user-inactive' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'user/user-inactive',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\pages\\UserPage@user_inactive',
+        'controller' => 'App\\Http\\Controllers\\pages\\UserPage@user_inactive',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'pages-user-inactive',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'oauth-client.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'oauth-client',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\pages\\OauthClientPage@index',
+        'controller' => 'App\\Http\\Controllers\\pages\\OauthClientPage@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'oauth-client.index',
       ),
       'fallback' => false,
       'defaults' => 

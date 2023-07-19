@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-  use HasApiTokens, HasFactory, Notifiable;
+  use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
   const ROLE_GUEST = 'GUEST';
   const ROLE_ADMIN = 'ADMIN';
@@ -42,8 +43,13 @@ class User extends Authenticatable
 
   //
 
-  public function role(): BelongsTo{
-
+  public function role(): BelongsTo
+  {
     return $this->belongsTo(Role::class);
   }
+
+  // public function oauth_access_tokens(): HasMany
+  // {
+  //   return $this->hasMany(HasApiTokens::class);
+  // }
 }

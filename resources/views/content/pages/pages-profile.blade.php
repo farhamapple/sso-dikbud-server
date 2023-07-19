@@ -33,7 +33,7 @@ $configData = Helper::appClasses();
             <div class="d-flex align-items-start me-4 mt-3 gap-2">
               <span class="badge bg-label-primary p-2 rounded"><i class="ti ti-registered ti-sm"></i></span>
               <div>
-                <p class="mb-0 fw-semibold">1 January 2023</p>
+                <p class="mb-0 fw-semibold">{{  \Carbon\Carbon::parse($userData->created_at)->isoFormat('D MMMM Y') }}</p>
                 <small>First Register</small>
               </div>
             </div>
@@ -235,6 +235,33 @@ $configData = Helper::appClasses();
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="modalEditUserEmail">Email</label>
+              <input
+                type="text"
+                id="modalEditUserEmail"
+                name="modalEditUserEmail"
+                class="form-control"
+                placeholder="example@domain.com" />
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="modalEditUserEmail">Email Eksternal</label>
+              <input
+                type="text"
+                id="modalEditUserEmail"
+                name="modalEditUserEmail"
+                class="form-control"
+                placeholder="example@domain.com" />
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="modalEditUserEmail">Sex</label>
+              <input
+                type="text"
+                id="modalEditUserEmail"
+                name="modalEditUserEmail"
+                class="form-control"
+                placeholder="example@domain.com" />
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="modalEditUserEmail">Birth Date</label>
               <input
                 type="text"
                 id="modalEditUserEmail"
