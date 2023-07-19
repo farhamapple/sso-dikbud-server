@@ -304,7 +304,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::cJcXETCsmMx4FlTI',
+            '_route' => 'generated::iPpiu09N1leM5ZZk',
           ),
           1 => NULL,
           2 => 
@@ -323,7 +323,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::NHHsvnVpK94IQKHH',
+            '_route' => 'generated::4gwl9SpS37UiJt8j',
           ),
           1 => NULL,
           2 => 
@@ -342,7 +342,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::XrVuFqfnWiPdnYOi',
+            '_route' => 'generated::MRqGgEfQMukzrR39',
           ),
           1 => NULL,
           2 => 
@@ -362,7 +362,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::109lkMwEGedUfn63',
+            '_route' => 'generated::D1Y7qZaToTUVC8Yc',
           ),
           1 => NULL,
           2 => 
@@ -382,7 +382,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::jsBzYFDKh6OtV3Nn',
+            '_route' => 'generated::2c8Tc3bTYbjPIFMA',
           ),
           1 => NULL,
           2 => 
@@ -553,6 +553,25 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/auth/forgot-password-send-link' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'auth-forgot-password-send-link',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/auth/forgot-password-store' => 
       array (
         0 => 
@@ -564,8 +583,7 @@ app('router')->setCompiledRoutes(
           1 => NULL,
           2 => 
           array (
-            'GET' => 0,
-            'HEAD' => 1,
+            'POST' => 0,
           ),
           3 => NULL,
           4 => false,
@@ -615,7 +633,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/oauth/(?|tokens/([^/]++)(*:32)|clients/([^/]++)(?|(*:58))|personal\\-access\\-tokens/([^/]++)(*:99))|/profile/([^/]++)(*:124))/?$}sDu',
+      0 => '{^(?|/oauth/(?|tokens/([^/]++)(*:32)|clients/([^/]++)(?|(*:58))|personal\\-access\\-tokens/([^/]++)(*:99))|/profile/([^/]++)(*:124)|/auth/(?|forgot\\-password\\-form/([^/]++)(*:172)|register\\-activation/([^/]++)(*:209)))/?$}sDu',
     ),
     3 => 
     array (
@@ -715,6 +733,52 @@ app('router')->setCompiledRoutes(
           1 => 
           array (
             0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      172 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'auth-forgot-password-form',
+          ),
+          1 => 
+          array (
+            0 => 'ref',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      209 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'auth-register-activation',
+          ),
+          1 => 
+          array (
+            0 => 'activation_code',
           ),
           2 => 
           array (
@@ -1440,7 +1504,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::cJcXETCsmMx4FlTI' => 
+    'generated::iPpiu09N1leM5ZZk' => 
     array (
       'methods' => 
       array (
@@ -1460,7 +1524,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::cJcXETCsmMx4FlTI',
+        'as' => 'generated::iPpiu09N1leM5ZZk',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1476,7 +1540,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::NHHsvnVpK94IQKHH' => 
+    'generated::4gwl9SpS37UiJt8j' => 
     array (
       'methods' => 
       array (
@@ -1496,7 +1560,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::NHHsvnVpK94IQKHH',
+        'as' => 'generated::4gwl9SpS37UiJt8j',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1512,7 +1576,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::XrVuFqfnWiPdnYOi' => 
+    'generated::MRqGgEfQMukzrR39' => 
     array (
       'methods' => 
       array (
@@ -1534,7 +1598,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::XrVuFqfnWiPdnYOi',
+        'as' => 'generated::MRqGgEfQMukzrR39',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1550,7 +1614,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::109lkMwEGedUfn63' => 
+    'generated::D1Y7qZaToTUVC8Yc' => 
     array (
       'methods' => 
       array (
@@ -1572,7 +1636,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::109lkMwEGedUfn63',
+        'as' => 'generated::D1Y7qZaToTUVC8Yc',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1588,7 +1652,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::jsBzYFDKh6OtV3Nn' => 
+    'generated::2c8Tc3bTYbjPIFMA' => 
     array (
       'methods' => 
       array (
@@ -1609,7 +1673,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::jsBzYFDKh6OtV3Nn',
+        'as' => 'generated::2c8Tc3bTYbjPIFMA',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1961,12 +2025,84 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'auth-forgot-password-store' => 
+    'auth-forgot-password-send-link' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'auth/forgot-password-send-link',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_send_link',
+        'controller' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_send_link',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'auth-forgot-password-send-link',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'auth-forgot-password-form' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
+      ),
+      'uri' => 'auth/forgot-password-form/{ref}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_form',
+        'controller' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_form',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'auth-forgot-password-form',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'auth-forgot-password-store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
       ),
       'uri' => 'auth/forgot-password-store',
       'action' => 
@@ -2056,6 +2192,43 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'auth-register-store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'auth-register-activation' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'auth/register-activation/{activation_code}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\RegisterBasic@register_activation',
+        'controller' => 'App\\Http\\Controllers\\authentications\\RegisterBasic@register_activation',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'auth-register-activation',
       ),
       'fallback' => false,
       'defaults' => 

@@ -49,6 +49,12 @@ $customizerHidden = 'customizer-hide';
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           @endif
+          @if ($message = Session::get('success'))
+          <div class="alert alert-success alert-dismissible" role="alert">
+            {!! $message !!}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          @endif
           <form id="formAuthentication" class="mb-3" action="{{ route('auth-login-store')}}" method="POST">
             @csrf
             <div class="mb-3">

@@ -66,28 +66,46 @@ $customizerHidden = 'customizer-hide';
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-1 pt-2">Forgot Password? 🔒</h4>
-          <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
-          @if ($message = Session::get('error'))
-          <div class="alert alert-danger alert-dismissible" role="alert">
-            {!! $message !!}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-          @endif
-          <form id="formAuthentication" class="mb-3" action="{{ route('auth-forgot-password-send-link')}}" method="POST">
-            @csrf
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input
-                type="text"
-                class="form-control"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                autofocus />
-            </div>
-            <button class="btn btn-primary d-grid w-100">Send Reset Link</button>
-          </form>
+          <h4 class="mb-1 pt-2">Reset Password 🔒</h4>
+              <p class="mb-4">for <span class="fw-bold">{{ $email }}</span></p>
+              @if ($message = Session::get('error'))
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                {!! $message !!}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              @endif
+              <form id="formAuthentication" action="{{ route('auth-forgot-password-store')}}" method="POST">
+                @csrf
+                <input type="hidden" name="ref" value="{{ $ref }}" />
+                <div class="mb-3 form-password-toggle">
+                  <label class="form-label" for="password">New Password</label>
+                  <div class="input-group input-group-merge">
+
+                    <input
+                      type="password"
+                      id="password"
+                      class="form-control"
+                      name="password"
+                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                      aria-describedby="password" />
+                    <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+                  </div>
+                </div>
+                <div class="mb-3 form-password-toggle">
+                  <label class="form-label" for="confirm_password">Confirm Password</label>
+                  <div class="input-group input-group-merge">
+                    <input
+                      type="password"
+                      id="confirm_password"
+                      class="form-control"
+                      name="confirm_password"
+                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                      aria-describedby="password" />
+                    <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+                  </div>
+                </div>
+                <button class="btn btn-primary d-grid w-100 mb-3">Set new password</button>
+              </form>
           <div class="text-center">
             <a href="{{ route('auth-login-basic')}}" class="d-flex align-items-center justify-content-center">
               <i class="ti ti-chevron-left scaleX-n1-rtl"></i>

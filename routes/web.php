@@ -55,9 +55,21 @@ Route::post('/auth/login-post', $controller_path . '\authentications\LoginBasic@
 Route::get('/auth/forgot-password', $controller_path . '\authentications\LoginBasic@forgot_password')->name(
   'auth-forgot-password'
 );
-Route::get('/auth/forgot-password-store', $controller_path . '\authentications\LoginBasic@forgot_password_store')->name(
-  'auth-forgot-password-store'
-);
+
+Route::post(
+  '/auth/forgot-password-send-link',
+  $controller_path . '\authentications\LoginBasic@forgot_password_send_link'
+)->name('auth-forgot-password-send-link');
+
+Route::get(
+  '/auth/forgot-password-form/{ref}',
+  $controller_path . '\authentications\LoginBasic@forgot_password_form'
+)->name('auth-forgot-password-form');
+
+Route::post(
+  '/auth/forgot-password-store',
+  $controller_path . '\authentications\LoginBasic@forgot_password_store'
+)->name('auth-forgot-password-store');
 
 // Register
 Route::get('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@index')->name(
@@ -66,3 +78,8 @@ Route::get('/auth/register-basic', $controller_path . '\authentications\Register
 Route::post('auth/register-store', $controller_path . '\authentications\RegisterBasic@store')->name(
   'auth-register-store'
 );
+
+Route::get(
+  'auth/register-activation/{activation_code}',
+  $controller_path . '\authentications\RegisterBasic@register_activation'
+)->name('auth-register-activation');

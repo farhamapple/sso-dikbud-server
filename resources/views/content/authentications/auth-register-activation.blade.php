@@ -66,28 +66,20 @@ $customizerHidden = 'customizer-hide';
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-1 pt-2">Forgot Password? 🔒</h4>
-          <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
-          @if ($message = Session::get('error'))
-          <div class="alert alert-danger alert-dismissible" role="alert">
-            {!! $message !!}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-          @endif
-          <form id="formAuthentication" class="mb-3" action="{{ route('auth-forgot-password-send-link')}}" method="POST">
-            @csrf
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input
-                type="text"
-                class="form-control"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                autofocus />
-            </div>
-            <button class="btn btn-primary d-grid w-100">Send Reset Link</button>
-          </form>
+          <h4 class="mb-1 pt-2">Activation Account 🔒</h4>
+              @if ($success)
+              <div class="alert alert-success alert-dismissible" role="alert">
+                {!! $success !!}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              @else
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                {!! $error !!}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              @endif
+
+
           <div class="text-center">
             <a href="{{ route('auth-login-basic')}}" class="d-flex align-items-center justify-content-center">
               <i class="ti ti-chevron-left scaleX-n1-rtl"></i>
