@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 $controller_path = 'App\Http\Controllers';
-
+Route::get('/login', $controller_path . '\authentications\LoginBasic@index')->name('login');
 // Main Page Route
 Route::get('/', $controller_path . '\pages\LandingPage@index')->name('pages-landing');
 
