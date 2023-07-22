@@ -37,15 +37,9 @@ $configData = Helper::appClasses();
         <span class="me-2"><h5>{{ $tipe_user }}</h5></span>
 
         <div class="card-header-elements ms-auto">
-
-
-          <a
-          href="javascript:;"
-          class="btn btn-xs btn-primary waves-effect waves-light"
-          data-bs-target="#addUser"
-          data-bs-toggle="modal"
-          >Add User</a
-        >
+          <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
+            <span class="tf-icon ti ti-plus ti-xs me-1"></span>Add User
+          </button>
         </div>
       </div>
       <div class="card-datatable table-responsive">
@@ -99,5 +93,4 @@ $configData = Helper::appClasses();
       </div>
     </div>
 </div>
-@include('content.pages.users.page-modal-user-add')
 @endsection

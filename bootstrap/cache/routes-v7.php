@@ -304,12 +304,32 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::79L30kMBX4RG739J',
+            '_route' => 'generated::vUE1xkkHoFSSToaN',
           ),
           1 => NULL,
           2 => 
           array (
             'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/api/auth/user/me' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'generated::64sl1KX9enQewbmw',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
           ),
           3 => NULL,
           4 => false,
@@ -323,7 +343,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::tst36iIupJtCdTpe',
+            '_route' => 'generated::fba1lGN6tCDvCWiz',
           ),
           1 => NULL,
           2 => 
@@ -342,27 +362,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::iepauWvMFBbShbNW',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/auth/user' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'generated::fQuPRFsmiBliPioK',
+            '_route' => 'generated::XV0RIaaowr91Fi1L',
           ),
           1 => NULL,
           2 => 
@@ -382,12 +382,32 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::SVavbyvAuPtaxPA6',
+            '_route' => 'generated::QFn42FQEFHPSPBSW',
           ),
           1 => NULL,
           2 => 
           array (
             'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/login' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'login',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
           ),
           3 => NULL,
           4 => false,
@@ -487,6 +507,25 @@ app('router')->setCompiledRoutes(
           array (
             'GET' => 0,
             'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/user/user-store' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'pages-user-store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
           ),
           3 => NULL,
           4 => false,
@@ -1567,7 +1606,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::79L30kMBX4RG739J' => 
+    'generated::vUE1xkkHoFSSToaN' => 
     array (
       'methods' => 
       array (
@@ -1587,7 +1626,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::79L30kMBX4RG739J',
+        'as' => 'generated::vUE1xkkHoFSSToaN',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1603,7 +1642,44 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::tst36iIupJtCdTpe' => 
+    'generated::64sl1KX9enQewbmw' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'api/auth/user/me',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'api',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\AuthController@getProfileMe',
+        'controller' => 'App\\Http\\Controllers\\authentications\\AuthController@getProfileMe',
+        'namespace' => NULL,
+        'prefix' => 'api/auth',
+        'where' => 
+        array (
+        ),
+        'as' => 'generated::64sl1KX9enQewbmw',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'generated::fba1lGN6tCDvCWiz' => 
     array (
       'methods' => 
       array (
@@ -1623,7 +1699,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::tst36iIupJtCdTpe',
+        'as' => 'generated::fba1lGN6tCDvCWiz',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1639,7 +1715,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::iepauWvMFBbShbNW' => 
+    'generated::XV0RIaaowr91Fi1L' => 
     array (
       'methods' => 
       array (
@@ -1661,7 +1737,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::iepauWvMFBbShbNW',
+        'as' => 'generated::XV0RIaaowr91Fi1L',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1677,45 +1753,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::fQuPRFsmiBliPioK' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/auth/user',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:api',
-        ),
-        'uses' => 'App\\Http\\Controllers\\authentications\\AuthController@user',
-        'controller' => 'App\\Http\\Controllers\\authentications\\AuthController@user',
-        'namespace' => NULL,
-        'prefix' => 'api/auth',
-        'where' => 
-        array (
-        ),
-        'as' => 'generated::fQuPRFsmiBliPioK',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'generated::SVavbyvAuPtaxPA6' => 
+    'generated::QFn42FQEFHPSPBSW' => 
     array (
       'methods' => 
       array (
@@ -1736,7 +1774,44 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::SVavbyvAuPtaxPA6',
+        'as' => 'generated::QFn42FQEFHPSPBSW',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'login' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'login',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\LoginBasic@index',
+        'controller' => 'App\\Http\\Controllers\\authentications\\LoginBasic@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'login',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2004,6 +2079,44 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'pages-user-inactive',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'pages-user-store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'user/user-store',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\pages\\UserPage@store',
+        'controller' => 'App\\Http\\Controllers\\pages\\UserPage@store',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'pages-user-store',
       ),
       'fallback' => false,
       'defaults' => 

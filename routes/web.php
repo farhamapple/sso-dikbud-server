@@ -43,9 +43,11 @@ Route::group(
       ],
       function () {
         Route::get('/user/user-show-all', [UserController::class, 'showAll'])->name('user-show-all');
-
         Route::get('/user/user-show/{is_external_account}', [UserPage::class, 'index'])->name('pages-user-show');
         Route::get('/user/user-inactive', [UserPage::class, 'user_inactive'])->name('pages-user-inactive');
+        // Action
+        Route::post('/user/user-store', [UserPage::class, 'store'])->name('pages-user-store');
+
 
         Route::get('/oauth-client', [OauthClientPage::class, 'index'])->name('oauth-client.index');
       }

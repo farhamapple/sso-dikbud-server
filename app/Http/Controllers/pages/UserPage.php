@@ -17,7 +17,7 @@ class UserPage extends Controller
     if ($is_external_account == '0') {
       $tipe_user = 'User Internal';
     } else {
-      $tipe_user = 'User Eksternale';
+      $tipe_user = 'User Eksternal';
     }
 
     return view('content.pages.users.pages-users', compact('usersData', 'tipe_user'));
@@ -27,6 +27,10 @@ class UserPage extends Controller
   {
     $usersData = User::where('is_active', '0')->get();
     $tipe_user = 'User Inactive';
-    return view('content.pages.users.pages-users', compact('usersData', 'tipe_user'));
+    return view('content.pages.users.pages-users-inactive', compact('usersData', 'tipe_user'));
+  }
+
+  public function store(Request $request){
+      dd($request->all());
   }
 }
