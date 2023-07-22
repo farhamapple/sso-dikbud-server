@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
         'identity_number' => $faker->phoneNumber(),
         'phone' => $faker->phoneNumber(),
         'is_active' => '1',
-        'is_external_account' => '0',
+        'is_external_account' => '1',
         'created_at' => Carbon::now()->toDateTimeString(),
         'updated_at' => Carbon::now()->toDateTimeString(),
         'role_id' => 1,

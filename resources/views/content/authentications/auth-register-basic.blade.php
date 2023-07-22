@@ -75,6 +75,13 @@ $customizerHidden = 'customizer-hide';
               <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter your Phone Number" autofocus required>
             </div>
             <div class="mb-3">
+              <label for="first_name" class="form-label">Pekerjaan / Work</label>
+             <select class="form-control" name="is_asn">
+                <option value="0" >Non ASN ( Lainnya ) / Proffesional</option>
+                <option value="1" >ASN / Goverment</option>
+             </select>
+            </div>
+            <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email">
             </div>

@@ -304,7 +304,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::RxvnkEIbFPdGlAEK',
+            '_route' => 'generated::79L30kMBX4RG739J',
           ),
           1 => NULL,
           2 => 
@@ -323,7 +323,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::mkWv5g2SoWhfm5wF',
+            '_route' => 'generated::tst36iIupJtCdTpe',
           ),
           1 => NULL,
           2 => 
@@ -342,7 +342,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::b1gMMWf2mk2J0viN',
+            '_route' => 'generated::iepauWvMFBbShbNW',
           ),
           1 => NULL,
           2 => 
@@ -362,7 +362,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::ITXFCHR4A1aQv727',
+            '_route' => 'generated::fQuPRFsmiBliPioK',
           ),
           1 => NULL,
           2 => 
@@ -382,7 +382,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::CLMRWXa9e5G8gZqN',
+            '_route' => 'generated::SVavbyvAuPtaxPA6',
           ),
           1 => NULL,
           2 => 
@@ -454,13 +454,53 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/user-show-all' => 
+      '/user/user-show-all' => 
       array (
         0 => 
         array (
           0 => 
           array (
             '_route' => 'user-show-all',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/user/user-inactive' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'pages-user-inactive',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/oauth-client' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'oauth-client.index',
           ),
           1 => NULL,
           2 => 
@@ -533,6 +573,64 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/auth/forgot-password' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'auth-forgot-password',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/auth/forgot-password-send-link' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'auth-forgot-password-send-link',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/auth/forgot-password-store' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'auth-forgot-password-store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/auth/register-basic' => 
       array (
         0 => 
@@ -575,7 +673,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/oauth/(?|tokens/([^/]++)(*:32)|clients/([^/]++)(?|(*:58))|personal\\-access\\-tokens/([^/]++)(*:99)))/?$}sDu',
+      0 => '{^(?|/oauth/(?|tokens/([^/]++)(*:32)|clients/([^/]++)(?|(*:58))|personal\\-access\\-tokens/([^/]++)(*:99))|/profile/([^/]++)(*:124)|/user/user\\-show/([^/]++)(*:157)|/auth/(?|forgot\\-password\\-form/([^/]++)(*:205)|register\\-activation/([^/]++)(*:242)))/?$}sDu',
     ),
     3 => 
     array (
@@ -657,6 +755,98 @@ app('router')->setCompiledRoutes(
           2 => 
           array (
             'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      124 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'pages-profile',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      157 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'pages-user-show',
+          ),
+          1 => 
+          array (
+            0 => 'is_external_account',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      205 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'auth-forgot-password-form',
+          ),
+          1 => 
+          array (
+            0 => 'ref',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      242 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'auth-register-activation',
+          ),
+          1 => 
+          array (
+            0 => 'activation_code',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
           ),
           3 => NULL,
           4 => false,
@@ -1377,7 +1567,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::RxvnkEIbFPdGlAEK' => 
+    'generated::79L30kMBX4RG739J' => 
     array (
       'methods' => 
       array (
@@ -1397,7 +1587,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::RxvnkEIbFPdGlAEK',
+        'as' => 'generated::79L30kMBX4RG739J',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1413,7 +1603,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::mkWv5g2SoWhfm5wF' => 
+    'generated::tst36iIupJtCdTpe' => 
     array (
       'methods' => 
       array (
@@ -1433,7 +1623,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::mkWv5g2SoWhfm5wF',
+        'as' => 'generated::tst36iIupJtCdTpe',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1449,7 +1639,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::b1gMMWf2mk2J0viN' => 
+    'generated::iepauWvMFBbShbNW' => 
     array (
       'methods' => 
       array (
@@ -1471,7 +1661,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::b1gMMWf2mk2J0viN',
+        'as' => 'generated::iepauWvMFBbShbNW',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1487,7 +1677,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ITXFCHR4A1aQv727' => 
+    'generated::fQuPRFsmiBliPioK' => 
     array (
       'methods' => 
       array (
@@ -1509,7 +1699,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::ITXFCHR4A1aQv727',
+        'as' => 'generated::fQuPRFsmiBliPioK',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1525,7 +1715,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::CLMRWXa9e5G8gZqN' => 
+    'generated::SVavbyvAuPtaxPA6' => 
     array (
       'methods' => 
       array (
@@ -1546,7 +1736,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::CLMRWXa9e5G8gZqN',
+        'as' => 'generated::SVavbyvAuPtaxPA6',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1637,6 +1827,44 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'pages-profile' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'profile/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\pages\\ProfilePage@index',
+        'controller' => 'App\\Http\\Controllers\\pages\\ProfilePage@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'pages-profile',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'logout' => 
     array (
       'methods' => 
@@ -1681,7 +1909,7 @@ app('router')->setCompiledRoutes(
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'user-show-all',
+      'uri' => 'user/user-show-all',
       'action' => 
       array (
         'middleware' => 
@@ -1698,6 +1926,123 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'user-show-all',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'pages-user-show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'user/user-show/{is_external_account}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\pages\\UserPage@index',
+        'controller' => 'App\\Http\\Controllers\\pages\\UserPage@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'pages-user-show',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'pages-user-inactive' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'user/user-inactive',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\pages\\UserPage@user_inactive',
+        'controller' => 'App\\Http\\Controllers\\pages\\UserPage@user_inactive',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'pages-user-inactive',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'oauth-client.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'oauth-client',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\pages\\OauthClientPage@index',
+        'controller' => 'App\\Http\\Controllers\\pages\\OauthClientPage@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'oauth-client.index',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1823,6 +2168,152 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'auth-forgot-password' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'auth/forgot-password',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password',
+        'controller' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'auth-forgot-password',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'auth-forgot-password-send-link' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'auth/forgot-password-send-link',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_send_link',
+        'controller' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_send_link',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'auth-forgot-password-send-link',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'auth-forgot-password-form' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'auth/forgot-password-form/{ref}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_form',
+        'controller' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_form',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'auth-forgot-password-form',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'auth-forgot-password-store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'auth/forgot-password-store',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_store',
+        'controller' => 'App\\Http\\Controllers\\authentications\\LoginBasic@forgot_password_store',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'auth-forgot-password-store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'auth-register-basic' => 
     array (
       'methods' => 
@@ -1881,6 +2372,43 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'auth-register-store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'auth-register-activation' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'auth/register-activation/{activation_code}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\authentications\\RegisterBasic@register_activation',
+        'controller' => 'App\\Http\\Controllers\\authentications\\RegisterBasic@register_activation',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'auth-register-activation',
       ),
       'fallback' => false,
       'defaults' => 

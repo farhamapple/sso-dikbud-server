@@ -31,7 +31,7 @@ return new class extends Migration {
       $table->string('activation_code')->nullable();
       $table->timestamp('verified_at')->nullable();
       $table->string('is_active')->default('0');
-      $table->string('is_external_account')->default('0');
+      $table->string('is_external_account')->default('1');
       $table->string('nip')->nullable();
       $table->string('simpeg_id')->nullable();
       $table

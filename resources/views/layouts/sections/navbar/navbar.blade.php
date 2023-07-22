@@ -80,12 +80,18 @@ $navbarDetached = ($navbarDetached ?? '');
                 <div class="dropdown-divider"></div>
               </li>
              <li>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{ route('pages-profile', Auth::user()->ref)}}">
                   <i class="ti ti-user-check me-2 ti-sm"></i>
                   <span class="align-middle">My Profile</span>
                 </a>
               </li>
               <li>
+                <a class="dropdown-item" href="#">
+                  <i class="ti ti-key me-2 ti-sm"></i>
+                  <span class="align-middle">Reset Password</span>
+                </a>
+              </li>
+              {{-- <li>
                 <a class="dropdown-item" href="javascript:void(0);">
                   <span class="d-flex align-items-center align-middle">
                     <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
@@ -93,7 +99,7 @@ $navbarDetached = ($navbarDetached ?? '');
                     <span class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20">2</span>
                   </span>
                 </a>
-              </li>
+              </li> --}}
 
 
 

@@ -9,6 +9,6 @@ class LandingPage extends Controller
 {
   public function index()
   {
-    return view('content.pages.pages-landing');
+    return view('landing-page-sso');
   }
 }

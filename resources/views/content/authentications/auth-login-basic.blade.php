@@ -43,7 +43,18 @@ $customizerHidden = 'customizer-hide';
           <!-- /Logo -->
           {{-- <h4 class="mb-1 pt-2 text-center">Welcome to <br>SSO Kemendikbud Ristek</h4> --}}
           <p class="mb-4">Please sign-in to your account</p>
-
+          @if ($message = Session::get('error'))
+          <div class="alert alert-danger alert-dismissible" role="alert">
+            {{ $message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          @endif
+          @if ($message = Session::get('success'))
+          <div class="alert alert-success alert-dismissible" role="alert">
+            {!! $message !!}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          @endif
           <form id="formAuthentication" class="mb-3" action="{{ route('auth-login-store')}}" method="POST">
             @csrf
             <div class="mb-3">
@@ -53,7 +64,7 @@ $customizerHidden = 'customizer-hide';
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
                 <label class="form-label" for="password">Password</label>
-                <a href="javascript:void(0);">
+                <a href="{{ route('auth-forgot-password')}}">
                   <small>Forgot Password?</small>
                 </a>
               </div>
