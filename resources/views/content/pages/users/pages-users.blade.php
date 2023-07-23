@@ -22,9 +22,33 @@ $configData = Helper::appClasses();
 @section('page-script')
 
 <script>
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
   $(function(){
       let dt = $('#dt-user').DataTable();
   });
+
+  $(document).ready(function(){
+
+    $('.btn-go-to-inactive').on('click', function(e){
+      e.preventDefault();
+        let ref = $(this).data("ref")
+        $.ajax({
+           type:'POST',
+           url:"{{ route('pages-user-go-to-inactive') }}",
+           data:{ref:ref},
+           success:function(data){
+              console.log(data);
+           }
+        });
+
+    });
+  });
+
+
 </script>
 @endsection
 
@@ -41,13 +65,45 @@ $configData = Helper::appClasses();
 
           <a
           href="javascript:;"
-          class="btn btn-xs btn-primary waves-effect waves-light"
+          class="btn btn-md btn-primary waves-effect waves-light"
           data-bs-target="#addUser"
           data-bs-toggle="modal"
           >Add User</a
         >
         </div>
       </div>
+      <!-- Error -->
+      @if (session('notifikasi-error'))
+      <div class="card-body">
+        @foreach (session('notifikasi-error') as $key => $item)
+          <div class="alert alert-danger alert-dismissible" role="alert">
+          {{ $item[0] }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endforeach
+      </div>
+      @endif
+
+      @if (session('notifikasi-error-try-catch'))
+      <div class="card-body">
+          <div class="alert alert-danger alert-dismissible" role="alert">
+          {{ session('notifikasi-error-try-catch') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      </div>
+      @endif
+
+      <!--- success -->
+      @if (session('notifikasi-success'))
+      <div class="card-body">
+          <div class="alert alert-success alert-dismissible" role="alert">
+          {{ session('notifikasi-success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      </div>
+      @endif
+
+
       <div class="card-datatable table-responsive">
         <table class="table" id="dt-user">
           <thead>
@@ -85,7 +141,7 @@ $configData = Helper::appClasses();
                       <i class="ti ti-dots-vertical"></i>
                     </button>
                     <div class="dropdown-menu" style="">
-                      <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-user-off me-1 text-danger"></i> Inactive</a>
+                      <a class="dropdown-item btn-go-to-inactive" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-user-off me-1 text-danger"></i> Inactive</a>
                       <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-eye me-1 text-info"></i> View</a>
                       <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-pencil me-1"></i> Edit</a>
                       <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>
