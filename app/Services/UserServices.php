@@ -100,15 +100,22 @@ class UserService
       $newData->identity_number = $data->identity_number;
       $newData->phone = $data->phone;
       $newData->activation_code = Str::uuid();
+      // Cek Jika Keynya ada
+      isset($data->is_active) ? ($is_active = '1') : ($is_active = '0');
       $newData->is_active = $data->is_active;
-      $newData->is_external_account = $data->is_external_account;
+      isset($data->is_external_account) ? ($is_external_account = '1') : ($is_external_account = '0');
+      $newData->is_external_account = $is_external_account;
+
       $newData->created_by = $data->email;
       $newData->updated_by = $data->email;
       $newData->is_asn = $data->is_asn;
-      if ($data->is_asn == '1') {
+      if (isset($data->is_asn)) {
+        $data->is_asn == '1';
         $newData->nip = $data->nip;
         $newData->instansi = $data->instansi;
         $newData->jabatan = $data->jabatan;
+      } else {
+        $data->is_asn == '1';
       }
       $newData->role_id = '1';
       $newData->ref = Str::uuid();

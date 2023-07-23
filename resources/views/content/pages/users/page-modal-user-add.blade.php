@@ -9,7 +9,8 @@
             <h3 class="mb-2">Add User</h3>
             {{-- <p class="text-muted">Updating user details will receive a privacy audit.</p> --}}
           </div>
-          <form id="editUserForm" class="row g-3" onsubmit="return false">
+          <form id="editUserForm" class="row g-3" method="POST" action="{{ route('pages-user-store')}}">
+            @csrf
             <div class="col-12 col-md-6">
               <label class="form-label" for="first_name">First Name</label>
               <input
@@ -48,6 +49,24 @@
                   class="form-control phone-number-mask"
                   placeholder="85712341234" />
               </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="john.doe.007" />
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="password_confirm">Repeat Password</label>
+              <input
+                type="password"
+                id="password_confirm"
+                name="password_confirm"
+                class="form-control"
+                placeholder="example@domain.com" />
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="email">Email</label>
