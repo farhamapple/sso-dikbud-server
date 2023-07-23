@@ -4,6 +4,7 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserPage extends Controller
@@ -30,7 +31,20 @@ class UserPage extends Controller
     return view('content.pages.users.pages-users-inactive', compact('usersData', 'tipe_user'));
   }
 
-  public function store(Request $request){
-      dd($request->all());
+  public function store(Request $request)
+  {
+    dd($request->all());
+
+    try {
+      // $file = $request->File('path_sk_pemenang') ? $request->File('path_sk_pemenang')->store("storage-file", "public") : null;
+      // $request['path_sk_pemenang'] = $file;
+      // $result = $this->eventJadwalService->saveEventJadwal($request);
+
+      return redirect()
+        ->route('admin.jadwal.index')
+        ->with('notifikasi-success', 'Data berhasil dibuat');
+    } catch (Exception $e) {
+      return back()->with('notifikasi-error', $e->getMessage());
+    }
   }
 }
