@@ -13,6 +13,6 @@ class OauthClientPage extends Controller
   {
     $oauthClientData = OauthClientModel::all();
     // dd($oauthClientData);
-    return view('content.pages.pages-oauth-client', compact('oauthClientData'));
+    return view('content.pages.oauth-client.pages-oauth-client', compact('oauthClientData'));
   }
 }

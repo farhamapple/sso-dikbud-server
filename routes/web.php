@@ -4,8 +4,10 @@ use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\pages\HomePage;
 use App\Http\Controllers\pages\OauthClientPage;
 use App\Http\Controllers\pages\ProfilePage;
+use App\Http\Controllers\pages\SsoClientAppPage;
 use App\Http\Controllers\pages\UserPage;
 use App\Http\Controllers\UserController;
+use App\Models\SsoClientApp;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +44,7 @@ Route::group(
         'middleware' => 'admin',
       ],
       function () {
+        //User
         Route::get('/user/user-show-all', [UserController::class, 'showAll'])->name('user-show-all');
         Route::get('/user/user-show/{is_external_account}', [UserPage::class, 'index'])->name('pages-user-show');
         Route::get('/user/user-inactive', [UserPage::class, 'user_inactive'])->name('pages-user-inactive');
@@ -51,7 +54,11 @@ Route::group(
           'pages-user-go-to-inactive'
         );
 
+        // Oauth Client
         Route::get('/oauth-client', [OauthClientPage::class, 'index'])->name('oauth-client.index');
+
+        // Sso Client App
+        Route::get('/sso-client-app', [SsoClientAppPage::class, 'index'])->name('sso-client-app.index');
       }
     );
   }

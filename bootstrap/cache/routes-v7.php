@@ -304,7 +304,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::QlW9m4UECKylCTEK',
+            '_route' => 'generated::uk3txJszE1LqNv0N',
           ),
           1 => NULL,
           2 => 
@@ -323,7 +323,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::JuL5WVp0qHQkPKnj',
+            '_route' => 'generated::wBsXK281P0k2PAmZ',
           ),
           1 => NULL,
           2 => 
@@ -343,7 +343,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::SP1ak1UloC0uCsBy',
+            '_route' => 'generated::S4UY4oUz1G0o3dyc',
           ),
           1 => NULL,
           2 => 
@@ -362,7 +362,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::mdxUS075DmVT8pTX',
+            '_route' => 'generated::V33nASVwdKDESx7s',
           ),
           1 => NULL,
           2 => 
@@ -382,7 +382,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::S2EflfYeQM9fTj8k',
+            '_route' => 'generated::QJPL8ovwJmDFtzuS',
           ),
           1 => NULL,
           2 => 
@@ -559,6 +559,26 @@ app('router')->setCompiledRoutes(
           0 => 
           array (
             '_route' => 'oauth-client.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/sso-client-app' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'sso-client-app.index',
           ),
           1 => NULL,
           2 => 
@@ -1625,7 +1645,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::QlW9m4UECKylCTEK' => 
+    'generated::uk3txJszE1LqNv0N' => 
     array (
       'methods' => 
       array (
@@ -1645,7 +1665,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::QlW9m4UECKylCTEK',
+        'as' => 'generated::uk3txJszE1LqNv0N',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1661,7 +1681,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::JuL5WVp0qHQkPKnj' => 
+    'generated::wBsXK281P0k2PAmZ' => 
     array (
       'methods' => 
       array (
@@ -1682,7 +1702,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::JuL5WVp0qHQkPKnj',
+        'as' => 'generated::wBsXK281P0k2PAmZ',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1698,7 +1718,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::SP1ak1UloC0uCsBy' => 
+    'generated::S4UY4oUz1G0o3dyc' => 
     array (
       'methods' => 
       array (
@@ -1718,7 +1738,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::SP1ak1UloC0uCsBy',
+        'as' => 'generated::S4UY4oUz1G0o3dyc',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1734,7 +1754,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::mdxUS075DmVT8pTX' => 
+    'generated::V33nASVwdKDESx7s' => 
     array (
       'methods' => 
       array (
@@ -1756,7 +1776,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::mdxUS075DmVT8pTX',
+        'as' => 'generated::V33nASVwdKDESx7s',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1772,7 +1792,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::S2EflfYeQM9fTj8k' => 
+    'generated::QJPL8ovwJmDFtzuS' => 
     array (
       'methods' => 
       array (
@@ -1793,7 +1813,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::S2EflfYeQM9fTj8k',
+        'as' => 'generated::QJPL8ovwJmDFtzuS',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2213,6 +2233,45 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'oauth-client.index',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'sso-client-app.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'sso-client-app',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\pages\\SsoClientAppPage@index',
+        'controller' => 'App\\Http\\Controllers\\pages\\SsoClientAppPage@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'sso-client-app.index',
       ),
       'fallback' => false,
       'defaults' => 

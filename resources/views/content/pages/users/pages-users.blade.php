@@ -137,7 +137,7 @@ $configData = Helper::appClasses();
                 <td>{{ $item->updated_at }}</td>
                 <td>
                   <div class="dropdown">
-                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="ti ti-dots-vertical"></i>
                     </button>
                     <div class="dropdown-menu" style="">

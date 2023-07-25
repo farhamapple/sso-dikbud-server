@@ -46,14 +46,15 @@ $configData = Helper::appClasses();
         <table class="table" id="dt-oauth-client">
           <thead>
             <tr>
-              <th width="20%">Client Name</th>
-              <th width="10%">Secret</th>
-              <th width="10%">Redirect</th>
-              <th width="10%">Personal Acces <br> Client</th>
-              <th width="10%">Password <br> Client</th>
-              <th width="10%">Revoke</th>
-              <th width="10%">Diubah</th>
-              <th width="5%">Action</th>
+              <th width="20%" class="text-center">Client Name</th>
+              <th width="10%" class="text-center">ID</th>
+              <th width="10%" class="text-center">Secret</th>
+              <th width="10%" class="text-center">Redirect</th>
+              <th width="10%" class="text-center">Personal Acces <br> Client</th>
+              <th width="10%" class="text-center">Password <br> Client</th>
+              <th width="10%" class="text-center">Revoke</th>
+              <th width="10%" class="text-center">Diubah</th>
+              <th width="5%" class="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -62,6 +63,7 @@ $configData = Helper::appClasses();
 
               <tr>
                 <td>{{ $item->name}}</td>
+                <td><button type="button" class="btn btn-xs btn-primary waves-effect waves-light">copy</button></td>
                 <td><button type="button" class="btn btn-xs btn-primary waves-effect waves-light">copy</button></td>
                 <td>{{ $item->redirect }}</td>
                 <td>
@@ -85,7 +87,18 @@ $configData = Helper::appClasses();
                   @endif
                 </td>
                 <td>{{ $item->updated_at}}</td>
-                <td>{{ $item->updated_at}}</td>
+                <td>
+                  <div class="dropdown">
+                    <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="ti ti-dots-vertical"></i>
+                    </button>
+                    <div class="dropdown-menu" style="">
+                      <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-eye me-1 text-info"></i> View</a>
+                      <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-pencil me-1"></i> Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>
+                    </div>
+                  </div>
+                </td>
               </tr>
             @endforeach
           </tbody>
