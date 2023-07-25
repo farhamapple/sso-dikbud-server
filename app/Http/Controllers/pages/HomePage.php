@@ -4,13 +4,25 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\SsoClientAppServices;
 use Illuminate\Http\Request;
 
 class HomePage extends Controller
 {
+  private $ssoClientApp;
+  public function __construct()
+  {
+    $this->ssoClientApp = new SsoClientAppServices();
+  }
   public function index()
   {
-    return view('content.pages.pages-home');
+    try {
+      //code...
+      $dataSsoClientApp = $this->ssoClientApp->getAll();
+    } catch (\Throwable $th) {
+      //throw $th;
+    }
+    return view('content.pages.pages-home', compact('dataSsoClientApp'));
   }
   public function me(Request $request)
   {
