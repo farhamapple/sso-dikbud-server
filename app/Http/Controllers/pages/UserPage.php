@@ -33,6 +33,34 @@ class UserPage extends Controller
     }
   }
 
+  public function show(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      //
+      'ref' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+
+      return response()->json(['success' => false, 'data' => '', 'message' => $error]);
+    }
+
+    try {
+      //code...
+      $dataUserDetail = $this->userServices->getUserByRef($request->ref);
+
+      return response()->json([
+        'success' => false,
+        'data' => $dataUserDetail,
+        'message' => 'Berhasil Mengambil data user',
+      ]);
+    } catch (Exception $e) {
+      //throw $th;
+      return response()->json(['success' => false, 'data' => '', 'message' => $e]);
+    }
+  }
+
   public function user_inactive()
   {
     $usersData = $this->userServices->getUserInActive();

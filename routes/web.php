@@ -48,11 +48,13 @@ Route::group(
         Route::get('/user/user-show-all', [UserController::class, 'showAll'])->name('user-show-all');
         Route::get('/user/user-show/{is_external_account}', [UserPage::class, 'index'])->name('pages-user-show');
         Route::get('/user/user-inactive', [UserPage::class, 'user_inactive'])->name('pages-user-inactive');
+
         // Action
         Route::post('/user/user-store', [UserPage::class, 'store'])->name('pages-user-store');
         Route::post('/user/user-go-to-inactive', [UserPage::class, 'goToInActiveUser'])->name(
           'pages-user-go-to-inactive'
         );
+        Route::post('/user/user-show-detail', [UserPage::class, 'show'])->name('pages-user-show-detail');
 
         // Oauth Client
         Route::get('/oauth-client', [OauthClientPage::class, 'index'])->name('oauth-client.index');

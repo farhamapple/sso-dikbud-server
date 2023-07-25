@@ -86,7 +86,7 @@ class UserServices
   public function getUserByRef($ref)
   {
     try {
-      $data = User::where('ref', $ref);
+      $data = User::where('ref', $ref)->first();
 
       return $data;
     } catch (Exception $e) {

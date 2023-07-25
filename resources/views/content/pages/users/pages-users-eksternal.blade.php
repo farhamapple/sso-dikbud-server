@@ -91,12 +91,25 @@ $configData = Helper::appClasses();
 
           }
         });
-
-
-
     });
 
     // View
+    $('.btn-show').on('click', function(e){
+      e.preventDefault();
+      let ref = $(this).data("ref")
+      $.ajax({
+        type:'POST',
+        url:"{{ route('pages-user-show-detail') }}",
+        data:{ref:ref},
+        success:function(data){
+            if(data.success){
+
+            }else{
+
+            }
+        }
+      });
+    });
 
     // Edit
 
@@ -198,7 +211,7 @@ $configData = Helper::appClasses();
                     </button>
                     <div class="dropdown-menu" style="">
                       <a class="dropdown-item btn-go-to-inactive" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-user-off me-1 text-danger"></i> Inactive</a>
-                      <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-eye me-1 text-info"></i> View</a>
+                      <a class="dropdown-item btn-show" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-eye me-1 text-info"></i> View</a>
                       <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-pencil me-1"></i> Edit</a>
                       <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>
                     </div>
