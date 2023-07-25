@@ -36,6 +36,6 @@ return new class extends Migration {
    */
   public function down(): void
   {
-    Schema::dropIfExists('sso_clients');
+    Schema::dropIfExists('sso_client_apps');
   }
 };

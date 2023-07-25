@@ -10,15 +10,81 @@ $configData = Helper::appClasses();
 <!-- Content wrapper -->
 <div class="content-wrapper">
   <!-- Content -->
-
-  <div class="container-xxl flex-grow-1 container-p-y">
-    <!-- Help Center Header -->
+  <div class="row">
+    <div class="col-md-12">
       <div class="alert alert-primary" role="alert"><h2 class="text-center">Selamat Datang, di Halaman Dashboard SSO</h2></div>
+    </div>
   </div>
     <!-- /Help Center Header -->
+    <div class="row">
+      <div class="col-lg-3 col-sm-6 mb-4">
+        <div class="card">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div class="card-title mb-0">
+              <h5 class="mb-0 me-2">{{ $calculate_user['total_user'] }}</h5>
+              <small>Total User SSO</small>
+            </div>
+            <div class="card-icon">
+              <span class="badge bg-label-primary rounded-pill p-2">
+                <i class="ti ti-users ti-sm ti-tada"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 mb-4">
+        <div class="card">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div class="card-title mb-0">
+              <h5 class="mb-0 me-2">{{ $calculate_user['total_user_internal'] }}</h5>
+              <small>User Internal</small>
+            </div>
+            <div class="card-icon">
+              <span class="badge bg-label-success rounded-pill p-2">
+                <i class="ti ti-user ti-sm ti-tada"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 mb-4">
+        <div class="card">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div class="card-title mb-0">
+              <h5 class="mb-0 me-2">{{ $calculate_user['total_user_eksternal'] }}</h5>
+              <small>User Eksternal</small>
+            </div>
+            <div class="card-icon">
+              <span class="badge bg-label-warning rounded-pill p-2">
+                <i class="ti ti-user ti-sm ti-tada"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 mb-4">
+        <div class="card">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div class="card-title mb-0">
+              <h5 class="mb-0 me-2">{{ $calculate_user['total_user_inactive'] }}</h5>
+              <small>User Inactive</small>
+            </div>
+            <div class="card-icon">
+              <span class="badge bg-label-danger rounded-pill p-2">
+                <i class="ti ti-user-x ti-sm"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <p style="margin-left: 10px">
       Aplikasi-Aplikasi yang sudah Terkoneksi SSO
     </p>
+
     <!-- Popular Articles -->
     <div class="row">
       @isset($dataSsoClientApp)

@@ -37,11 +37,45 @@ $configData = Helper::appClasses();
         <span class="me-2"><h5>Sso Client app</h5></span> <br><a href="https://tabler-icons.io/" target="_blank" class="btn btn-xs btn-success waves-effect waves-light"><span class="tf-icon ti ti-link ti-xs me-1"></span>Referensi Icon</a>
 
         <div class="card-header-elements ms-auto">
-          <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
-            <span class="tf-icon ti ti-plus ti-xs me-1"></span>Add Client
-          </button>
+
+          <a
+          href="javascript:;"
+          class="btn btn-md btn-primary waves-effect waves-light"
+          data-bs-target="#addClient"
+          data-bs-toggle="modal"
+          >Add Client</a
+        >
         </div>
       </div>
+      @if (session('notifikasi-error'))
+      <div class="card-body">
+        @foreach (session('notifikasi-error') as $key => $item)
+          <div class="alert alert-danger alert-dismissible" role="alert">
+          {{ $item[0] }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endforeach
+      </div>
+      @endif
+
+      @if (session('notifikasi-error-try-catch'))
+      <div class="card-body">
+          <div class="alert alert-danger alert-dismissible" role="alert">
+          {{ session('notifikasi-error-try-catch') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      </div>
+      @endif
+
+      <!--- success -->
+      @if (session('notifikasi-success'))
+      <div class="card-body">
+          <div class="alert alert-success alert-dismissible" role="alert">
+          {{ session('notifikasi-success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      </div>
+      @endif
       <div class="card-datatable table-responsive">
         <table class="table" id="dt-oauth-client">
           <thead>
@@ -94,4 +128,5 @@ $configData = Helper::appClasses();
       </div>
     </div>
 </div>
+@include('content.pages.sso-client-app.page-modal-sso-client-app-add')
 @endsection

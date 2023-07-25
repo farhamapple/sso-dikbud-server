@@ -56,9 +56,25 @@ Route::group(
 
         // Oauth Client
         Route::get('/oauth-client', [OauthClientPage::class, 'index'])->name('oauth-client.index');
+        Route::get('/oauth-client/{id}', [OauthClientPage::class, 'show'])->name('oauth-client.show');
+        // Action
+        Route::post('/oauth-client', [OauthClientPage::class, 'store'])->name('oauth-client.store');
+        Route::post('/oauth-client-edit', [OauthClientPage::class, 'update'])->name('oauth-client.update');
+        Route::post('/oauth-client-destroy', [OauthClientPage::class, 'destroy'])->name('oauth-client.destroy');
 
         // Sso Client App
         Route::get('/sso-client-app', [SsoClientAppPage::class, 'index'])->name('sso-client-app.index');
+        Route::get('/sso-client-app/{ref}', [SsoClientAppPage::class, 'show'])->name('sso-client-app.show');
+        //Action
+        Route::post('/sso-client-app', [SsoClientAppPage::class, 'store'])->name('sso-client-app.store');
+        Route::post('/sso-client-app-edit', [SsoClientAppPage::class, 'update'])->name('sso-client-app.update');
+        Route::post('/sso-client-app/to-inactive', [SsoClientAppPage::class, 'to_inactive'])->name(
+          'sso-client-app.to_inactive'
+        );
+        Route::post('/sso-client-app/to-active', [SsoClientAppPage::class, 'to_active'])->name(
+          'sso-client-app.to_active'
+        );
+        Route::post('/sso-client-app-destroy', [SsoClientAppPage::class, 'destroy'])->name('sso-client-app.destroy');
       }
     );
   }

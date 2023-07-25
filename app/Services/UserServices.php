@@ -104,7 +104,7 @@ class UserServices
       $newData->password = bcrypt($data->password);
       $newData->created_at = Carbon::now()->toDateTimeString();
       $newData->updated_at = Carbon::now()->toDateTimeString();
-      $newData->username = $data->email;
+      $newData->username = $data->username ? $data->username : $data->email;
       $newData->first_name = $data->first_name;
       $newData->last_name = $data->last_name;
       $newData->email_external = '-';
@@ -141,7 +141,7 @@ class UserServices
       $newData->password = bcrypt($data->password);
       $newData->created_at = Carbon::now()->toDateTimeString();
       $newData->updated_at = Carbon::now()->toDateTimeString();
-      $newData->username = $data->email;
+      $newData->username = $data->username ? $data->username : $data->email;
       $newData->first_name = $data->first_name;
       $newData->last_name = $data->last_name;
       $newData->email_external = $data->email_external;
@@ -172,7 +172,7 @@ class UserServices
       $newData->ref = Str::uuid();
       $newData->save();
 
-      return $newData->id();
+      return $newData;
     } catch (Exception $e) {
       throw new Exception('Terjadi Kesalahan saat Menyimpan Data User');
     }

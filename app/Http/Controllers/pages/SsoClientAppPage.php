@@ -4,7 +4,9 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use App\Services\SsoClientAppServices;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SsoClientAppPage extends Controller
 {
@@ -43,6 +45,25 @@ class SsoClientAppPage extends Controller
   public function store(Request $request)
   {
     //
+    $validator = Validator::make($request->all(), [
+      //
+      'name' => 'required',
+      'link_redirect' => 'required',
+      'icon' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+      return back()->with('notifikasi-error', $error);
+    }
+
+    try {
+      $newData = $this->ssoClientApp->saveData($request);
+
+      return back()->with('notifikasi-success', 'Data Berhasil ditambahkan');
+    } catch (Exception $e) {
+      return back()->with('notifikasi-error-try-catch', $e->getMessage());
+    }
   }
 
   /**

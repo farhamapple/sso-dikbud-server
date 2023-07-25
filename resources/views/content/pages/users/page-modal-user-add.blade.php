@@ -18,7 +18,7 @@
                 id="first_name"
                 name="first_name"
                 class="form-control"
-                placeholder="John" />
+                placeholder="John" required/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="last_name">Last Name</label>
@@ -36,7 +36,7 @@
                 id="username"
                 name="username"
                 class="form-control"
-                placeholder="john.doe.007" />
+                placeholder="Jika Kosong akan disamakan dengan Email" />
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="modalEditUserPhone">Phone Number</label>
@@ -57,7 +57,7 @@
                 id="password"
                 name="password"
                 class="form-control"
-                placeholder="john.doe.007" />
+                required/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="password_confirm">Repeat Password</label>
@@ -66,7 +66,7 @@
                 id="password_confirm"
                 name="password_confirm"
                 class="form-control"
-                placeholder="example@domain.com" />
+                 required/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="email">Email</label>
@@ -75,7 +75,7 @@
                 id="email"
                 name="email"
                 class="form-control"
-                placeholder="example@domain.com" />
+                placeholder="example@domain.com" required/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="email_external">Email Eksternal</label>
@@ -104,7 +104,7 @@
                 id="birth_date"
                 name="birth_date"
                 class="form-control"
-                placeholder="example@domain.com" />
+                placeholder="1990-01-01" />
             </div>
             <div class="col-12">
               <label class="form-label" for="address">Address</label>
@@ -129,10 +129,19 @@
                 id="identity_number"
                 name="identity_number"
                 class="form-control modal-edit-tax-id"
-                placeholder="123 456 7890" />
+                placeholder="317412341234" />
             </div>
-
-            <div class="col-12">
+            <div class="col-12 col-md-6">
+              <label class="switch">
+                <input type="checkbox" class="switch-input" name="is_external_account"/>
+                <span class="switch-toggle-slider">
+                  <span class="switch-on" value='1'></span>
+                  <span class="switch-off" value='0'></span>
+                </span>
+                <span class="switch-label">Eksternal User?</span>
+              </label>
+            </div>
+            <div class="col-12 col-md-6">
               <label class="switch">
                 <input type="checkbox" class="switch-input" name="is_asn"/>
                 <span class="switch-toggle-slider">
@@ -149,7 +158,7 @@
                 id="nip"
                 name="nip"
                 class="form-control modal-edit-tax-id"
-                placeholder="123 456 7890" />
+                placeholder="19902012012012001" />
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="instansi">Instansi</label>
@@ -158,7 +167,7 @@
                 id="instansi"
                 name="instansi"
                 class="form-control modal-edit-tax-id"
-                placeholder="123 456 7890" />
+                placeholder="Kementerian BUMN" />
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="jabatan">Jabatan</label>
@@ -167,7 +176,7 @@
                 id="jabatan"
                 name="jabatan"
                 class="form-control modal-edit-tax-id"
-                placeholder="123 456 7890" />
+                placeholder="Pranata Komputer Muda" />
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="simpeg_id">Simpeg ID</label>
@@ -176,17 +185,7 @@
                 id="simpeg_id"
                 name="simpeg_id"
                 class="form-control modal-edit-tax-id"
-                placeholder="123 456 7890" />
-            </div>
-            <div class="col-12 col-md-6">
-              <label class="switch">
-                <input type="checkbox" class="switch-input" name="is_external_account"/>
-                <span class="switch-toggle-slider">
-                  <span class="switch-on" value='1'></span>
-                  <span class="switch-off" value='0'></span>
-                </span>
-                <span class="switch-label">Eksternal User?</span>
-              </label>
+                placeholder="100" />
             </div>
             <div class="col-12 col-md-6">
               <label class="switch">

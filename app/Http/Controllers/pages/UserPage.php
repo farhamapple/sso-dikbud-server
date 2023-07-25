@@ -25,12 +25,12 @@ class UserPage extends Controller
     if ($is_external_account == '0') {
       $tipe_user = 'User Internal';
       $usersData = $this->userServices->getInternalAccount();
+      return view('content.pages.users.pages-users-internal', compact('usersData', 'tipe_user'));
     } else {
       $tipe_user = 'User Eksternal';
       $usersData = $this->userServices->getEksternalAccount();
+      return view('content.pages.users.pages-users-eksternal', compact('usersData', 'tipe_user'));
     }
-
-    return view('content.pages.users.pages-users', compact('usersData', 'tipe_user'));
   }
 
   public function user_inactive()
@@ -45,6 +45,7 @@ class UserPage extends Controller
     //dd($request->first_name);
     $validator = Validator::make($request->all(), [
       //
+      'username' => 'required | unique:users,username',
       'first_name' => 'required',
       'email' => 'required | email | unique:users,email',
       'password' => 'required|min:6',
@@ -57,7 +58,7 @@ class UserPage extends Controller
     }
 
     try {
-      $newDataId = $this->userServices->saveUser($request);
+      $newData = $this->userServices->saveUser($request);
 
       return back()->with('notifikasi-success', 'User Berhasil ditambahkan');
     } catch (Exception $e) {
