@@ -12,15 +12,17 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 @endsection
 
 
 @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
 @endsection
 
 @section('page-script')
-
+<script src="{{asset('assets/js/extended-ui-sweetalert2.js')}}"></script>
 <script>
   $.ajaxSetup({
       headers: {
@@ -33,19 +35,73 @@ $configData = Helper::appClasses();
 
   $(document).ready(function(){
 
+    // go To Inactive
     $('.btn-go-to-inactive').on('click', function(e){
       e.preventDefault();
-        let ref = $(this).data("ref")
-        $.ajax({
-           type:'POST',
-           url:"{{ route('pages-user-go-to-inactive') }}",
-           data:{ref:ref},
-           success:function(data){
-              console.log(data);
-           }
+      let ref = $(this).data("ref")
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "Inactive User",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, Sure!',
+          customClass: {
+            confirmButton: 'btn btn-primary me-3',
+            cancelButton: 'btn btn-label-secondary'
+          },
+          buttonsStyling: false
+        }).then(function (result) {
+          if (result.value) {
+
+            $.ajax({
+              type:'POST',
+              url:"{{ route('pages-user-go-to-inactive') }}",
+              data:{ref:ref},
+              success:function(data){
+                  if(data.success){
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Inactive!',
+                      text: 'User Has Been Inactive',
+                      customClass: {
+                        confirmButton: 'btn btn-success'
+                      }
+                    });
+                    setTimeout(
+                    function()
+                    {
+                      //do something special
+                      location.reload();
+                    }, 3000);
+
+                  }else{
+                    Swal.fire({
+                      title: 'Error!',
+                      text: ' Got Problem',
+                      icon: 'error',
+                      customClass: {
+                        confirmButton: 'btn btn-primary'
+                      },
+                      buttonsStyling: false
+                    });
+                  }
+              }
+            });
+
+
+          }
         });
 
+
+
     });
+
+    // View
+
+    // Edit
+
+    // Destroy
+
   });
 
 
