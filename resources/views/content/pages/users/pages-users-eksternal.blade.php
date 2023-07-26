@@ -96,14 +96,69 @@ $configData = Helper::appClasses();
     // View
     $('.btn-show').on('click', function(e){
       e.preventDefault();
-      let ref = $(this).data("ref")
+      let ref = $(this).data("ref");
+
+      // id
+      $('#first_name_view').val('');
+      $('#last_name_view').val('');
+      $('#username_view').val('');
+      $('#phone_view').val('');
+      $('#email_view').val('');
+      $('#email_external_view').val('');
+      $('#sex_view').val('');
+      $('#address_view').val('');
+      $('#identity_type_view').val('');
+      $('#identity_number_view').val('');
+      $('#nip_view').val('');
+      $('#instansi_view').val('');
+      $('#jabatan_view').val('');
+      $('#simpeg_id_view').val('');
+
+
       $.ajax({
         type:'POST',
         url:"{{ route('pages-user-show-detail') }}",
         data:{ref:ref},
         success:function(data){
             if(data.success){
+              $('#first_name_view').val(data.data.first_name);
+              $('#last_name_view').val(data.data.last_name);
+              $('#username_view').val(data.data.username);
+              $('#phone_view').val(data.data.phone);
+              $('#email_view').val(data.data.email);
+              $('#email_external_view').val(data.data.email_external);
+              $('#sex_view').val(data.data.sex);
+              $('#address_view').val(data.data.address);
+              switch (data.data.identity_type) {
+                case 1:
+                $('#identity_type_view').val('<span class="badge bg-label-success me-1">KTP</span>');
+                  break;
+                case 2:
+                $('#identity_type_view').val('<span class="badge bg-label-success me-1">SIM</span>');
+                  break;
+                case 3:
+                $('#identity_type_view').val('<span class="badge bg-label-success me-1">Passport</span>');
+                  break;
 
+                default:
+                $('#identity_type_view').val('<span class="badge bg-label-success me-1">Lain-lain</span>');
+                  break;
+              }
+
+
+              $('#identity_number_view').val(data.data.identity_number);
+              $('#nip_view').val(data.data.nip);
+              $('#instansi_view').val(data.data.instansi);
+              $('#jabatan_view').val(data.data.jabatan);
+              $('#simpeg_id_view').val(data.data.simpeg_id);
+              // If Else
+              $('#sex_view').html((data.data.sex == '1') ? ' <span class="badge bg-label-primary me-1">Man</span>' : ' <span class="badge bg-label-warning me-1">Women</span>');
+              $('#jenis_user_view').html((data.data.is_external_account == '0') ? ' <span class="badge bg-label-primary me-1">Internal</span>' : ' <span class="badge bg-label-danger me-1">Eksternal</span>');
+              $('#is_asn_view').html((data.data.is_asn == '0') ? ' <span class="badge bg-label-danger me-1">Non ASN</span>' : ' <span class="badge bg-label-primary me-1">ASN</span>');
+              $('#is_active_view').html((data.data.is_active == '0') ? ' <span class="badge bg-label-danger me-1">InAktif</span>' : ' <span class="badge bg-label-primary me-1">Aktif</span>');
+              $('#is_admin_view').html((data.data.role_id != '0') ? ' <span class="badge bg-label-danger me-1">Guest</span>' : ' <span class="badge bg-label-primary me-1">Admin</span>');
+
+              $('#showDetailUser').modal('show');
             }else{
 
             }
@@ -225,4 +280,5 @@ $configData = Helper::appClasses();
     </div>
 </div>
 @include('content.pages.users.page-modal-user-add')
+@include('content.pages.users.page-modal-user-show')
 @endsection

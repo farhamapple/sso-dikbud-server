@@ -51,7 +51,7 @@ class UserPage extends Controller
       $dataUserDetail = $this->userServices->getUserByRef($request->ref);
 
       return response()->json([
-        'success' => false,
+        'success' => true,
         'data' => $dataUserDetail,
         'message' => 'Berhasil Mengambil data user',
       ]);

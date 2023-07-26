@@ -1,42 +1,41 @@
 <!-- Modal -->
   <!-- Edit User Modal -->
-  <div class="modal fade" id="addUser" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="showDetailUser" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-simple modal-edit-user">
       <div class="modal-content p-3 p-md-5">
         <div class="modal-body">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="text-center mb-4">
-            <h3 class="mb-2">Add User</h3>
+            <h3 class="mb-2">View User</h3>
             {{-- <p class="text-muted">Updating user details will receive a privacy audit.</p> --}}
           </div>
-          <form id="editUserForm" class="row g-3" method="POST" action="{{ route('pages-user-store')}}">
-            @csrf
+          <form id="showUserForm" class="row g-3" method="POST" action="">
             <div class="col-12 col-md-6">
-              <label class="form-label" for="first_name">First Name</label>
+              <label class="form-label" for="first_name_view">First Name</label>
               <input
                 type="text"
-                id="first_name"
-                name="first_name"
+                id="first_name_view"
+                name="first_name_view"
                 class="form-control"
-                placeholder="John" required/>
+                placeholder="John" disabled/>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="last_name">Last Name</label>
+              <label class="form-label" for="last_name_view">Last Name</label>
               <input
                 type="text"
-                id="last_name"
-                name="last_name"
+                id="last_name_view"
+                name="last_name_view"
                 class="form-control"
-                placeholder="Doe" />
+                placeholder="Doe" disabled/>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="username">Username</label>
+              <label class="form-label" for="username_view">Username</label>
               <input
                 type="text"
-                id="username"
-                name="username"
+                id="username_view"
+                name="username_view"
                 class="form-control"
-                placeholder="Jika Kosong akan disamakan dengan Email" />
+                placeholder="Jika Kosong akan disamakan dengan Email" disabled/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="modalEditUserPhone">Phone Number</label>
@@ -44,77 +43,53 @@
                 <span class="input-group-text">ID (+62)</span>
                 <input
                   type="text"
-                  id="phone"
-                  name="phone"
+                  id="phone_view"
+                  name="phone_view"
                   class="form-control phone-number-mask"
-                  placeholder="85712341234" />
+                  placeholder="85712341234" disabled/>
               </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <label class="form-label" for="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                class="form-control"
-                required/>
-            </div>
-            <div class="col-12 col-md-6">
-              <label class="form-label" for="password_confirm">Repeat Password</label>
-              <input
-                type="password"
-                id="password_confirm"
-                name="password_confirm"
-                class="form-control"
-                 required/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="email">Email</label>
               <input
                 type="text"
-                id="email"
-                name="email"
+                id="email_view"
+                name="email_view"
                 class="form-control"
-                placeholder="example@domain.com" required/>
+                placeholder="example@domain.com" disabled/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="email_external">Email Eksternal</label>
               <input
                 type="text"
-                id="email_external"
-                name="email_external"
+                id="email_external_view"
+                name="email_external_view"
                 class="form-control"
-                placeholder="example@domain.com" />
+                placeholder="example@domain.com" disabled/>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="sex">Sex</label>
-              <select
-              id="sex"
-              name="sex"
-              class="form-select"
-              aria-label="Default select example">
-              <option value="1" selected>Man</option>
-              <option value="2">Women</option>
+              <label class="form-label" for="sex_view">Sex</label>
+              <div id='sex_view'></div>
             </select>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="birth_date">Birth Date</label>
               <input
                 type="text"
-                id="birth_date"
-                name="birth_date"
+                id="birth_date_view"
+                name="birth_date_view"
                 class="form-control"
-                placeholder="1990-01-01" />
+                placeholder="1990-01-01" disabled/>
             </div>
             <div class="col-12">
               <label class="form-label" for="address">Address</label>
-             <textarea rows="5" class="form-control" name="address"></textarea>
+             <textarea rows="5" class="form-control" name="address_view" id="address_view" disabled></textarea>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="identity_type">Identity Type</label>
+              <label class="form-label" for="identity_type_view">Identity Type</label>
               <select
-              id="identity_type"
-              name="identity_type"
+              id="identity_type_view"
+              name="identity_type_view"
               class="form-select"
               aria-label="Default select example">
               <option value="1" selected>KTP</option>
@@ -126,89 +101,64 @@
               <label class="form-label" for="identity_number">Identity Number</label>
               <input
                 type="text"
-                id="identity_number"
-                name="identity_number"
+                id="identity_number_view"
+                name="identity_number_view"
                 class="form-control modal-edit-tax-id"
-                placeholder="317412341234" />
+                placeholder="317412341234" disabled/>
             </div>
             <div class="col-12 col-md-6">
-              <label class="switch">
-                <input type="checkbox" class="switch-input" name="is_external_account"/>
-                <span class="switch-toggle-slider">
-                  <span class="switch-on" value='1'></span>
-                  <span class="switch-off" value='0'></span>
-                </span>
-                <span class="switch-label">Eksternal User?</span>
-              </label>
+              <label class="form-label" for="identity_number">Jenis User</label>
+              <div id='jenis_user_view'></div>
             </div>
             <div class="col-12 col-md-6">
-              <label class="switch">
-                <input type="checkbox" class="switch-input" name="is_asn"/>
-                <span class="switch-toggle-slider">
-                  <span class="switch-on" value='1'></span>
-                  <span class="switch-off" value='0'></span>
-                </span>
-                <span class="switch-label">ASN ?</span>
-              </label>
+              <label class="form-label" for="identity_number">ASN / Non ASN</label>
+              <div id='is_asn_view'></div>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="nip">NIP</label>
               <input
                 type="text"
-                id="nip"
-                name="nip"
+                id="nip_view"
+                name="nip_view"
                 class="form-control modal-edit-tax-id"
-                placeholder="19902012012012001" />
+                placeholder="19902012012012001" disabled/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="instansi">Instansi</label>
               <input
                 type="text"
-                id="instansi"
-                name="instansi"
+                id="instansi_view"
+                name="instansi_view"
                 class="form-control modal-edit-tax-id"
-                placeholder="Kementerian BUMN" />
+                placeholder="Kementerian BUMN" disabled/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="jabatan">Jabatan</label>
               <input
                 type="text"
-                id="jabatan"
-                name="jabatan"
+                id="jabatan_view"
+                name="jabatan_view"
                 class="form-control modal-edit-tax-id"
-                placeholder="Pranata Komputer Muda" />
+                placeholder="Pranata Komputer Muda" disabled/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="simpeg_id">Simpeg ID</label>
               <input
                 type="text"
-                id="simpeg_id"
-                name="simpeg_id"
+                id="simpeg_id_view"
+                name="simpeg_id_view"
                 class="form-control modal-edit-tax-id"
-                placeholder="100" />
+                placeholder="100" disabled/>
             </div>
             <div class="col-12 col-md-6">
-              <label class="switch">
-                <input type="checkbox" class="switch-input" name='is_active'/>
-                <span class="switch-toggle-slider">
-                  <span class="switch-on" value='1'></span>
-                  <span class="switch-off" value='0'></span>
-                </span>
-                <span class="switch-label">Aktif?</span>
-              </label>
+              <label class="form-label" for="simpeg_id">Status</label>
+              <div id='is_active_view'></div>
             </div>
             <div class="col-12 col-md-6">
-              <label class="switch">
-                <input type="checkbox" class="switch-input" name="role_id"/>
-                <span class="switch-toggle-slider">
-                  <span class="switch-on" value='1'></span>
-                  <span class="switch-off" value='0'></span>
-                </span>
-                <span class="switch-label">Admin ?</span>
-              </label>
+              <label class="form-label" for="simpeg_id">Role</label>
+              <div id='is_admin_view'></div>
             </div>
             <div class="col-12 text-center">
-              <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
               <button
                 type="reset"
                 class="btn btn-label-secondary"
