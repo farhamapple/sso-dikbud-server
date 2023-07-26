@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\authentications\AuthController;
 use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\pages\HomePage;
 use App\Http\Controllers\pages\OauthClientPage;
 use App\Http\Controllers\pages\ProfilePage;
 use App\Http\Controllers\pages\UserPage;
 use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +25,6 @@ $controller_path = 'App\Http\Controllers';
 Route::get('/login', $controller_path . '\authentications\LoginBasic@index')->name('login');
 // Main Page Route
 Route::get('/', $controller_path . '\pages\LandingPage@index')->name('pages-landing');
-
 // After Login
 Route::group(
   [
@@ -35,7 +36,6 @@ Route::group(
     Route::get('/profile/{id}', [ProfilePage::class, 'index'])->name('pages-profile');
     // Logout
     Route::post('/logout', [LoginBasic::class, 'logout'])->name('logout');
-
     // Route Middleware for ADMIN
     Route::group(
       [
@@ -43,16 +43,13 @@ Route::group(
       ],
       function () {
         Route::get('/user/user-show-all', [UserController::class, 'showAll'])->name('user-show-all');
-
         Route::get('/user/user-show/{is_external_account}', [UserPage::class, 'index'])->name('pages-user-show');
         Route::get('/user/user-inactive', [UserPage::class, 'user_inactive'])->name('pages-user-inactive');
-
         Route::get('/oauth-client', [OauthClientPage::class, 'index'])->name('oauth-client.index');
       }
     );
   }
 );
-
 // pages
 Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->name('pages-misc-error');
 
@@ -90,3 +87,20 @@ Route::get(
   'auth/register-activation/{activation_code}',
   $controller_path . '\authentications\RegisterBasic@register_activation'
 )->name('auth-register-activation');
+
+Route::get('/callback', function (Request $request) {
+  $http = new GuzzleHttp\Client;
+
+  $response = $http->post('http://your-app.com/oauth/token', [
+      'form_params' => [
+          'grant_type' => 'authorization_code',
+          'client_id' => 'client-id',
+          'client_secret' => 'client-secret',
+          'redirect_uri' => 'http://example.com/callback',
+          'code' => $request->code,
+      ],
+  ]);
+
+  return json_decode((string) $response->getBody(), true);
+});
+Route::get('/oauth/callback', [AuthController::class, 'oauthCallback']);

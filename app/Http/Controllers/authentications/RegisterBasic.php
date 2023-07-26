@@ -30,6 +30,7 @@ class RegisterBasic extends Controller
       'first_name' => ['required', 'string', 'max:255'],
       'phone' => ['required', 'numeric'],
       'email' => ['required', 'string', 'max:255', 'unique:users,email'],
+      'username' => ['required', 'string', 'max:255', 'unique:users,username'],
       'password' => ['required', 'string', 'max:255'],
     ]);
 
@@ -50,7 +51,7 @@ class RegisterBasic extends Controller
     $userInsert->email = $validated['email'];
     $userInsert->phone = $validated['phone'];
     $userInsert->email_external = $validated['email'];
-    $userInsert->username = $validated['email'];
+    $userInsert->username = $validated['username'] ? $validated['username'] :$validated['email'];
     $userInsert->is_active = '1';
     $userInsert->is_external_account = '1';
     $userInsert->role_id = '1';

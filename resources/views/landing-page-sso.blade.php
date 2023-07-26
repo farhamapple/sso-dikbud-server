@@ -44,7 +44,7 @@
             <a class="nav-link" href="#feedback-section">Testimonials</a>
           </li> --}}
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-            <a href={{ route('auth-login-basic')}} class="btn btn-info">Login SSO</a>
+            <a href={{ route('auth-login-basic')}} class="btn btn-info"><i class="fa fa-sign-in"></i> Login SSO</a>
           </li>
         </ul>
       </div>
@@ -155,17 +155,17 @@
               <div class="card-body p-0">
                 <div class="bg-warning text-center card-contents">
                   <div class="card-image">
-                      <img src="images/Group108.svg" class="case-studies-card-img" alt="">
+                      <img src="{{ asset('assets/landing-page-sso/images/Group108.svg') }}" class="case-studies-card-img" alt="">
                   </div>
                   <div class="card-desc-box d-flex align-items-center justify-content-around">
                     <div>
-                      <h6 class="text-white pb-2 px-3">Know more about Web Development</h6>
+                      <h6 class="text-white pb-2 px-3">Know more about asigo</h6>
                       <button class="btn btn-white">Read More</button>
                     </div>
                   </div>
                 </div>
                 <div class="card-details text-center pt-4">
-                    <h6 class="m-0 pb-1">Web Development</h6>
+                    <h6 class="m-0 pb-1">Asigo</h6>
                     <p>Developing, Designing</p>
                 </div>
               </div>

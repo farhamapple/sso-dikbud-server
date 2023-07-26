@@ -12,26 +12,35 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginBasic extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
+    if(isset(parse_url(url()->previous())['query'])){
+      parse_str(parse_url(url()->previous())['query'], $params);
+      $redirect_uri = $params['redirect_uri'];
+      if($redirect_uri != "")
+        session(['link' => $redirect_uri]);
+    }
+    // die(redirect()->getUrlGenerator()->previous());
+    // session(['link' => url()->previous()]);
     // Cek
     if (Auth::check()) {
       // Home
+      
       return redirect(route('pages-home'));
     } else {
       $pageConfigs = ['myLayout' => 'blank'];
-      return view('content.authentications.auth-login-basic', ['pageConfigs' => $pageConfigs]);
+      return view('content.authentications.auth-login-basic', ['pageConfigs' => $pageConfigs,'from' => session('link')]);
     }
   }
 
   public function store(Request $request)
   {
     $request->validate([
-      'email' => 'required|string|email',
+      'username' => 'required|string',
       'password' => 'required|string',
     ]);
 
-    $credentials = $request->only('email', 'password');
+    $credentials = $request->only('username', 'password');
     //dd(Auth::attempt($credentials));
     if (Auth::attempt($credentials)) {
       // Authentication passed...
@@ -54,8 +63,11 @@ class LoginBasic extends Controller
         }
 
         $token->save();
-
-        return redirect(route('pages-home'));
+        
+        if(session('link') != "")
+          return redirect(session('link'));
+        else
+        return redirect('/home');
       }
 
       // go To Dashboard

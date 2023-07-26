@@ -7,6 +7,6 @@ $configData = Helper::appClasses();
 @section('title', 'Home')
 
 @section('content')
-<h4>welcome To SSO Kemendikbud Ristek</h4>
+<h4>Welcome To SSO Kemendikbud Ristek</h4>
 <p>For more layout options refer <a href="{{ config('variables.documentation') ? config('variables.documentation') : '#' }}" target="_blank" rel="noopener noreferrer">documentation</a>.</p>
 @endsection

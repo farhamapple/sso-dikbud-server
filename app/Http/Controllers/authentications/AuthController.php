@@ -56,7 +56,7 @@ class AuthController extends Controller
   {
     try {
       $validator = Validator::make($request->all(), [
-          'email'    => 'required',
+          'username'    => 'required',
           'password'   => 'required|min:6',
       ]);
       if ($validator->fails()) {
@@ -66,7 +66,7 @@ class AuthController extends Controller
             'errors' => $validator->errors()
         ], 422);
       }
-        $credentials = request(['email', 'password']);
+        $credentials = request(['username', 'password']);
         if (!Auth::attempt($credentials)) {
           return response()->json(
             [
@@ -121,6 +121,7 @@ class AuthController extends Controller
         ], 404);
     }
   }
+  
 }
 
 

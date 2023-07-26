@@ -4,7 +4,7 @@ $customizerHidden = 'customizer-hide';
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Login Basic - Pages')
+@section('title', 'Login - Pages')
 
 @section('vendor-style')
 <!-- Vendor -->
@@ -36,7 +36,7 @@ $customizerHidden = 'customizer-hide';
           <!-- Logo -->
           <div class="app-brand justify-content-center mb-4 mt-2">
             <a href="{{url('/')}}" class="app-brand-link gap-2" act>
-              <span class="app-brand-logo demo">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
+              <span class="">@include('_partials.macros',["height"=>30,"withbg"=>'fill: #fff;'])</span>
               <span class="app-brand-text demo text-body fw-bold ms-1">SSO Kemendikbud Ristek</span>
             </a>
           </div>
@@ -58,8 +58,8 @@ $customizerHidden = 'customizer-hide';
           <form id="formAuthentication" class="mb-3" action="{{ route('auth-login-store')}}" method="POST">
             @csrf
             <div class="mb-3">
-              <label for="email" class="form-label">Email or NIP</label>
-              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus>
+              <label for="email" class="form-label">Username or NIP</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your NIP or username" autofocus>
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
@@ -93,7 +93,9 @@ $customizerHidden = 'customizer-hide';
               <span>Create an account</span>
             </a>
           </p>
-
+          <p class="text-center">
+            <span>{{$from}}</span>
+          </p>
           <div class="divider my-4">
             <div class="divider-text">Guide for SSO Service</div>
           </div>
