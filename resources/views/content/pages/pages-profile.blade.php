@@ -54,6 +54,10 @@ $configData = Helper::appClasses();
               </li>
               <li class="mb-2 pt-1">
                 <span class="fw-semibold me-1">Email : </span>
+                <span>{{ $userData->email }}</span>
+              </li>
+              <li class="mb-2 pt-1">
+                <span class="fw-semibold me-1">Email Eksternal : </span>
                 <span>{{ $userData->email_external }}</span>
               </li>
               <li class="mb-2 pt-1">
@@ -116,6 +120,14 @@ $configData = Helper::appClasses();
               <li class="mb-2 pt-1">
                 <span class="fw-semibold me-1">Ref : </span>
                 <span>{{ $userData->ref }}</span>
+              </li>
+              <li class="mb-2 pt-1">
+                <span class="fw-semibold me-1">Jenis Pekerjaan:</span>
+                @if ($userData->is_asn == '1')
+                <span class="badge bg-label-success">ASN</span>
+                @else
+                <span class="badge bg-label-danger">NON ASN</span>
+                @endif
               </li>
               @if ($userData->is_asn == '1')
                 <hr>

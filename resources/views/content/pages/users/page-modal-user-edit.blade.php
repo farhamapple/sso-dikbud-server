@@ -1,40 +1,40 @@
 <!-- Modal -->
   <!-- Edit User Modal -->
-  <div class="modal fade" id="addUser" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-simple modal-edit-user">
       <div class="modal-content p-3 p-md-5">
         <div class="modal-body">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="text-center mb-4">
-            <h3 class="mb-2">Add User</h3>
+            <h3 class="mb-2">Edit User</h3>
             {{-- <p class="text-muted">Updating user details will receive a privacy audit.</p> --}}
           </div>
-          <form id="addUserForm" class="row g-3" method="POST" action="{{ route('pages-user-store')}}">
+          <form id="editUserForm" class="row g-3" method="POST" action="{{ route('pages-user-update')}}">
             @csrf
             <div class="col-12 col-md-6">
-              <label class="form-label" for="first_name">First Name</label>
+              <label class="form-label" for="first_name_edit">First Name</label>
               <input
                 type="text"
-                id="first_name"
-                name="first_name"
+                id="first_name_edit"
+                name="first_name_edit"
                 class="form-control"
                 placeholder="John" required/>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="last_name">Last Name</label>
+              <label class="form-label" for="last_name_edit">Last Name</label>
               <input
                 type="text"
-                id="last_name"
-                name="last_name"
+                id="last_name_edit"
+                name="last_name_edit"
                 class="form-control"
                 placeholder="Doe" />
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="username">Username</label>
+              <label class="form-label" for="username_edit">Username</label>
               <input
                 type="text"
-                id="username"
-                name="username"
+                id="username_edit"
+                name="username_edit"
                 class="form-control"
                 placeholder="Jika Kosong akan disamakan dengan Email" />
             </div>
@@ -44,13 +44,13 @@
                 <span class="input-group-text">ID (+62)</span>
                 <input
                   type="text"
-                  id="phone"
-                  name="phone"
+                  id="phone_edit"
+                  name="phone_edit"
                   class="form-control phone-number-mask"
                   placeholder="85712341234" />
               </div>
             </div>
-            <div class="col-12 col-md-6">
+            {{-- <div class="col-12 col-md-6">
               <label class="form-label" for="password">Password</label>
               <input
                 type="password"
@@ -67,30 +67,30 @@
                 name="password_confirm"
                 class="form-control"
                  required/>
-            </div>
+            </div> --}}
             <div class="col-12 col-md-6">
               <label class="form-label" for="email">Email</label>
               <input
                 type="text"
-                id="email"
-                name="email"
+                id="email_edit"
+                name="email_edit"
                 class="form-control"
                 placeholder="example@domain.com" required/>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="email_external">Email Eksternal</label>
+              <label class="form-label" for="email_external_edit">Email Eksternal</label>
               <input
                 type="text"
-                id="email_external"
-                name="email_external"
+                id="email_external_edit"
+                name="email_external_edit"
                 class="form-control"
                 placeholder="example@domain.com" />
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="sex">Sex</label>
+              <label class="form-label" for="sex_edit">Sex</label>
               <select
-              id="sex"
-              name="sex"
+              id="sex_edit"
+              name="sex_edit"
               class="form-select"
               aria-label="Default select example">
               <option value="1" selected>Man</option>
@@ -101,20 +101,20 @@
               <label class="form-label" for="birth_date">Birth Date</label>
               <input
                 type="text"
-                id="birth_date"
-                name="birth_date"
+                id="birth_date_edit"
+                name="birth_date_edit"
                 class="form-control"
                 placeholder="1990-01-01" />
             </div>
             <div class="col-12">
               <label class="form-label" for="address">Address</label>
-             <textarea rows="5" class="form-control" name="address"></textarea>
+             <textarea rows="5" class="form-control" name="address_edit" id="address_edit"></textarea>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="identity_type">Identity Type</label>
+              <label class="form-label" for="identity_type_edit">Identity Type</label>
               <select
-              id="identity_type"
-              name="identity_type"
+              id="identity_type_edit"
+              name="identity_type_edit"
               class="form-select"
               aria-label="Default select example">
               <option value="1" selected>KTP</option>
@@ -123,30 +123,30 @@
             </select>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="identity_number">Identity Number</label>
+              <label class="form-label" for="identity_number_edit">Identity Number</label>
               <input
                 type="text"
-                id="identity_number"
-                name="identity_number"
+                id="identity_number_edit"
+                name="identity_number_edit"
                 class="form-control modal-edit-tax-id"
                 placeholder="317412341234" />
             </div>
             <div class="col-12 col-md-6">
               <label class="switch">
-                <input type="checkbox" class="switch-input" name="is_external_account"/>
+                <input type="checkbox" class="switch-input" name="is_external_account_edit"/>
                 <span class="switch-toggle-slider">
-                  <span class="switch-on" value='1'></span>
-                  <span class="switch-off" value='0'></span>
+                  <span class="switch-on" checked></span>
+                  <span class="switch-off"></span>
                 </span>
                 <span class="switch-label">Eksternal User?</span>
               </label>
             </div>
             <div class="col-12 col-md-6">
               <label class="switch">
-                <input type="checkbox" class="switch-input" name="is_asn"/>
+                <input type="checkbox" class="switch-input" name="is_asn_edit"/>
                 <span class="switch-toggle-slider">
-                  <span class="switch-on" value='1'></span>
-                  <span class="switch-off" value='0'></span>
+                  <span class="switch-on" checked></span>
+                  <span class="switch-off"></span>
                 </span>
                 <span class="switch-label">ASN ?</span>
               </label>
@@ -155,60 +155,60 @@
               <label class="form-label" for="nip">NIP</label>
               <input
                 type="text"
-                id="nip"
-                name="nip"
+                id="nip_edit"
+                name="nip_edit"
                 class="form-control modal-edit-tax-id"
                 placeholder="19902012012012001" />
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="instansi">Instansi</label>
+              <label class="form-label" for="instansi_edit">Instansi</label>
               <input
                 type="text"
-                id="instansi"
-                name="instansi"
+                id="instansi_edit"
+                name="instansi_edit"
                 class="form-control modal-edit-tax-id"
                 placeholder="Kementerian BUMN" />
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="jabatan">Jabatan</label>
+              <label class="form-label" for="jabatan_edit">Jabatan</label>
               <input
                 type="text"
-                id="jabatan"
-                name="jabatan"
+                id="jabatan_edit"
+                name="jabatan_edit"
                 class="form-control modal-edit-tax-id"
                 placeholder="Pranata Komputer Muda" />
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="simpeg_id">Simpeg ID</label>
+              <label class="form-label" for="simpeg_id_edit">Simpeg ID</label>
               <input
                 type="text"
-                id="simpeg_id"
-                name="simpeg_id"
+                id="simpeg_id_edit"
+                name="simpeg_id_edit"
                 class="form-control modal-edit-tax-id"
                 placeholder="100" />
             </div>
             <div class="col-12 col-md-6">
               <label class="switch">
-                <input type="checkbox" class="switch-input" name='is_active'/>
+                <input type="checkbox" class="switch-input" name='is_active_edit'/>
                 <span class="switch-toggle-slider">
-                  <span class="switch-on" value='1'></span>
-                  <span class="switch-off" value='0'></span>
+                  <span class="switch-on" checked></span>
+                  <span class="switch-off"></span>
                 </span>
                 <span class="switch-label">Aktif?</span>
               </label>
             </div>
             <div class="col-12 col-md-6">
               <label class="switch">
-                <input type="checkbox" class="switch-input" name="role_id"/>
+                <input type="checkbox" class="switch-input" name="role_id_edit"/>
                 <span class="switch-toggle-slider">
-                  <span class="switch-on" value='1'></span>
-                  <span class="switch-off" value='0'></span>
+                  <span class="switch-on" checked></span>
+                  <span class="switch-off"></span>
                 </span>
                 <span class="switch-label">Admin ?</span>
               </label>
             </div>
             <div class="col-12 text-center">
-              <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+              <button type="submit" class="btn btn-primary me-sm-3 me-1">Save</button>
               <button
                 type="reset"
                 class="btn btn-label-secondary"

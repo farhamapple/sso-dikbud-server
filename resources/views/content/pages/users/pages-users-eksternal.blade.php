@@ -168,6 +168,11 @@ $configData = Helper::appClasses();
     });
 
     // Edit
+    $('.btn-edit').on('click', function(e){
+      e.preventDefault();
+      let ref = $(this).data("ref");
+      $('#editUser').modal('show');
+    });
 
     // Destroy
     $('.btn-destroy').on('click', function(e){
@@ -323,7 +328,7 @@ $configData = Helper::appClasses();
                     </button>
                     <div class="dropdown-menu" style="">
                       <a class="dropdown-item btn-show" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-eye me-1 text-info"></i> View</a>
-                      <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-pencil me-1"></i> Edit</a>
+                      <a class="dropdown-item btn-edit" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-pencil me-1"></i> Edit</a>
                       <a class="dropdown-item btn-go-to-inactive" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-user-off me-1 text-danger"></i> Inactive</a>
                       <a class="dropdown-item btn-destroy" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>
                     </div>
@@ -338,4 +343,5 @@ $configData = Helper::appClasses();
 </div>
 @include('content.pages.users.page-modal-user-add')
 @include('content.pages.users.page-modal-user-show')
+@include('content.pages.users.page-modal-user-edit')
 @endsection
