@@ -142,4 +142,5 @@ $configData = Helper::appClasses();
     </div>
 </div>
 @include('content.pages.oauth-client.page-modal-oauth-client-add')
+@include('content.pages.oauth-client.page-modal-oauth-client-show')
 @endsection
