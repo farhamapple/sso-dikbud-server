@@ -49,17 +49,18 @@ Route::group(
         Route::get('/user/user-show/{is_external_account}', [UserPage::class, 'index'])->name('pages-user-show');
         Route::get('/user/user-inactive', [UserPage::class, 'user_inactive'])->name('pages-user-inactive');
 
-        // Action
+        // Action User
         Route::post('/user/user-store', [UserPage::class, 'store'])->name('pages-user-store');
         Route::post('/user/user-go-to-inactive', [UserPage::class, 'goToInActiveUser'])->name(
           'pages-user-go-to-inactive'
         );
         Route::post('/user/user-show-detail', [UserPage::class, 'show'])->name('pages-user-show-detail');
+        Route::post('/user/user-destroy', [UserPage::class, 'destroy'])->name('pages-user-destroy');
 
         // Oauth Client
         Route::get('/oauth-client', [OauthClientPage::class, 'index'])->name('oauth-client.index');
         Route::get('/oauth-client/{id}', [OauthClientPage::class, 'show'])->name('oauth-client.show');
-        // Action
+        // Action Oauth Client
         Route::post('/oauth-client', [OauthClientPage::class, 'store'])->name('oauth-client.store');
         Route::post('/oauth-client-edit', [OauthClientPage::class, 'update'])->name('oauth-client.update');
         Route::post('/oauth-client-destroy', [OauthClientPage::class, 'destroy'])->name('oauth-client.destroy');
@@ -67,7 +68,7 @@ Route::group(
         // Sso Client App
         Route::get('/sso-client-app', [SsoClientAppPage::class, 'index'])->name('sso-client-app.index');
         Route::get('/sso-client-app/{ref}', [SsoClientAppPage::class, 'show'])->name('sso-client-app.show');
-        //Action
+        //Action Sso Client App
         Route::post('/sso-client-app', [SsoClientAppPage::class, 'store'])->name('sso-client-app.store');
         Route::post('/sso-client-app-edit', [SsoClientAppPage::class, 'update'])->name('sso-client-app.update');
         Route::post('/sso-client-app/to-inactive', [SsoClientAppPage::class, 'to_inactive'])->name(

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Exception;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class UserServices
 {
@@ -201,6 +202,19 @@ class UserServices
       return $oldData;
     } catch (Exception $e) {
       throw new Exception('Terjadi Kesalahan saat Aktif User');
+    }
+  }
+
+  public function deleteUser($ref)
+  {
+    try {
+      $oldData = User::where('ref', $ref)->first();
+      $oldData->deleted_by = Auth::user()->email;
+      $oldData->delete();
+
+      return true;
+    } catch (Exception $e) {
+      throw new Exception('Terjadi Kesalahan saat Delete User');
     }
   }
 }

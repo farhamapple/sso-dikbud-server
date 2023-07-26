@@ -87,15 +87,7 @@
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="identity_type_view">Identity Type</label>
-              <select
-              id="identity_type_view"
-              name="identity_type_view"
-              class="form-select"
-              aria-label="Default select example">
-              <option value="1" selected>KTP</option>
-              <option value="2">SIM</option>
-              <option value="2">Passport</option>
-            </select>
+              <div id='identity_type_view'></div>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="identity_number">Identity Number</label>

@@ -115,4 +115,26 @@ class UserPage extends Controller
       return response()->json(['success' => false, 'data' => '', 'message' => $e->getMessage()]);
     }
   }
+
+  public function destroy(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      //
+      'ref' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+
+      return response()->json(['success' => false, 'data' => '', 'message' => $error]);
+    }
+
+    try {
+      $deleteData = $this->userServices->deleteUser($request->ref);
+
+      return response()->json(['success' => true, 'data' => $deleteData, 'message' => 'Berhasil Delete User']);
+    } catch (Exception $e) {
+      return response()->json(['success' => false, 'data' => '', 'message' => $e->getMessage()]);
+    }
+  }
 }

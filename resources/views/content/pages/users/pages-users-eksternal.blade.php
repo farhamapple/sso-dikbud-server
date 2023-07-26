@@ -120,6 +120,7 @@ $configData = Helper::appClasses();
         url:"{{ route('pages-user-show-detail') }}",
         data:{ref:ref},
         success:function(data){
+            console.log(data.data.identity_type)
             if(data.success){
               $('#first_name_view').val(data.data.first_name);
               $('#last_name_view').val(data.data.last_name);
@@ -130,18 +131,18 @@ $configData = Helper::appClasses();
               $('#sex_view').val(data.data.sex);
               $('#address_view').val(data.data.address);
               switch (data.data.identity_type) {
-                case 1:
-                $('#identity_type_view').val('<span class="badge bg-label-success me-1">KTP</span>');
+                case '1':
+                $('#identity_type_view').html('<span class="badge bg-label-success me-1">KTP</span>');
                   break;
-                case 2:
-                $('#identity_type_view').val('<span class="badge bg-label-success me-1">SIM</span>');
+                case '2':
+                $('#identity_type_view').html('<span class="badge bg-label-success me-1">SIM</span>');
                   break;
-                case 3:
-                $('#identity_type_view').val('<span class="badge bg-label-success me-1">Passport</span>');
+                case '3':
+                $('#identity_type_view').html('<span class="badge bg-label-success me-1">Passport</span>');
                   break;
 
                 default:
-                $('#identity_type_view').val('<span class="badge bg-label-success me-1">Lain-lain</span>');
+                $('#identity_type_view').html('<span class="badge bg-label-success me-1">Lain-lain</span>');
                   break;
               }
 
@@ -169,6 +170,62 @@ $configData = Helper::appClasses();
     // Edit
 
     // Destroy
+    $('.btn-destroy').on('click', function(e){
+      e.preventDefault();
+      let ref = $(this).data("ref")
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "Delete User",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, Sure!',
+          customClass: {
+            confirmButton: 'btn btn-primary me-3',
+            cancelButton: 'btn btn-label-secondary'
+          },
+          buttonsStyling: false
+        }).then(function (result) {
+          if (result.value) {
+
+            $.ajax({
+              type:'POST',
+              url:"{{ route('pages-user-destroy') }}",
+              data:{ref:ref},
+              success:function(data){
+                  if(data.success){
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Delete!',
+                      text: 'User Has Been Delete',
+                      customClass: {
+                        confirmButton: 'btn btn-success'
+                      }
+                    });
+                    setTimeout(
+                    function()
+                    {
+                      //do something special
+                      location.reload();
+                    }, 3000);
+
+                  }else{
+                    Swal.fire({
+                      title: 'Error!',
+                      text: ' Got Problem',
+                      icon: 'error',
+                      customClass: {
+                        confirmButton: 'btn btn-primary'
+                      },
+                      buttonsStyling: false
+                    });
+                  }
+              }
+            });
+
+
+          }
+        });
+    });
 
   });
 
@@ -265,10 +322,10 @@ $configData = Helper::appClasses();
                       <i class="ti ti-dots-vertical"></i>
                     </button>
                     <div class="dropdown-menu" style="">
-                      <a class="dropdown-item btn-go-to-inactive" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-user-off me-1 text-danger"></i> Inactive</a>
                       <a class="dropdown-item btn-show" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-eye me-1 text-info"></i> View</a>
                       <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-pencil me-1"></i> Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>
+                      <a class="dropdown-item btn-go-to-inactive" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-user-off me-1 text-danger"></i> Inactive</a>
+                      <a class="dropdown-item btn-destroy" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>
                     </div>
                   </div>
                 </td>
