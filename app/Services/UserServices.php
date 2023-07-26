@@ -30,6 +30,7 @@ class UserServices
     try {
       $data = User::where('is_external_account', '1')
         ->where('is_active', '1')
+        ->orderBy('updated_at', 'DESC')
         ->get();
 
       return $data;
@@ -43,6 +44,7 @@ class UserServices
     try {
       $data = User::where('is_external_account', '0')
         ->where('is_active', '1')
+        ->orderBy('updated_at', 'DESC')
         ->get();
 
       return $data;
@@ -184,6 +186,8 @@ class UserServices
     try {
       $oldData = User::where('ref', $ref)->first();
       $oldData->is_active = '0';
+      $oldData->updated_by = Auth::user()->email;
+      $oldData->updated_at = Carbon::now()->toDateTimeString();
       $oldData->save();
 
       return $oldData;
@@ -197,6 +201,8 @@ class UserServices
     try {
       $oldData = User::where('ref', $ref)->first();
       $oldData->is_active = '1';
+      $oldData->updated_by = Auth::user()->email;
+      $oldData->updated_at = Carbon::now()->toDateTimeString();
       $oldData->save();
 
       return $oldData;
@@ -210,6 +216,7 @@ class UserServices
     try {
       $oldData = User::where('ref', $ref)->first();
       $oldData->deleted_by = Auth::user()->email;
+      $oldData->save();
       $oldData->delete();
 
       return true;
