@@ -100,6 +100,13 @@ $configData = Helper::appClasses();
       </div></a>
     </li>
 
+    <li class="menu-item {{ Request::is('sso-client-app')? 'active' : '' }}">
+      <a class="menu-link" href="{{ route('sso-client-app.index')}}"><i class="menu-icon ti ti-link"></i>
+      <div>
+        SSO Client App
+      </div></a>
+    </li>
+
     <li class="menu-item">
       <a class="menu-link menu-toggle" href="javascript:void(0)"><i class="menu-icon ti ti-database"></i>
       <div>

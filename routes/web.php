@@ -5,9 +5,11 @@ use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\pages\HomePage;
 use App\Http\Controllers\pages\OauthClientPage;
 use App\Http\Controllers\pages\ProfilePage;
+use App\Http\Controllers\pages\SsoClientAppPage;
 use App\Http\Controllers\pages\UserPage;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
+use App\Models\SsoClientApp;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,10 +44,39 @@ Route::group(
         'middleware' => 'admin',
       ],
       function () {
+        //User
         Route::get('/user/user-show-all', [UserController::class, 'showAll'])->name('user-show-all');
         Route::get('/user/user-show/{is_external_account}', [UserPage::class, 'index'])->name('pages-user-show');
         Route::get('/user/user-inactive', [UserPage::class, 'user_inactive'])->name('pages-user-inactive');
+
+        // Action
+        Route::post('/user/user-store', [UserPage::class, 'store'])->name('pages-user-store');
+        Route::post('/user/user-go-to-inactive', [UserPage::class, 'goToInActiveUser'])->name(
+          'pages-user-go-to-inactive'
+        );
+        Route::post('/user/user-show-detail', [UserPage::class, 'show'])->name('pages-user-show-detail');
+
+        // Oauth Client
         Route::get('/oauth-client', [OauthClientPage::class, 'index'])->name('oauth-client.index');
+        Route::get('/oauth-client/{id}', [OauthClientPage::class, 'show'])->name('oauth-client.show');
+        // Action
+        Route::post('/oauth-client', [OauthClientPage::class, 'store'])->name('oauth-client.store');
+        Route::post('/oauth-client-edit', [OauthClientPage::class, 'update'])->name('oauth-client.update');
+        Route::post('/oauth-client-destroy', [OauthClientPage::class, 'destroy'])->name('oauth-client.destroy');
+
+        // Sso Client App
+        Route::get('/sso-client-app', [SsoClientAppPage::class, 'index'])->name('sso-client-app.index');
+        Route::get('/sso-client-app/{ref}', [SsoClientAppPage::class, 'show'])->name('sso-client-app.show');
+        //Action
+        Route::post('/sso-client-app', [SsoClientAppPage::class, 'store'])->name('sso-client-app.store');
+        Route::post('/sso-client-app-edit', [SsoClientAppPage::class, 'update'])->name('sso-client-app.update');
+        Route::post('/sso-client-app/to-inactive', [SsoClientAppPage::class, 'to_inactive'])->name(
+          'sso-client-app.to_inactive'
+        );
+        Route::post('/sso-client-app/to-active', [SsoClientAppPage::class, 'to_active'])->name(
+          'sso-client-app.to_active'
+        );
+        Route::post('/sso-client-app-destroy', [SsoClientAppPage::class, 'destroy'])->name('sso-client-app.destroy');
       }
     );
   }
@@ -88,19 +119,4 @@ Route::get(
   $controller_path . '\authentications\RegisterBasic@register_activation'
 )->name('auth-register-activation');
 
-Route::get('/callback', function (Request $request) {
-  $http = new GuzzleHttp\Client;
-
-  $response = $http->post('http://your-app.com/oauth/token', [
-      'form_params' => [
-          'grant_type' => 'authorization_code',
-          'client_id' => 'client-id',
-          'client_secret' => 'client-secret',
-          'redirect_uri' => 'http://example.com/callback',
-          'code' => $request->code,
-      ],
-  ]);
-
-  return json_decode((string) $response->getBody(), true);
-});
 Route::get('/oauth/callback', [AuthController::class, 'oauthCallback']);

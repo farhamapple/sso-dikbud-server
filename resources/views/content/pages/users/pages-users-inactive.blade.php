@@ -35,23 +35,16 @@ $configData = Helper::appClasses();
     <div class="card">
       <div class="card-header header-elements">
         <span class="me-2"><h5>{{ $tipe_user }}</h5></span>
-
-        <div class="card-header-elements ms-auto">
-          <button type="button" class="btn btn-xs btn-primary waves-effect waves-light">
-            <span class="tf-icon ti ti-plus ti-xs me-1"></span>Add User
-          </button>
-        </div>
       </div>
       <div class="card-datatable table-responsive">
         <table class="table" id="dt-user">
           <thead>
             <tr>
+              <th width="10%">Jenis</th>
               <th width="20%">Name</th>
               <th width="10%">Email</th>
-              <th width="10%">Email Eksternal</th>
               <th width="10%">Phone</th>
               <th width="10%">Tipe</th>
-              <th width="10%">Dibuat</th>
               <th width="10%">Diubah</th>
               <th width="5%">Action</th>
             </tr>
@@ -59,9 +52,15 @@ $configData = Helper::appClasses();
           <tbody>
             @foreach ($usersData as $item)
               <tr>
+                <td>
+                  @if ($item->is_external_account == "0")
+                  <span class="badge bg-label-info me-1">Internal</span>
+                  @else
+                  <span class="badge bg-label-warning me-1">Eksternal</span>
+                  @endif
+                </td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->email }}</td>
-                <td>{{ $item->email_external }}</td>
                 <td>{{ $item->phone }}</td>
                 <td>
                   @if ($item->is_asn == "0")
@@ -70,8 +69,6 @@ $configData = Helper::appClasses();
                   <span class="badge bg-label-primary me-1">ASN</span>
                   @endif
                 </td>
-
-                <td>{{ $item->created_at }}</td>
                 <td>{{ $item->updated_at }}</td>
                 <td>
                   <div class="dropdown">
@@ -79,7 +76,8 @@ $configData = Helper::appClasses();
                       <i class="ti ti-dots-vertical"></i>
                     </button>
                     <div class="dropdown-menu" style="">
-                      <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-user-off me-1 text-danger"></i> Inactive</a>
+                      <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-user-check me-1 text-success"></i> Active</a>
+                      <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-mail me-1 text-warning"></i> Resend Activation</a>
                       <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-eye me-1 text-info"></i> View</a>
                       <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-pencil me-1"></i> Edit</a>
                       <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>

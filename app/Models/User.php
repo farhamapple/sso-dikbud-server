@@ -52,4 +52,13 @@ class User extends Authenticatable
   // {
   //   return $this->hasMany(HasApiTokens::class);
   // }
+  // merubah supaya login dari username, bukan dari email
+  // public function findForPassport(string $username): User
+  // {
+  //     return $this->where('username', $username)->first();
+  // }
+  // untuk login passport bisa dari username dan email
+  public function findForPassport($identifier) {
+    return $this->orWhere('email', $identifier)->orWhere('username', $identifier)->first();
+}
 }
