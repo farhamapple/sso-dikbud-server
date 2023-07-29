@@ -114,14 +114,14 @@ class UserServices
       $newData->address = '-';
       $newData->sex = '1';
       $newData->birth_date = '1990-01-01';
-      $newData->identity_type = '0';
+      $newData->identity_type = 'KTP';
       $newData->identity_number = '-';
       $newData->phone = '-';
       $newData->activation_code = Str::uuid();
       $newData->is_active = '0';
       $newData->is_external_account = '1';
-      $newData->created_by = $data->email;
-      $newData->updated_by = $data->email;
+      $newData->created_by = $newData->username;
+      $newData->updated_by = $newData->email;
       $newData->is_asn = '0';
       $newData->nip = '-';
       $newData->instansi = '-';
@@ -161,8 +161,8 @@ class UserServices
       isset($data->is_external_account) ? ($is_external_account = '1') : ($is_external_account = '0');
       $newData->is_external_account = $is_external_account;
 
-      $newData->created_by = $data->email;
-      $newData->updated_by = $data->email;
+      $newData->created_by = $newData->username;
+      $newData->updated_by = $newData->username;
       if (isset($data->is_asn)) {
         $newData->is_asn = '1';
         $newData->nip = $data->nip;
@@ -178,6 +178,48 @@ class UserServices
       return $newData;
     } catch (Exception $e) {
       throw new Exception('Terjadi Kesalahan saat Menyimpan Data User');
+    }
+  }
+
+  public function updateUser($ref, $data)
+  {
+    try {
+      $oldData = User::where('ref', $ref)->first();
+      $oldData->name = $data->first_name . ' ' . $data->last_name;
+      $oldData->email = $data->email;
+      $oldData->password = bcrypt($data->password);
+      $oldData->updated_at = Carbon::now()->toDateTimeString();
+      $oldData->updated_by = Auth::user()->email;
+      $oldData->username = $data->username ? $data->username : $data->email;
+      $oldData->first_name = $data->first_name;
+      $oldData->last_name = $data->last_name;
+      $oldData->email_external = $data->email_external;
+      $oldData->address = $data->address;
+      $oldData->sex = $data->sex;
+      $oldData->birth_date = $data->birth_date;
+      $oldData->identity_type = $data->identity_type;
+      $oldData->identity_number = $data->identity_number;
+      $oldData->phone = $data->phone;
+
+      isset($data->is_active) ? ($is_active = '1') : ($is_active = '0');
+      $oldData->is_active = $is_active;
+      isset($data->is_external_account) ? ($is_external_account = '1') : ($is_external_account = '0');
+      $oldData->is_external_account = $is_external_account;
+
+      if (isset($data->is_asn)) {
+        $oldData->is_asn = '1';
+        $oldData->nip = $data->nip;
+        $oldData->instansi = $data->instansi;
+        $oldData->jabatan = $data->jabatan;
+      } else {
+        $oldData->is_asn = '0';
+      }
+      $oldData->role_id = '1';
+      $oldData->save();
+
+      return $oldData;
+    } catch (Exception $e) {
+      throw new Exception('Terjadi Kesalahan saat Update User');
     }
   }
 

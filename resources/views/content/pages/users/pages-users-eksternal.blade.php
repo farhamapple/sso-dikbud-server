@@ -171,7 +171,69 @@ $configData = Helper::appClasses();
     $('.btn-edit').on('click', function(e){
       e.preventDefault();
       let ref = $(this).data("ref");
-      $('#editUser').modal('show');
+
+      // Define ID
+      $('#first_name_edit').val('');
+      $('#last_name_edit').val('');
+      $('#username_edit').val('');
+      $('#phone_edit').val('');
+      $('#email_edit').val('');
+      $('#email_external_edit').val('');
+      $('#sex_edit').val('');
+      $('#address_edit').val('');
+      $('#identity_type_edit').val('');
+      $('#identity_number_edit').val('');
+      $('#nip_edit').val('');
+      $('#instansi_edit').val('');
+      $('#jabatan_edit').val('');
+      $('#simpeg_id_edit').val('');
+      $('#ref_edit').val('-');
+
+      $.ajax({
+        type:'POST',
+        url:"{{ route('pages-user-show-detail') }}",
+        data:{ref:ref},
+        success:function(data){
+
+            if(data.success){
+              $('#first_name_edit').val(data.data.first_name);
+              $('#last_name_edit').val(data.data.last_name);
+              $('#username_edit').val(data.data.username);
+              $('#phone_edit').val(data.data.phone);
+              $('#email_edit').val(data.data.email);
+              $('#email_external_edit').val(data.data.email_external);
+              $('#address_edit').val(data.data.address);
+              $('#ref_edit').val(data.data.ref);
+
+              let optionValue = data.data.identity_type;
+              $("#identity_type_edit").val(optionValue).find("option[value=" + optionValue +"]").attr('selected', true);
+
+              $('#identity_number_edit').val(data.data.identity_number);
+              $('#nip_edit').val(data.data.nip);
+              $('#instansi_edit').val(data.data.instansi);
+              $('#jabatan_edit').val(data.data.jabatan);
+              $('#simpeg_id_edit').val(data.data.simpeg_id);
+
+              const birth_date_dmy = data.data.birth_date.split(" ");
+              $('#birth_date_edit').val(birth_date_dmy[0]);
+
+              let optionSex = data.data.sex;
+              $("#sex_edit").val(optionSex).find("option[value=" + optionSex +"]").attr('selected', true);
+
+              // If Else
+              console.log(data.data.is_asn);
+              (data.data.is_external_account == '1') ? $('#is_external_account_edit').attr('checked', 'checked') : '';
+              (data.data.is_asn == '1') ? $('#is_asn_edit').attr('checked', 'checked') : '';
+              (data.data.is_active == '1') ? $('#is_active_edit').attr('checked', 'checked') : '';
+              (data.data.role_id == '1') ? $('#is_admin_edit').attr('checked', 'checked') : '';
+
+              $('#editUser').modal('show');
+
+            }else{
+
+            }
+        }
+      });
     });
 
     // Destroy

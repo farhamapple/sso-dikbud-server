@@ -16,7 +16,7 @@
               <input
                 type="text"
                 id="first_name_edit"
-                name="first_name_edit"
+                name="first_name"
                 class="form-control"
                 placeholder="John" required/>
             </div>
@@ -25,7 +25,7 @@
               <input
                 type="text"
                 id="last_name_edit"
-                name="last_name_edit"
+                name="last_name"
                 class="form-control"
                 placeholder="Doe" />
             </div>
@@ -34,9 +34,9 @@
               <input
                 type="text"
                 id="username_edit"
-                name="username_edit"
+                name="username"
                 class="form-control"
-                placeholder="Jika Kosong akan disamakan dengan Email" />
+                placeholder="Jika Kosong akan disamakan dengan Email" disabled/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="modalEditUserPhone">Phone Number</label>
@@ -45,7 +45,7 @@
                 <input
                   type="text"
                   id="phone_edit"
-                  name="phone_edit"
+                  name="phone"
                   class="form-control phone-number-mask"
                   placeholder="85712341234" />
               </div>
@@ -57,7 +57,8 @@
                 id="password"
                 name="password"
                 class="form-control"
-                required/>
+                placeholder="Kosongkan Jika tidak update" autocomplete="off"
+                />
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="password_confirm">Repeat Password</label>
@@ -66,14 +67,15 @@
                 id="password_confirm"
                 name="password_confirm"
                 class="form-control"
-                 required/>
+                placeholder="Kosongkan Jika tidak update" autocomplete="off"
+                 />
             </div> --}}
             <div class="col-12 col-md-6">
               <label class="form-label" for="email">Email</label>
               <input
                 type="text"
                 id="email_edit"
-                name="email_edit"
+                name="email"
                 class="form-control"
                 placeholder="example@domain.com" required/>
             </div>
@@ -82,7 +84,7 @@
               <input
                 type="text"
                 id="email_external_edit"
-                name="email_external_edit"
+                name="email_external"
                 class="form-control"
                 placeholder="example@domain.com" />
             </div>
@@ -90,7 +92,7 @@
               <label class="form-label" for="sex_edit">Sex</label>
               <select
               id="sex_edit"
-              name="sex_edit"
+              name="sex"
               class="form-select"
               aria-label="Default select example">
               <option value="1" selected>Man</option>
@@ -98,28 +100,28 @@
             </select>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label" for="birth_date">Birth Date</label>
+              <label class="form-label" for="birth_date_edit">Birth Date</label>
               <input
                 type="text"
                 id="birth_date_edit"
-                name="birth_date_edit"
+                name="birth_date"
                 class="form-control"
                 placeholder="1990-01-01" />
             </div>
             <div class="col-12">
               <label class="form-label" for="address">Address</label>
-             <textarea rows="5" class="form-control" name="address_edit" id="address_edit"></textarea>
+             <textarea rows="5" class="form-control" name="address" id="address_edit"></textarea>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="identity_type_edit">Identity Type</label>
               <select
               id="identity_type_edit"
-              name="identity_type_edit"
+              name="identity_type"
               class="form-select"
               aria-label="Default select example">
-              <option value="1" selected>KTP</option>
-              <option value="2">SIM</option>
-              <option value="2">Passport</option>
+              <option value="KTP">KTP</option>
+              <option value="SIM">SIM</option>
+              <option value="Passport">Passport</option>
             </select>
             </div>
             <div class="col-12 col-md-6">
@@ -127,15 +129,15 @@
               <input
                 type="text"
                 id="identity_number_edit"
-                name="identity_number_edit"
+                name="identity_number"
                 class="form-control modal-edit-tax-id"
                 placeholder="317412341234" />
             </div>
             <div class="col-12 col-md-6">
               <label class="switch">
-                <input type="checkbox" class="switch-input" name="is_external_account_edit"/>
+                <input type="checkbox" class="switch-input" id="is_external_account_edit" name="is_external_account"/>
                 <span class="switch-toggle-slider">
-                  <span class="switch-on" checked></span>
+                  <span class="switch-on"></span>
                   <span class="switch-off"></span>
                 </span>
                 <span class="switch-label">Eksternal User?</span>
@@ -143,7 +145,7 @@
             </div>
             <div class="col-12 col-md-6">
               <label class="switch">
-                <input type="checkbox" class="switch-input" name="is_asn_edit"/>
+                <input type="checkbox" class="switch-input" name="is_asn" id="is_asn_edit"/>
                 <span class="switch-toggle-slider">
                   <span class="switch-on" checked></span>
                   <span class="switch-off"></span>
@@ -156,7 +158,7 @@
               <input
                 type="text"
                 id="nip_edit"
-                name="nip_edit"
+                name="nip"
                 class="form-control modal-edit-tax-id"
                 placeholder="19902012012012001" />
             </div>
@@ -165,7 +167,7 @@
               <input
                 type="text"
                 id="instansi_edit"
-                name="instansi_edit"
+                name="instansi"
                 class="form-control modal-edit-tax-id"
                 placeholder="Kementerian BUMN" />
             </div>
@@ -174,7 +176,7 @@
               <input
                 type="text"
                 id="jabatan_edit"
-                name="jabatan_edit"
+                name="jabatan"
                 class="form-control modal-edit-tax-id"
                 placeholder="Pranata Komputer Muda" />
             </div>
@@ -183,13 +185,13 @@
               <input
                 type="text"
                 id="simpeg_id_edit"
-                name="simpeg_id_edit"
+                name="simpeg_id"
                 class="form-control modal-edit-tax-id"
                 placeholder="100" />
             </div>
             <div class="col-12 col-md-6">
               <label class="switch">
-                <input type="checkbox" class="switch-input" name='is_active_edit'/>
+                <input type="checkbox" class="switch-input" name='is_active' id='is_active_edit'/>
                 <span class="switch-toggle-slider">
                   <span class="switch-on" checked></span>
                   <span class="switch-off"></span>
@@ -199,7 +201,7 @@
             </div>
             <div class="col-12 col-md-6">
               <label class="switch">
-                <input type="checkbox" class="switch-input" name="role_id_edit"/>
+                <input type="checkbox" class="switch-input" name="role_id" id="role_id_edit"/>
                 <span class="switch-toggle-slider">
                   <span class="switch-on" checked></span>
                   <span class="switch-off"></span>
@@ -207,6 +209,7 @@
                 <span class="switch-label">Admin ?</span>
               </label>
             </div>
+            <input type="hidden" id='ref_edit' name='ref' />
             <div class="col-12 text-center">
               <button type="submit" class="btn btn-primary me-sm-3 me-1">Save</button>
               <button

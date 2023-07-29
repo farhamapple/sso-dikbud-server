@@ -94,6 +94,28 @@ class UserPage extends Controller
     }
   }
 
+  public function update(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      //
+      'first_name' => 'required',
+      'ref' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+      return back()->with('notifikasi-error', $error);
+    }
+
+    try {
+      $newData = $this->userServices->updateUser($request->ref, $request);
+
+      return back()->with('notifikasi-success', 'User Berhasil diUbah');
+    } catch (Exception $e) {
+      return back()->with('notifikasi-error-try-catch', $e->getMessage());
+    }
+  }
+
   public function goToInActiveUser(Request $request)
   {
     $validator = Validator::make($request->all(), [

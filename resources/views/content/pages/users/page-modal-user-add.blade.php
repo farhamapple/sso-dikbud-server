@@ -117,9 +117,9 @@
               name="identity_type"
               class="form-select"
               aria-label="Default select example">
-              <option value="1" selected>KTP</option>
-              <option value="2">SIM</option>
-              <option value="2">Passport</option>
+              <option value="KTP" selected>KTP</option>
+              <option value="SIM">SIM</option>
+              <option value="Passport">Passport</option>
             </select>
             </div>
             <div class="col-12 col-md-6">

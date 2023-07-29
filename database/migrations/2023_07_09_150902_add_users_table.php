@@ -23,7 +23,7 @@ return new class extends Migration {
       $table->string('address')->nullable();
       $table->string('sex')->nullable();
       $table->dateTime('birth_date')->nullable();
-      $table->string('identity_type')->default('1');
+      $table->string('identity_type')->default('KTP');
       $table->string('identity_number')->nullable();
       $table->string('phone')->nullable();
       $table->string('photo_url')->nullable();
