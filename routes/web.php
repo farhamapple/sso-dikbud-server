@@ -54,6 +54,10 @@ Route::group(
         Route::post('/user/user-go-to-inactive', [UserPage::class, 'goToInActiveUser'])->name(
           'pages-user-go-to-inactive'
         );
+        Route::post('/user/user-go-to-active', [UserPage::class, 'goToActiveUser'])->name('pages-user-go-to-active');
+        Route::post('/user/user-resend-activation', [UserPage::class, 'resendActivation'])->name(
+          'pages-user-resend-activation'
+        );
         Route::post('/user/user-show-detail', [UserPage::class, 'show'])->name('pages-user-show-detail');
         Route::post('/user/user-destroy', [UserPage::class, 'destroy'])->name('pages-user-destroy');
         Route::post('/user/user-update', [UserPage::class, 'update'])->name('pages-user-update');

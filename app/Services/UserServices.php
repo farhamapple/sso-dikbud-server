@@ -266,4 +266,19 @@ class UserServices
       throw new Exception('Terjadi Kesalahan saat Delete User');
     }
   }
+
+  public function generateActivationCode($ref)
+  {
+    try {
+      $oldData = User::where('ref', $ref)->first();
+      $oldData->activation_code = Str::uuid();
+      $oldData->updated_by = Auth::user()->email;
+      $oldData->updated_at = Carbon::now()->toDateTimeString();
+      $oldData->save();
+
+      return $oldData->activation_code;
+    } catch (Exception $e) {
+      throw new Exception('Terjadi Kesalahan saat Generated Activation Code');
+    }
+  }
 }

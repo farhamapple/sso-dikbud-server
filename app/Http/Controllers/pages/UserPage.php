@@ -64,6 +64,7 @@ class UserPage extends Controller
   public function user_inactive()
   {
     $usersData = $this->userServices->getUserInActive();
+    //dd($usersData);
     $tipe_user = 'User Inactive';
     return view('content.pages.users.pages-users-inactive', compact('usersData', 'tipe_user'));
   }
@@ -134,6 +135,56 @@ class UserPage extends Controller
       $newData = $this->userServices->updateUserToInActive($request->ref);
 
       return response()->json(['success' => true, 'data' => $newData, 'message' => 'Berhasil Non Aktif User']);
+    } catch (Exception $e) {
+      return response()->json(['success' => false, 'data' => '', 'message' => $e->getMessage()]);
+    }
+  }
+
+  public function resendActivation(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      //
+      'ref' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+
+      return response()->json(['success' => false, 'data' => '', 'message' => $error]);
+    }
+
+    try {
+      $newActivationcode = $this->userServices->generateActivationCode($request->ref);
+
+      // Send Email
+
+      return response()->json([
+        'success' => true,
+        'data' => $newActivationcode,
+        'message' => 'Berhasil Resend Activation Code',
+      ]);
+    } catch (Exception $e) {
+      return response()->json(['success' => false, 'data' => '', 'message' => $e->getMessage()]);
+    }
+  }
+
+  public function goToActiveUser(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      //
+      'ref' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+
+      return response()->json(['success' => false, 'data' => '', 'message' => $error]);
+    }
+
+    try {
+      $newData = $this->userServices->updateUserToActive($request->ref);
+
+      return response()->json(['success' => true, 'data' => $newData, 'message' => 'Berhasil Aktif User']);
     } catch (Exception $e) {
       return response()->json(['success' => false, 'data' => '', 'message' => $e->getMessage()]);
     }
