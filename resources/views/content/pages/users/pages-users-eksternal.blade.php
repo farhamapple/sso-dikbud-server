@@ -13,12 +13,18 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/pickr/pickr-themes.css') }}" />
 @endsection
 
 
 @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/flatpickr/flatpickr.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/pickr/pickr.js')}}"></script>
 @endsection
 
 @section('page-script')
@@ -34,6 +40,11 @@ $configData = Helper::appClasses();
   });
 
   $(document).ready(function(){
+
+    //Flat-picker
+    $('.flat-picker').flatpickr({
+      monthSelectorType: 'static'
+    });
 
     // go To Inactive
     $('.btn-go-to-inactive').on('click', function(e){

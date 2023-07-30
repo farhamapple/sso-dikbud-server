@@ -103,7 +103,7 @@
                 type="text"
                 id="birth_date"
                 name="birth_date"
-                class="form-control"
+                class="form-control flat-picker"
                 placeholder="1990-01-01" />
             </div>
             <div class="col-12">

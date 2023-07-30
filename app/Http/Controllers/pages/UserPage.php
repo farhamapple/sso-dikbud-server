@@ -99,6 +99,7 @@ class UserPage extends Controller
     $validator = Validator::make($request->all(), [
       //
       'first_name' => 'required',
+      'email' => ['required'],
       'ref' => 'required',
     ]);
 
