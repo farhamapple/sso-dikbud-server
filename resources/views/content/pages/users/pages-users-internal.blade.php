@@ -227,7 +227,7 @@ $configData = Helper::appClasses();
 
               if(data.data.birth_date != null){
                 const birth_date_dmy = data.data.birth_date.split(" ");
-              $('#birth_date_edit').val(birth_date_dmy[0]);
+                $('#birth_date_edit').val(birth_date_dmy[0]);
               }
 
 
@@ -239,7 +239,7 @@ $configData = Helper::appClasses();
               (data.data.is_external_account == '1') ? $('#is_external_account_edit').attr('checked', 'checked') : '';
               (data.data.is_asn == '1') ? $('#is_asn_edit').attr('checked', 'checked') : '';
               (data.data.is_active == '1') ? $('#is_active_edit').attr('checked', 'checked') : '';
-              (data.data.role_id == '1') ? $('#is_admin_edit').attr('checked', 'checked') : '';
+              (data.data.role_id == '0') ? $('#role_id_edit').attr('checked', 'checked') : '';
 
               $('#editUser').modal('show');
 
