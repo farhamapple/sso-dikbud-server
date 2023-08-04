@@ -187,7 +187,8 @@ class UserServices
       $oldData = User::where('ref', $ref)->first();
       $oldData->name = $data->first_name . ' ' . $data->last_name;
       $oldData->email = $data->email;
-      $oldData->password = bcrypt($data->password);
+      $data->password ? ($oldData->password = bcrypt($data->password)) : '';
+      // $oldData->password = bcrypt($data->password);
       $oldData->updated_at = Carbon::now()->toDateTimeString();
       $oldData->updated_by = Auth::user()->email;
       $oldData->username = $data->username ? $data->username : $data->email;

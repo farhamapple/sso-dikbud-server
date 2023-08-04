@@ -14,22 +14,26 @@ class LoginBasic extends Controller
 {
   public function index(Request $request)
   {
-    if(isset(parse_url(url()->previous())['query'])){
+    if (isset(parse_url(url()->previous())['query'])) {
       parse_str(parse_url(url()->previous())['query'], $params);
       $redirect_uri = $params['redirect_uri'];
-      if($redirect_uri != "")
+      if ($redirect_uri != '') {
         session(['link' => $redirect_uri]);
+      }
     }
     // die(redirect()->getUrlGenerator()->previous());
     // session(['link' => url()->previous()]);
     // Cek
     if (Auth::check()) {
       // Home
-      
+
       return redirect(route('pages-home'));
     } else {
       $pageConfigs = ['myLayout' => 'blank'];
-      return view('content.authentications.auth-login-basic', ['pageConfigs' => $pageConfigs,'from' => session('link')]);
+      return view('content.authentications.auth-login-basic', [
+        'pageConfigs' => $pageConfigs,
+        'from' => session('link'),
+      ]);
     }
   }
 
@@ -41,7 +45,8 @@ class LoginBasic extends Controller
     ]);
 
     $credentials = $request->only('username', 'password');
-    //dd(Auth::attempt($credentials));
+
+    //  dd(bcrypt('Admin123'));
     if (Auth::attempt($credentials)) {
       // Authentication passed...
       // Get Data User
@@ -63,11 +68,12 @@ class LoginBasic extends Controller
         }
 
         $token->save();
-        
-        if(session('link') != "")
+
+        if (session('link') != '') {
           return redirect(session('link'));
-        else
-        return redirect('/home');
+        } else {
+          return redirect('/home');
+        }
       }
 
       // go To Dashboard
