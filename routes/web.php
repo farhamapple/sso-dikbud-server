@@ -67,7 +67,8 @@ Route::group(
         Route::get('/oauth-client/{id}', [OauthClientPage::class, 'show'])->name('oauth-client.show');
         // Action Oauth Client
         Route::post('/oauth-client', [OauthClientPage::class, 'store'])->name('oauth-client.store');
-        Route::post('/oauth-client-edit', [OauthClientPage::class, 'update'])->name('oauth-client.update');
+        Route::post('/oauth-client-edit', [OauthClientPage::class, 'edit'])->name('oauth-client.edit');
+        Route::post('/oauth-client-update', [OauthClientPage::class, 'update'])->name('oauth-client.update');
         Route::post('/oauth-client-destroy', [OauthClientPage::class, 'destroy'])->name('oauth-client.destroy');
 
         // Sso Client App

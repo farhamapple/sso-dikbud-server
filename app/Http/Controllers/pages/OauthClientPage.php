@@ -51,4 +51,78 @@ class OauthClientPage extends Controller
       return back()->with('notifikasi-error-try-catch', $e->getMessage());
     }
   }
+
+  public function edit(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      //
+      'id' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+
+      return response()->json(['success' => false, 'data' => '', 'message' => $error]);
+    }
+
+    try {
+      //code...
+      $dataOauthClientDetail = $this->oauthClientService->getOauthClientById($request->id);
+
+      return response()->json([
+        'success' => true,
+        'data' => $dataOauthClientDetail,
+        'message' => 'Berhasil Mengambil data Oauth Client',
+      ]);
+    } catch (Exception $e) {
+      //throw $th;
+      return response()->json(['success' => false, 'data' => '', 'message' => $e]);
+    }
+  }
+
+  public function update(Request $request)
+  {
+    //dd($request->all());
+    $validator = Validator::make($request->all(), [
+      //
+      'id' => 'required',
+      'name' => 'required',
+      'redirect' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+      return back()->with('notifikasi-error', $error);
+    }
+
+    try {
+      $newData = $this->oauthClientService->update($request, $request->id);
+
+      return back()->with('notifikasi-success', 'Data Berhasil diUbah');
+    } catch (Exception $e) {
+      return back()->with('notifikasi-error-try-catch', $e->getMessage());
+    }
+  }
+
+  public function destroy(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      //
+      'id' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+
+      return response()->json(['success' => false, 'data' => '', 'message' => $error]);
+    }
+
+    try {
+      $deleteData = $this->oauthClientService->delete($request->id);
+
+      return response()->json(['success' => true, 'data' => $deleteData, 'message' => 'Berhasil Delete Oauth Client']);
+    } catch (Exception $e) {
+      return response()->json(['success' => false, 'data' => '', 'message' => $e->getMessage()]);
+    }
+  }
 }
