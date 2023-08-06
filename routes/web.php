@@ -76,7 +76,9 @@ Route::group(
         Route::get('/sso-client-app/{ref}', [SsoClientAppPage::class, 'show'])->name('sso-client-app.show');
         //Action Sso Client App
         Route::post('/sso-client-app', [SsoClientAppPage::class, 'store'])->name('sso-client-app.store');
-        Route::post('/sso-client-app-edit', [SsoClientAppPage::class, 'update'])->name('sso-client-app.update');
+        Route::post('/sso-client-app-edit', [SsoClientAppPage::class, 'edit'])->name('sso-client-app.edit');
+        Route::post('/sso-client-app-update', [SsoClientAppPage::class, 'update'])->name('sso-client-app.update');
+        Route::post('/sso-client-app-destroy', [SsoClientAppPage::class, 'destroy'])->name('sso-client-app.destroy');
         Route::post('/sso-client-app/to-inactive', [SsoClientAppPage::class, 'to_inactive'])->name(
           'sso-client-app.to_inactive'
         );

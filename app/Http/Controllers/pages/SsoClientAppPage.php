@@ -77,24 +77,92 @@ class SsoClientAppPage extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(string $id)
+  public function edit(Request $request)
   {
     //
+    $validator = Validator::make($request->all(), [
+      //
+      'ref' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+
+      return response()->json(['success' => false, 'data' => '', 'message' => $error]);
+    }
+
+    try {
+      //code...
+      $data = $this->ssoClientApp->getDataByRef($request->ref);
+
+      return response()->json([
+        'success' => true,
+        'data' => $data,
+        'message' => 'Berhasil Mengambil data Sso Client Apps',
+      ]);
+    } catch (Exception $e) {
+      //throw $th;
+      return response()->json(['success' => false, 'data' => '', 'message' => $e]);
+    }
   }
 
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, string $id)
+  public function update(Request $request)
   {
     //
+    $validator = Validator::make($request->all(), [
+      //
+      'name' => 'required',
+      'link_redirect' => 'required',
+      'icon' => 'required',
+      'ref' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+      return back()->with('notifikasi-error', $error);
+    }
+
+    try {
+      $newData = $this->ssoClientApp->updateDataByRef($request, $request->ref);
+
+      return back()->with('notifikasi-success', 'Data Berhasil di Ubah');
+    } catch (Exception $e) {
+      return back()->with('notifikasi-error-try-catch', $e->getMessage());
+    }
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(string $id)
+  public function destroy(Request $request)
   {
     //
+    $validator = Validator::make($request->all(), [
+      //
+      'ref' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+
+      return response()->json(['success' => false, 'data' => '', 'message' => $error]);
+    }
+
+    try {
+      //code...
+      $data = $this->ssoClientApp->deleteByRef($request->ref);
+
+      return response()->json([
+        'success' => true,
+        'data' => $data,
+        'message' => 'Berhasil Menghapus data Sso Client Apps',
+      ]);
+    } catch (Exception $e) {
+      //throw $th;
+      return response()->json(['success' => false, 'data' => '', 'message' => $e]);
+    }
   }
 }
