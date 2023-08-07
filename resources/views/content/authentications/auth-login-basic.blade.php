@@ -87,12 +87,12 @@ $customizerHidden = 'customizer-hide';
             </div>
           </form>
 
-          <p class="text-center">
+          {{-- <p class="text-center">
             <span>External User ?</span>
             <a href="{{ route('auth-register-basic') }}">
               <span>Create an account</span>
             </a>
-          </p>
+          </p> --}}
           <p class="text-center">
             <span>{{$from}}</span>
           </p>

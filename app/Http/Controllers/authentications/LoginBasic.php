@@ -3,15 +3,26 @@
 namespace App\Http\Controllers\authentications;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NotificationEmail;
 use App\Models\User;
+use App\Services\UserServices;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class LoginBasic extends Controller
 {
+  private $userService;
+
+  public function __construct()
+  {
+    $this->userService = new UserServices();
+  }
+
   public function index(Request $request)
   {
     if (isset(parse_url(url()->previous())['query'])) {
@@ -102,11 +113,16 @@ class LoginBasic extends Controller
     ]);
 
     $userData = User::where('email', $request->email)->first();
+    $userData->activation_code = Str::uuid();
+    $userData->updated_at = Carbon::now()->toDateTimeString();
+    $userData->save();
+
     if ($userData == null) {
       return redirect(route('auth-forgot-password'))->with(['error' => 'Email Not Provide / Email tidak ada']);
     }
 
     // Send Reset Link by Email
+    Mail::to($userData->email)->send(new NotificationEmail($userData));
 
     return redirect(route('auth-login-basic'))->with([
       'success' =>
@@ -114,10 +130,10 @@ class LoginBasic extends Controller
     ]);
   }
 
-  function forgot_password_form($ref)
+  function forgot_password_form($activation_code)
   {
     // check ref in User
-    $userData = User::where('ref', $ref)->first();
+    $userData = User::where('activation_code', $activation_code)->first();
     if ($userData == null) {
       return redirect(route('auth-forgot-password'))->with([
         'error' => 'Reset Password Link is Wrong / Link Reset Password Salah',
@@ -129,7 +145,7 @@ class LoginBasic extends Controller
     return view('content.authentications.auth-forgot-password-form', [
       'pageConfigs' => $pageConfigs,
       'email' => $userData->email,
-      'ref' => $userData->ref,
+      'activation_code' => $userData->activation_code,
     ]);
   }
 
@@ -148,7 +164,7 @@ class LoginBasic extends Controller
       ]);
     } else {
       //dd('berhasil');
-      $userData = User::where('ref', $request->ref)->first();
+      $userData = User::where('activation_code', $request->activation_code)->first();
       $userData->password = bcrypt($request->password);
       $userData->updated_at = Carbon::now()->toDateTimeString();
       $userData->updated_by = $userData->email;

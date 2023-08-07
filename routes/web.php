@@ -106,7 +106,7 @@ Route::post(
 )->name('auth-forgot-password-send-link');
 
 Route::get(
-  '/auth/forgot-password-form/{ref}',
+  '/auth/forgot-password-form/{activation_code}',
   $controller_path . '\authentications\LoginBasic@forgot_password_form'
 )->name('auth-forgot-password-form');
 

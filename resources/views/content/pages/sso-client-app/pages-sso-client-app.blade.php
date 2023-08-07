@@ -243,7 +243,7 @@ $configData = Helper::appClasses();
                     <i class="ti ti-dots-vertical"></i>
                   </button>
                   <div class="dropdown-menu" style="">
-                    <a class="dropdown-item btn-go-to-inactive" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-unlink me-1 text-danger"></i> Inactive</a>
+                    {{-- <a class="dropdown-item btn-go-to-inactive" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-unlink me-1 text-danger"></i> Inactive</a> --}}
                     <a class="dropdown-item btn-edit" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-pencil me-1"></i> Edit</a>
                     <a class="dropdown-item btn-delete" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>
                   </div>
