@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\pages;
 
+use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Models\User;
@@ -22,6 +23,7 @@ class UserPage extends Controller
 
   public function index($is_external_account)
   {
+    Helpers::authPermission('Masters.User.View');
     if ($is_external_account == '0') {
       $tipe_user = 'User Internal';
       $usersData = $this->userServices->getInternalAccount();
@@ -35,6 +37,7 @@ class UserPage extends Controller
 
   public function show(Request $request)
   {
+    Helpers::authPermission('Masters.User.View');
     $validator = Validator::make($request->all(), [
       //
       'ref' => 'required',
@@ -71,6 +74,7 @@ class UserPage extends Controller
 
   public function store(Request $request)
   {
+    Helpers::authPermission('Masters.User.Create');
     //dd($request->first_name);
     $validator = Validator::make($request->all(), [
       //
@@ -97,6 +101,7 @@ class UserPage extends Controller
 
   public function update(Request $request)
   {
+    Helpers::authPermission('Masters.User.Edit');
     $validator = Validator::make($request->all(), [
       //
       'first_name' => 'required',
@@ -120,6 +125,7 @@ class UserPage extends Controller
 
   public function goToInActiveUser(Request $request)
   {
+    Helpers::authPermission('Masters.User.View');
     $validator = Validator::make($request->all(), [
       //
       'ref' => 'required',
@@ -142,6 +148,7 @@ class UserPage extends Controller
 
   public function resendActivation(Request $request)
   {
+    Helpers::authPermission('Masters.User.Edit');
     $validator = Validator::make($request->all(), [
       //
       'ref' => 'required',
@@ -170,6 +177,7 @@ class UserPage extends Controller
 
   public function goToActiveUser(Request $request)
   {
+    Helpers::authPermission('Masters.User.Edit');
     $validator = Validator::make($request->all(), [
       //
       'ref' => 'required',
@@ -192,6 +200,7 @@ class UserPage extends Controller
 
   public function destroy(Request $request)
   {
+    Helpers::authPermission('Masters.User.Delete');
     $validator = Validator::make($request->all(), [
       //
       'ref' => 'required',

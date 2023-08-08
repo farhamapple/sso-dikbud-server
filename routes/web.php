@@ -7,6 +7,7 @@ use App\Http\Controllers\pages\OauthClientPage;
 use App\Http\Controllers\pages\ProfilePage;
 use App\Http\Controllers\pages\SsoClientAppPage;
 use App\Http\Controllers\pages\UserPage;
+use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use App\Models\SsoClientApp;
@@ -83,6 +84,12 @@ Route::group(
           'sso-client-app.to_active'
         );
         Route::post('/sso-client-app-destroy', [SsoClientAppPage::class, 'destroy'])->name('sso-client-app.destroy');
+        // role
+        Route::get('/roles/list', [RolesController::class, 'index'])->name('roles.index');
+        Route::get('/roles/edit/{ref}', [RolesController::class, 'edit'])->name('roles.setting.edit');
+        Route::post('/roles/save', [RolesController::class, 'store'])->name('roles.setting.save');
+        Route::post('/roles/delete/{ref}', [RolesController::class, 'destroy'])->name('roles.setting.delete');
+        Route::get('/getroles/{ref}', [RolesController::class, 'view'])->name('roles.setting.view');
       }
     );
   }

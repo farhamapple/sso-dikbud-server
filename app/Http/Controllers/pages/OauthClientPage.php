@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\pages;
 
+use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\OauthClientModel;
 use App\Services\OauthClientServices;
@@ -19,6 +20,7 @@ class OauthClientPage extends Controller
   }
   public function index()
   {
+    Helpers::authPermission('Masters.OauthClient.View');
     try {
       //code...
       $oauthClientData = $this->oauthClientService->getAll();
@@ -31,6 +33,7 @@ class OauthClientPage extends Controller
 
   public function store(Request $request)
   {
+    Helpers::authPermission('Masters.OauthClient.Create');
     // dd($request->all());
     $validator = Validator::make($request->all(), [
       //
