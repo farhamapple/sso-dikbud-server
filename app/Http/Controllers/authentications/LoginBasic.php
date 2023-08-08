@@ -3,33 +3,48 @@
 namespace App\Http\Controllers\authentications;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NotificationEmail;
 use App\Models\User;
+use App\Services\UserServices;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class LoginBasic extends Controller
 {
+  private $userService;
+
+  public function __construct()
+  {
+    $this->userService = new UserServices();
+  }
+
   public function index(Request $request)
   {
-    if(isset(parse_url(url()->previous())['query'])){
+    if (isset(parse_url(url()->previous())['query'])) {
       parse_str(parse_url(url()->previous())['query'], $params);
       $redirect_uri = $params['redirect_uri'];
-      if($redirect_uri != "")
+      if ($redirect_uri != '') {
         session(['link' => $redirect_uri]);
+      }
     }
     // die(redirect()->getUrlGenerator()->previous());
     // session(['link' => url()->previous()]);
     // Cek
     if (Auth::check()) {
       // Home
-      
+
       return redirect(route('pages-home'));
     } else {
       $pageConfigs = ['myLayout' => 'blank'];
-      return view('content.authentications.auth-login-basic', ['pageConfigs' => $pageConfigs,'from' => session('link')]);
+      return view('content.authentications.auth-login-basic', [
+        'pageConfigs' => $pageConfigs,
+        'from' => session('link'),
+      ]);
     }
   }
 
@@ -41,7 +56,8 @@ class LoginBasic extends Controller
     ]);
 
     $credentials = $request->only('username', 'password');
-    //dd(Auth::attempt($credentials));
+
+    //  dd(bcrypt('Admin123'));
     if (Auth::attempt($credentials)) {
       // Authentication passed...
       // Get Data User
@@ -63,11 +79,12 @@ class LoginBasic extends Controller
         }
 
         $token->save();
-        
-        if(session('link') != "")
+
+        if (session('link') != '') {
           return redirect(session('link'));
-        else
-        return redirect('/home');
+        } else {
+          return redirect('/home');
+        }
       }
 
       // go To Dashboard
@@ -93,14 +110,24 @@ class LoginBasic extends Controller
   {
     $request->validate([
       'email' => 'required|string|email',
+      'username' => 'required|string|',
     ]);
 
-    $userData = User::where('email', $request->email)->first();
+    $userData = User::where('email', $request->email)
+      ->where('username', $request->username)
+      ->first();
+    $userData->activation_code = Str::uuid();
+    $userData->updated_at = Carbon::now()->toDateTimeString();
+    $userData->save();
+
     if ($userData == null) {
-      return redirect(route('auth-forgot-password'))->with(['error' => 'Email Not Provide / Email tidak ada']);
+      return redirect(route('auth-forgot-password'))->with([
+        'error' => 'Email or Username Not Provide / Email atau Username tidak ada',
+      ]);
     }
 
     // Send Reset Link by Email
+    Mail::to($userData->email)->send(new NotificationEmail($userData));
 
     return redirect(route('auth-login-basic'))->with([
       'success' =>
@@ -108,10 +135,10 @@ class LoginBasic extends Controller
     ]);
   }
 
-  function forgot_password_form($ref)
+  function forgot_password_form($activation_code)
   {
     // check ref in User
-    $userData = User::where('ref', $ref)->first();
+    $userData = User::where('activation_code', $activation_code)->first();
     if ($userData == null) {
       return redirect(route('auth-forgot-password'))->with([
         'error' => 'Reset Password Link is Wrong / Link Reset Password Salah',
@@ -123,6 +150,7 @@ class LoginBasic extends Controller
     return view('content.authentications.auth-forgot-password-form', [
       'pageConfigs' => $pageConfigs,
       'email' => $userData->email,
+      'activation_code' => $userData->activation_code,
       'ref' => $userData->ref,
     ]);
   }
@@ -131,22 +159,18 @@ class LoginBasic extends Controller
   {
     // Action to reset password
     $request->validate([
+      'activation_code' => 'required|string',
       'password' => 'required|string',
       'confirm_password' => 'required|string',
+      'ref' => 'required|string',
     ]);
 
     if ($request->password != $request->confirm_password) {
-      //dd('gagal');
       return redirect(route('auth-forgot-password-form', $request->ref))->with([
         'error' => 'Password not Match / Password tidak sama',
       ]);
     } else {
-      //dd('berhasil');
-      $userData = User::where('ref', $request->ref)->first();
-      $userData->password = bcrypt($request->password);
-      $userData->updated_at = Carbon::now()->toDateTimeString();
-      $userData->updated_by = $userData->email;
-      $userData->save();
+      $newUserData = $this->userService->changePassword($request->password, $request->activation_code);
 
       return redirect(route('auth-login-basic'))->with([
         'success' => 'Success Reset Password <br> Berhasil melakukan Reset Password',

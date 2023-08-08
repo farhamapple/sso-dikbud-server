@@ -62,13 +62,17 @@ Route::group(
         Route::post('/user/user-show-detail', [UserPage::class, 'show'])->name('pages-user-show-detail');
         Route::post('/user/user-destroy', [UserPage::class, 'destroy'])->name('pages-user-destroy');
         Route::post('/user/user-update', [UserPage::class, 'update'])->name('pages-user-update');
+        Route::post('/user/user-update-password', [UserPage::class, 'updatePassword'])->name(
+          'pages-user-update-password'
+        );
 
         // Oauth Client
         Route::get('/oauth-client', [OauthClientPage::class, 'index'])->name('oauth-client.index');
         Route::get('/oauth-client/{id}', [OauthClientPage::class, 'show'])->name('oauth-client.show');
         // Action Oauth Client
         Route::post('/oauth-client', [OauthClientPage::class, 'store'])->name('oauth-client.store');
-        Route::post('/oauth-client-edit', [OauthClientPage::class, 'update'])->name('oauth-client.update');
+        Route::post('/oauth-client-edit', [OauthClientPage::class, 'edit'])->name('oauth-client.edit');
+        Route::post('/oauth-client-update', [OauthClientPage::class, 'update'])->name('oauth-client.update');
         Route::post('/oauth-client-destroy', [OauthClientPage::class, 'destroy'])->name('oauth-client.destroy');
 
         // Sso Client App
@@ -76,7 +80,9 @@ Route::group(
         Route::get('/sso-client-app/{ref}', [SsoClientAppPage::class, 'show'])->name('sso-client-app.show');
         //Action Sso Client App
         Route::post('/sso-client-app', [SsoClientAppPage::class, 'store'])->name('sso-client-app.store');
-        Route::post('/sso-client-app-edit', [SsoClientAppPage::class, 'update'])->name('sso-client-app.update');
+        Route::post('/sso-client-app-edit', [SsoClientAppPage::class, 'edit'])->name('sso-client-app.edit');
+        Route::post('/sso-client-app-update', [SsoClientAppPage::class, 'update'])->name('sso-client-app.update');
+        Route::post('/sso-client-app-destroy', [SsoClientAppPage::class, 'destroy'])->name('sso-client-app.destroy');
         Route::post('/sso-client-app/to-inactive', [SsoClientAppPage::class, 'to_inactive'])->name(
           'sso-client-app.to_inactive'
         );
@@ -110,7 +116,7 @@ Route::post(
 )->name('auth-forgot-password-send-link');
 
 Route::get(
-  '/auth/forgot-password-form/{ref}',
+  '/auth/forgot-password-form/{activation_code}',
   $controller_path . '\authentications\LoginBasic@forgot_password_form'
 )->name('auth-forgot-password-form');
 

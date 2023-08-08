@@ -86,6 +86,16 @@ $customizerHidden = 'customizer-hide';
                 placeholder="Enter your email"
                 autofocus />
             </div>
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                placeholder="Enter your Username"
+                autofocus />
+            </div>
             <button class="btn btn-primary d-grid w-100">Send Reset Link</button>
           </form>
           <div class="text-center">

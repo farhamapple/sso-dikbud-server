@@ -12,18 +12,149 @@ $configData = Helper::appClasses();
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 @endsection
 
 
 @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
 @endsection
 
 @section('page-script')
 
 <script>
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+
   $(function(){
       let dt = $('#dt-oauth-client').DataTable();
+  });
+
+  $(document).ready(function() {
+    //Show Function
+    // $('body').on('click', '.btn-show', function(e) {
+    //   e.preventDefault();
+    //   let id = $(this).data("id");
+
+    //   $('#name_show').val('');
+    //   $('#client_id_show').val('');
+    //   $('#secret_show').val('');
+    //   $('#redirect_show').val('');
+    //   $('#provider_show').val('');
+    //   // Checkbox
+    //   $.ajax({
+    //     type:'POST',
+    //     url:"{{ route('oauth-client.edit') }}",
+    //     data:{id:id},
+    //     success:function(data){
+    //       console.log(data.data);
+    //       $('#name_show').val(data.data.name);
+    //       $('#client_id_show').val(data.data.id);
+    //       $('#secret_show').val(data.data.secret);
+    //       $('#redirect_show').val(data.data.redirect);
+    //       $('#provider_show').val(data.data.provider);
+    //       //Checkbox
+    //       (data.data.personal_access_client) ? $('#personal_access_client_show').html('<span class="badge bg-label-success">Yes</span>') : $('#personal_access_client_show').html('<span class="badge bg-label-danger">No</span>');
+    //       (data.data.password_client) ? $('#password_client_show').html('<span class="badge bg-label-success">Yes</span>') : $('#password_client_show').html('<span class="badge bg-label-danger">No</span>');
+    //       (data.data.revoked) ? $('#revoked_show').html('<span class="badge bg-label-success">Yes</span>') : $('#revoked_show').html('<span class="badge bg-label-danger">No</span>');
+
+    //       $('#showOauthClient').modal('show');
+    //     }
+    //   });
+    // });
+
+    // Edit Function
+    $('body').on('click', '.btn-edit', function(e) {
+      e.preventDefault();
+      let ref = $(this).data("ref");
+
+      $('#name_edit').val('');
+      $('#link_redirect_edit').val('');
+      $('#icon_edit').val('');
+      $('#ref_edit').val('');
+      // Checkbox
+      $.ajax({
+        type:'POST',
+        url:"{{ route('sso-client-app.edit') }}",
+        data:{ref:ref},
+        success:function(data){
+          console.log(data.data);
+          $('#name_edit').val(data.data.name);
+          $('#link_redirect_edit').val(data.data.link_redirect);
+          $('#icon_edit').val(data.data.icon);
+          $('#ref_edit').val(data.data.ref);
+          // //Checkbox
+          (data.data.is_active == 1) ? $('#is_active_edit').attr('checked', 'checked') : '';
+
+          $('#editSsoClient').modal('show');
+        }
+      });
+    });
+
+      // Delete Function
+    $('body').on('click', '.btn-delete', function(e) {
+      e.preventDefault();
+      let ref = $(this).data("ref");
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Delete Sso Client",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Sure!',
+        customClass: {
+          confirmButton: 'btn btn-primary me-3',
+          cancelButton: 'btn btn-label-secondary'
+        },
+        buttonsStyling: false
+      }).then(function (result) {
+        if (result.value) {
+
+          $.ajax({
+            type:'POST',
+            url:"{{ route('sso-client-app.destroy') }}",
+            data:{ref:ref},
+            success:function(data){
+                if(data.success){
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Delete!',
+                    text: data.message,
+                    customClass: {
+                      confirmButton: 'btn btn-success'
+                    }
+                  });
+                  setTimeout(
+                  function()
+                  {
+                    //do something special
+                    location.reload();
+                  }, 3000);
+
+                }else{
+                  Swal.fire({
+                    title: 'Error!',
+                    text: data.message,
+                    icon: 'error',
+                    customClass: {
+                      confirmButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                  });
+                }
+            }
+          });
+
+
+        }
+      });
+    });
+
+
   });
 </script>
 @endsection
@@ -112,10 +243,9 @@ $configData = Helper::appClasses();
                     <i class="ti ti-dots-vertical"></i>
                   </button>
                   <div class="dropdown-menu" style="">
-                    <a class="dropdown-item btn-go-to-inactive" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-unlink me-1 text-danger"></i> Inactive</a>
-                    <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-eye me-1 text-info"></i> View</a>
-                    <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-pencil me-1"></i> Edit</a>
-                    <a class="dropdown-item" href="javascript:void(0);"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>
+                    {{-- <a class="dropdown-item btn-go-to-inactive" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-unlink me-1 text-danger"></i> Inactive</a> --}}
+                    <a class="dropdown-item btn-edit" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-pencil me-1"></i> Edit</a>
+                    <a class="dropdown-item btn-delete" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>
                   </div>
                 </div>
               </td>
@@ -129,4 +259,5 @@ $configData = Helper::appClasses();
     </div>
 </div>
 @include('content.pages.sso-client-app.page-modal-sso-client-app-add')
+@include('content.pages.sso-client-app.page-modal-sso-client-app-edit')
 @endsection

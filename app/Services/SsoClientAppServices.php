@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\SsoClientApp;
 use Exception;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class SsoClientAppServices
@@ -26,6 +27,19 @@ class SsoClientAppServices
     }
   }
 
+  public function getDataByRef($ref)
+  {
+    try {
+      //code...
+      $data = SsoClientApp::where('ref', $ref)->first();
+
+      return $data;
+    } catch (Exception $e) {
+      //throw $th;
+      throw new Exception('Terjadi Kesalahan saat mengambil Data Detail Sso Client Apps');
+    }
+  }
+
   public function saveData($data)
   {
     try {
@@ -43,6 +57,27 @@ class SsoClientAppServices
     } catch (Exception $e) {
       //throw $th;
       throw new Exception('Terjadi Kesalahan saat Insert Data');
+    }
+  }
+
+  public function updateDataByRef($data, $ref)
+  {
+    try {
+      //code...
+      $oldData = SsoClientApp::where('ref', $ref)->first();
+      $oldData->name = $data->name;
+      $oldData->link_redirect = $data->link_redirect;
+      $oldData->icon = $data->icon;
+      $oldData->updated_by = Auth::user()->email;
+      $oldData->updated_at = Carbon::now()->toDateTimeString();
+      isset($data->is_active) ? ($is_active = '1') : ($is_active = '0');
+      $oldData->is_active = $is_active;
+      $oldData->save();
+
+      return $oldData;
+    } catch (Exception $e) {
+      //throw $th;
+      throw new Exception('Terjadi Kesalahan saat Update Data');
     }
   }
 
@@ -69,6 +104,20 @@ class SsoClientAppServices
     } catch (Exception $e) {
       //throw $th;
       throw new Exception('Terjadi Kesalahan saat To Active');
+    }
+  }
+
+  public function deleteByRef($ref)
+  {
+    try {
+      $oldData = SsoClientApp::where('ref', $ref)->first();
+      $oldData->deleted_by = Auth::user()->email;
+      $oldData->save();
+      $oldData->delete();
+
+      return true;
+    } catch (Exception $e) {
+      throw new Exception('Terjadi Kesalahan saat Delete Sso Client App');
     }
   }
 }

@@ -187,7 +187,8 @@ class UserServices
       $oldData = User::where('ref', $ref)->first();
       $oldData->name = $data->first_name . ' ' . $data->last_name;
       $oldData->email = $data->email;
-      $oldData->password = bcrypt($data->password);
+      $data->password ? ($oldData->password = bcrypt($data->password)) : '';
+      // $oldData->password = bcrypt($data->password);
       $oldData->updated_at = Carbon::now()->toDateTimeString();
       $oldData->updated_by = Auth::user()->email;
       $oldData->username = $data->username ? $data->username : $data->email;
@@ -277,6 +278,21 @@ class UserServices
       $oldData->save();
 
       return $oldData->activation_code;
+    } catch (Exception $e) {
+      throw new Exception('Terjadi Kesalahan saat Generated Activation Code');
+    }
+  }
+
+  public function changePassword($password, $activation_code)
+  {
+    try {
+      $userData = User::where('activation_code', $activation_code)->first();
+      $userData->password = bcrypt($password);
+      $userData->updated_at = Carbon::now()->toDateTimeString();
+      $userData->updated_by = $userData->email;
+      $userData->save();
+
+      return $userData;
     } catch (Exception $e) {
       throw new Exception('Terjadi Kesalahan saat Generated Activation Code');
     }
