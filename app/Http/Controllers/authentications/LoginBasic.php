@@ -151,6 +151,7 @@ class LoginBasic extends Controller
       'pageConfigs' => $pageConfigs,
       'email' => $userData->email,
       'activation_code' => $userData->activation_code,
+      'ref' => $userData->ref,
     ]);
   }
 
@@ -158,22 +159,18 @@ class LoginBasic extends Controller
   {
     // Action to reset password
     $request->validate([
+      'activation_code' => 'required|string',
       'password' => 'required|string',
       'confirm_password' => 'required|string',
+      'ref' => 'required|string',
     ]);
 
     if ($request->password != $request->confirm_password) {
-      //dd('gagal');
       return redirect(route('auth-forgot-password-form', $request->ref))->with([
         'error' => 'Password not Match / Password tidak sama',
       ]);
     } else {
-      //dd('berhasil');
-      $userData = User::where('activation_code', $request->activation_code)->first();
-      $userData->password = bcrypt($request->password);
-      $userData->updated_at = Carbon::now()->toDateTimeString();
-      $userData->updated_by = $userData->email;
-      $userData->save();
+      $newUserData = $this->userService->changePassword($request->password, $request->activation_code);
 
       return redirect(route('auth-login-basic'))->with([
         'success' => 'Success Reset Password <br> Berhasil melakukan Reset Password',

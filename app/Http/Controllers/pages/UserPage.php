@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Models\User;
 use App\Services\UserServices;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserPage extends Controller
@@ -209,6 +211,37 @@ class UserPage extends Controller
       return response()->json(['success' => true, 'data' => $deleteData, 'message' => 'Berhasil Delete User']);
     } catch (Exception $e) {
       return response()->json(['success' => false, 'data' => '', 'message' => $e->getMessage()]);
+    }
+  }
+
+  public function updatePassword(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      //
+      'password' => 'required',
+      'repeat_password' => ['required'],
+      'ref' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      $error = $validator->errors()->messages();
+      return back()->with('notifikasi-error', $error);
+    }
+
+    try {
+      if ($request->password == $request->repeat_password) {
+        $userData = User::where('ref', $request->ref)->first();
+        $userData->password = bcrypt($request->password);
+        $userData->updated_at = Carbon::now()->toDateTimeString();
+        $userData->updated_by = Auth::user()->email;
+        $userData->save();
+
+        return back()->with('notifikasi-success', 'Password Berhasil diUbah');
+      } else {
+        return back()->with('notifikasi-error', 'Password Tidak Sama');
+      }
+    } catch (Exception $e) {
+      return back()->with('notifikasi-error-try-catch', $e->getMessage());
     }
   }
 }

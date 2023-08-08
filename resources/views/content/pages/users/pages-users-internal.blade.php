@@ -308,6 +308,18 @@ $configData = Helper::appClasses();
         });
     });
 
+    // Reset Password
+    $('.btn-reset-password').on('click', function(e){
+      e.preventDefault();
+      let ref = $(this).data("ref");
+
+      // Define ID
+      $('#password').val('');
+      $('#repeat_password').val('');
+      $('#ref_update_password').val(ref);
+
+      $('#resetPassword').modal('show');
+    });
 
   });
 
@@ -399,6 +411,7 @@ $configData = Helper::appClasses();
                     </button>
                     <div class="dropdown-menu" style="">
                       <a class="dropdown-item btn-show" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-eye me-1 text-info"></i> View</a>
+                      <a class="dropdown-item btn-reset-password" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-lock me-1 text-info"></i> Reset Password</a>
                       <a class="dropdown-item btn-edit" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-pencil me-1"></i> Edit</a>
                       <a class="dropdown-item btn-go-to-inactive" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-user-off me-1 text-danger"></i> Inactive</a>
                       <a class="dropdown-item btn-destroy" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>
@@ -415,4 +428,5 @@ $configData = Helper::appClasses();
 @include('content.pages.users.page-modal-user-add')
 @include('content.pages.users.page-modal-user-show')
 @include('content.pages.users.page-modal-user-edit')
+@include('content.pages.users.page-modal-user-reset-password')
 @endsection

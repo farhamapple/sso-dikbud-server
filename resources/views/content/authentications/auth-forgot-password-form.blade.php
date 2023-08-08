@@ -77,6 +77,7 @@ $customizerHidden = 'customizer-hide';
               <form id="formAuthentication" action="{{ route('auth-forgot-password-store')}}" method="POST">
                 @csrf
                 <input type="hidden" name="activation_code" value="{{ $activation_code }}" />
+                <input type="hidden" name="ref" value="{{ $ref }}" />
                 <div class="mb-3 form-password-toggle">
                   <label class="form-label" for="password">New Password</label>
                   <div class="input-group input-group-merge">

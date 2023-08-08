@@ -61,6 +61,9 @@ Route::group(
         Route::post('/user/user-show-detail', [UserPage::class, 'show'])->name('pages-user-show-detail');
         Route::post('/user/user-destroy', [UserPage::class, 'destroy'])->name('pages-user-destroy');
         Route::post('/user/user-update', [UserPage::class, 'update'])->name('pages-user-update');
+        Route::post('/user/user-update-password', [UserPage::class, 'updatePassword'])->name(
+          'pages-user-update-password'
+        );
 
         // Oauth Client
         Route::get('/oauth-client', [OauthClientPage::class, 'index'])->name('oauth-client.index');

@@ -282,4 +282,19 @@ class UserServices
       throw new Exception('Terjadi Kesalahan saat Generated Activation Code');
     }
   }
+
+  public function changePassword($password, $activation_code)
+  {
+    try {
+      $userData = User::where('activation_code', $activation_code)->first();
+      $userData->password = bcrypt($password);
+      $userData->updated_at = Carbon::now()->toDateTimeString();
+      $userData->updated_by = $userData->email;
+      $userData->save();
+
+      return $userData;
+    } catch (Exception $e) {
+      throw new Exception('Terjadi Kesalahan saat Generated Activation Code');
+    }
+  }
 }
