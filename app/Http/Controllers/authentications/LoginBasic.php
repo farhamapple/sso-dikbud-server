@@ -116,18 +116,19 @@ class LoginBasic extends Controller
     $userData = User::where('email', $request->email)
       ->where('username', $request->username)
       ->first();
-    $userData->activation_code = Str::uuid();
-    $userData->updated_at = Carbon::now()->toDateTimeString();
-    $userData->save();
 
     if ($userData == null) {
       return redirect(route('auth-forgot-password'))->with([
-        'error' => 'Email or Username Not Provide / Email atau Username tidak ada',
+        'error' => 'Data Tidak ditemukan',
       ]);
-    }
+    } else {
+      $userData->activation_code = Str::uuid();
+      $userData->updated_at = Carbon::now()->toDateTimeString();
+      $userData->save();
 
-    // Send Reset Link by Email
-    Mail::to($userData->email)->send(new NotificationEmail($userData));
+      // Send Reset Link by Email
+      Mail::to($userData->email)->send(new NotificationEmail($userData));
+    }
 
     return redirect(route('auth-login-basic'))->with([
       'success' =>
