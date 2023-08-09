@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
       'is_external_account' => '0',
       'created_at' => Carbon::now()->toDateTimeString(),
       'updated_at' => Carbon::now()->toDateTimeString(),
-      'role_id' => 0,
+      'role_id' => 1,
       'ref' => Str::uuid(),
     ]);
 
@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
         'is_external_account' => '1',
         'created_at' => Carbon::now()->toDateTimeString(),
         'updated_at' => Carbon::now()->toDateTimeString(),
-        'role_id' => 1,
+        'role_id' => 2,
         'ref' => Str::uuid(),
       ]);
     }
