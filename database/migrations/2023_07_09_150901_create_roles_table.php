@@ -14,6 +14,10 @@ return new class extends Migration {
       $table->id();
       $table->string('name');
       $table->uuid('ref')->nullable();
+      $table->string('description')->nullable();
+      $table->string('is_default')->nullable();
+      $table->string('can_delete')->nullable();
+      $table->string('login_destination')->nullable();
       $table->timestamps();
       $table->timestamp('deleted_at')->nullable();
     });

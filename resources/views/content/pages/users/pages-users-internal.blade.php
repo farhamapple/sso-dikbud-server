@@ -4,7 +4,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', $tipe_user)
+@section('title', "User")
 
 @section('vendor-style')
 <!-- Vendor -->
@@ -26,7 +26,74 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/pickr/pickr.js')}}"></script>
 @endsection
+@section('content')
+<div class="container-xxl flex-grow-1 container-p-y">
+  <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">All User / Aktif</h4>
+    <!-- DataTable with Buttons -->
+    <div class="card">
+      <div class="card-header header-elements">
+        <span class="me-2"><h5>Aktif</h5></span>
+        <div class="card-header-elements ms-auto">
+          <a
+          href="javascript:;"
+          class="btn btn-md btn-primary waves-effect waves-light"
+          data-bs-target="#addUser"
+          data-bs-toggle="modal"
+          >Add User</a
+        >
+        </div>
+      </div>
+      <!-- Error -->
+      @if (session('notifikasi-error'))
+      <div class="card-body">
+        @foreach (session('notifikasi-error') as $key => $item)
+          <div class="alert alert-danger alert-dismissible" role="alert">
+          {{ $item[0] }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endforeach
+      </div>
+      @endif
 
+      @if (session('notifikasi-error-try-catch'))
+      <div class="card-body">
+          <div class="alert alert-danger alert-dismissible" role="alert">
+          {{ session('notifikasi-error-try-catch') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      </div>
+      @endif
+
+      <!--- success -->
+      @if (session('notifikasi-success'))
+      <div class="card-body">
+          <div class="alert alert-success alert-dismissible" role="alert">
+          {{ session('notifikasi-success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      </div>
+      @endif
+      <div class="card-datatable table-responsive">
+        <table class="table table-data" id="dttable_user">
+          <thead class="table-light">
+            <tr>
+              <th>Nama</th>
+              <th>Username</th>
+              <th>NIP</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>#</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+</div>
+@include('content.pages.users.page-modal-user-add')
+@include('content.pages.users.page-modal-user-show')
+@include('content.pages.users.page-modal-user-edit')
+@include('content.pages.users.page-modal-user-reset-password')
+@endsection
 @section('page-script')
 <script src="{{asset('assets/js/extended-ui-sweetalert2.js')}}"></script>
 <script>
@@ -35,10 +102,6 @@ $configData = Helper::appClasses();
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
   });
-  $(function(){
-      let dt = $('#dt-user').DataTable();
-  });
-
   $(document).ready(function(){
     // Flat Date
     $('.flat-picker').flatpickr({
@@ -102,12 +165,8 @@ $configData = Helper::appClasses();
           }
         });
     });
-
-    // View
-    $('.btn-show').on('click', function(e){
-      e.preventDefault();
+    $('body').on('click','.btn-show',function () { 
       let ref = $(this).data("ref");
-
       // id
       $('#first_name_view').val('');
       $('#last_name_view').val('');
@@ -123,8 +182,6 @@ $configData = Helper::appClasses();
       $('#instansi_view').val('');
       $('#jabatan_view').val('');
       $('#simpeg_id_view').val('');
-
-
       $.ajax({
         type:'POST',
         url:"{{ route('pages-user-show-detail') }}",
@@ -176,12 +233,10 @@ $configData = Helper::appClasses();
         }
       });
     });
-
     // Edit
-    $('.btn-edit').on('click', function(e){
+    $('body').on('click','.btn-edit',function (e) { 
       e.preventDefault();
       let ref = $(this).data("ref");
-
       // Define ID
       $('#first_name_edit').val('');
       $('#last_name_edit').val('');
@@ -198,13 +253,11 @@ $configData = Helper::appClasses();
       $('#jabatan_edit').val('');
       $('#simpeg_id_edit').val('');
       $('#ref_edit').val('-');
-
       $.ajax({
         type:'POST',
         url:"{{ route('pages-user-show-detail') }}",
         data:{ref:ref},
         success:function(data){
-
             if(data.success){
               $('#first_name_edit').val(data.data.first_name);
               $('#last_name_edit').val(data.data.last_name);
@@ -214,35 +267,25 @@ $configData = Helper::appClasses();
               $('#email_external_edit').val(data.data.email_external);
               $('#address_edit').val(data.data.address);
               $('#ref_edit').val(data.data.ref);
-
-
               let optionValue = data.data.identity_type;
               $("#identity_type_edit").val(optionValue).find("option[value=" + optionValue +"]").attr('selected', true);
-
               $('#identity_number_edit').val(data.data.identity_number);
               $('#nip_edit').val(data.data.nip);
               $('#instansi_edit').val(data.data.instansi);
               $('#jabatan_edit').val(data.data.jabatan);
               $('#simpeg_id_edit').val(data.data.simpeg_id);
-
               if(data.data.birth_date != null){
                 const birth_date_dmy = data.data.birth_date.split(" ");
                 $('#birth_date_edit').val(birth_date_dmy[0]);
               }
-
-
               let optionSex = data.data.sex;
               $("#sex_edit").val(optionSex).find("option[value=" + optionSex +"]").attr('selected', true);
-
               // If Else
-              console.log(data.data.is_asn);
               (data.data.is_external_account == '1') ? $('#is_external_account_edit').attr('checked', 'checked') : '';
               (data.data.is_asn == '1') ? $('#is_asn_edit').attr('checked', 'checked') : '';
               (data.data.is_active == '1') ? $('#is_active_edit').attr('checked', 'checked') : '';
               (data.data.role_id == '0') ? $('#role_id_edit').attr('checked', 'checked') : '';
-
               $('#editUser').modal('show');
-
             }else{
 
             }
@@ -251,7 +294,7 @@ $configData = Helper::appClasses();
     });
 
     // Destroy
-    $('.btn-destroy').on('click', function(e){
+    $('body').on('click','.btn-destroy',function (e) { 
       e.preventDefault();
       let ref = $(this).data("ref")
         Swal.fire({
@@ -267,7 +310,6 @@ $configData = Helper::appClasses();
           buttonsStyling: false
         }).then(function (result) {
           if (result.value) {
-
             $.ajax({
               type:'POST',
               url:"{{ route('pages-user-destroy') }}",
@@ -285,8 +327,7 @@ $configData = Helper::appClasses();
                     setTimeout(
                     function()
                     {
-                      //do something special
-                      location.reload();
+                      $table.ajax.reload(null,true);
                     }, 3000);
 
                   }else{
@@ -307,9 +348,8 @@ $configData = Helper::appClasses();
           }
         });
     });
-
     // Reset Password
-    $('.btn-reset-password').on('click', function(e){
+    $('body').on('click','.btn-reset-password',function (e) {
       e.preventDefault();
       let ref = $(this).data("ref");
 
@@ -322,111 +362,68 @@ $configData = Helper::appClasses();
     });
 
   });
-
-
+  $table = $("#dttable_user").DataTable({
+      processing: true,
+      serverSide: true,
+      "pageLength": 10,
+      "columnDefs": [
+          { "targets": [0]},
+          { "targets": [0], "orderable": true }
+      ],
+      ajax: {
+          "url": "{{ route('user.getdata') }}",
+          "data": function(d) {
+              // d.form_search_values = $("#form-search").serializeArray();
+          }
+      },
+      "aoColumns": [
+            {
+                "mData": "name",
+                "searchable": true,
+                'class': ''
+            },
+            {
+                "mData": "username",
+                "searchable": true,
+                'class': ''
+            },
+            {
+                "mData": "username",
+                "searchable": true,
+                'class': ''
+            },
+            {
+                "mData": "email",
+                "searchable": true,
+                'class': ''
+            },
+            {
+                "mData": "phone",
+                "searchable": true,
+                'class': ''
+            },
+            {
+                "mData": null,
+                "orderable": false,
+                "searchable": false,
+                'sWidth': '150px',
+                'class': 'text-center',
+                "mRender": function(data, type, full) {
+                    var actions = [];
+                    actions.push("<div class='dropdown'>");
+                    actions.push('<button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical"></i></button>');
+                    actions.push('<div class="dropdown-menu" style="">');
+                    actions.push('<a class="dropdown-item btn-show" href="#" data-ref="'+full.ref+'"><i class="ti ti-eye me-1 text-info"></i> View</a>');
+                    actions.push('<a class="dropdown-item btn-reset-password" href="#" data-ref="'+full.ref+'"><i class="ti ti-lock me-1 text-info"></i> Reset Password</a>');
+                    actions.push('<a class="dropdown-item btn-edit" href="#" data-ref="'+full.ref+'"><i class="ti ti-pencil me-1"></i> Edit</a>');
+                    actions.push('<a class="dropdown-item btn-go-to-inactive" href="#" data-ref="'+full.ref+'"><i class="ti ti-user-off me-1 text-danger"></i> Inactive</a>');
+                    actions.push('<a class="dropdown-item btn-destroy" href="#" data-ref="'+full.ref+'"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>');
+                    actions.push('</div>');
+                    actions.push("</div>");
+                    return actions.join('');
+                }
+            }
+        ]
+  });
 </script>
-@endsection
-
-@section('content')
-<div class="container-xxl flex-grow-1 container-p-y">
-  <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">All User / {{ $tipe_user }}</h4>
-    <!-- DataTable with Buttons -->
-    <div class="card">
-      <div class="card-header header-elements">
-        <span class="me-2"><h5>{{ $tipe_user }}</h5></span>
-
-        <div class="card-header-elements ms-auto">
-
-
-          <a
-          href="javascript:;"
-          class="btn btn-md btn-primary waves-effect waves-light"
-          data-bs-target="#addUser"
-          data-bs-toggle="modal"
-          >Add User</a
-        >
-        </div>
-      </div>
-      <!-- Error -->
-      @if (session('notifikasi-error'))
-      <div class="card-body">
-        @foreach (session('notifikasi-error') as $key => $item)
-          <div class="alert alert-danger alert-dismissible" role="alert">
-          {{ $item[0] }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        @endforeach
-      </div>
-      @endif
-
-      @if (session('notifikasi-error-try-catch'))
-      <div class="card-body">
-          <div class="alert alert-danger alert-dismissible" role="alert">
-          {{ session('notifikasi-error-try-catch') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-      </div>
-      @endif
-
-      <!--- success -->
-      @if (session('notifikasi-success'))
-      <div class="card-body">
-          <div class="alert alert-success alert-dismissible" role="alert">
-          {{ session('notifikasi-success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-      </div>
-      @endif
-
-
-      <div class="card-datatable table-responsive">
-        <table class="table" id="dt-user">
-          <thead>
-            <tr>
-              <th width="10%">Username</th>
-              <th width="20%">Name</th>
-              <th width="10%">NIP</th>
-              <th width="10%">Email</th>
-              <th width="10%">Email Eksternal</th>
-              <th width="10%">Phone</th>
-              <th width="10%">Diubah</th>
-              <th width="5%">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($usersData as $item)
-              <tr>
-                <td>{{ $item->username }}</td>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->nip }}</td>
-                <td>{{ $item->email }}</td>
-                <td>{{ $item->email_external }}</td>
-                <td>{{ $item->phone }}</td>
-
-                <td>{{ $item->updated_at }}</td>
-                <td>
-                  <div class="dropdown">
-                    <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="ti ti-dots-vertical"></i>
-                    </button>
-                    <div class="dropdown-menu" style="">
-                      <a class="dropdown-item btn-show" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-eye me-1 text-info"></i> View</a>
-                      <a class="dropdown-item btn-reset-password" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-lock me-1 text-info"></i> Reset Password</a>
-                      <a class="dropdown-item btn-edit" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-pencil me-1"></i> Edit</a>
-                      <a class="dropdown-item btn-go-to-inactive" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-user-off me-1 text-danger"></i> Inactive</a>
-                      <a class="dropdown-item btn-destroy" href="#" data-ref="{{ $item->ref }}"><i class="ti ti-trash me-1 text-danger"></i> Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
-    </div>
-</div>
-@include('content.pages.users.page-modal-user-add')
-@include('content.pages.users.page-modal-user-show')
-@include('content.pages.users.page-modal-user-edit')
-@include('content.pages.users.page-modal-user-reset-password')
-@endsection
+@endsection 

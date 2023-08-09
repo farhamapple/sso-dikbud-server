@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\authentications\AuthController;
 use App\Http\Controllers\authentications\LoginBasic;
+use App\Http\Controllers\LogAccessTokenController;
 use App\Http\Controllers\pages\HomePage;
 use App\Http\Controllers\pages\OauthClientPage;
 use App\Http\Controllers\pages\ProfilePage;
@@ -47,9 +48,9 @@ Route::group(
       function () {
         //User
         Route::get('/user/user-show-all', [UserController::class, 'showAll'])->name('user-show-all');
-        Route::get('/user/user-show/{is_external_account}', [UserPage::class, 'index'])->name('pages-user-show');
+        Route::get('/user/user-show', [UserPage::class, 'index'])->name('pages-user-show');
         Route::get('/user/user-inactive', [UserPage::class, 'user_inactive'])->name('pages-user-inactive');
-
+        Route::get('/user/getdata', [UserPage::class, 'getDatatableUser'])->name('user.getdata');
         // Action User
         Route::post('/user/user-store', [UserPage::class, 'store'])->name('pages-user-store');
         Route::post('/user/user-go-to-inactive', [UserPage::class, 'goToInActiveUser'])->name(
@@ -91,11 +92,14 @@ Route::group(
         );
         Route::post('/sso-client-app-destroy', [SsoClientAppPage::class, 'destroy'])->name('sso-client-app.destroy');
         // role
-        Route::get('/roles/list', [RolesController::class, 'index'])->name('roles.index');
+        Route::get('masters/roles', [RolesController::class, 'index'])->name('master.roles.index');
         Route::get('/roles/edit/{ref}', [RolesController::class, 'edit'])->name('roles.setting.edit');
         Route::post('/roles/save', [RolesController::class, 'store'])->name('roles.setting.save');
         Route::post('/roles/delete/{ref}', [RolesController::class, 'destroy'])->name('roles.setting.delete');
         Route::get('/getroles/{ref}', [RolesController::class, 'view'])->name('roles.setting.view');
+        // log access 
+        Route::get('/sso-log-access', [LogAccessTokenController::class, 'index'])->name('sso-log-access.index');
+        Route::post('/sso-log-delete/{ref}', [LogAccessTokenController::class, 'destroy'])->name('sso-log-access.delete');
       }
     );
   }

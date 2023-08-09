@@ -17,7 +17,7 @@ class RoleSeeder extends Seeder
   {
     //
     DB::table('roles')->insert([
-      'id' => 0,
+      'id' => 1,
       'name' => 'ADMIN',
       'created_at' => Carbon::now()->toDateTimeString(),
       'updated_at' => Carbon::now()->toDateTimeString(),
@@ -25,7 +25,7 @@ class RoleSeeder extends Seeder
     ]);
 
     DB::table('roles')->insert([
-      'id' => 1,
+      'id' => 2,
       'name' => 'GUEST',
       'created_at' => Carbon::now()->toDateTimeString(),
       'updated_at' => Carbon::now()->toDateTimeString(),
