@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\pages;
 
+use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
 use App\Services\SsoClientAppServices;
 use Exception;
@@ -20,6 +21,7 @@ class SsoClientAppPage extends Controller
   }
   public function index()
   {
+    Helpers::authPermission('Masters.ClientApp.View');
     //
     try {
       //code...
@@ -36,6 +38,7 @@ class SsoClientAppPage extends Controller
    */
   public function create()
   {
+    Helpers::authPermission('Masters.ClientApp.Create');
     //
   }
 
@@ -44,6 +47,7 @@ class SsoClientAppPage extends Controller
    */
   public function store(Request $request)
   {
+    Helpers::authPermission('Masters.ClientApp.Create');
     //
     $validator = Validator::make($request->all(), [
       //
@@ -71,6 +75,7 @@ class SsoClientAppPage extends Controller
    */
   public function show(string $id)
   {
+    Helpers::authPermission('Masters.ClientApp.View');
     //
   }
 
@@ -79,6 +84,7 @@ class SsoClientAppPage extends Controller
    */
   public function edit(Request $request)
   {
+    Helpers::authPermission('Masters.ClientApp.Edit');
     //
     $validator = Validator::make($request->all(), [
       //
@@ -111,6 +117,7 @@ class SsoClientAppPage extends Controller
    */
   public function update(Request $request)
   {
+    Helpers::authPermission('Masters.ClientApp.Update');
     //
     $validator = Validator::make($request->all(), [
       //
@@ -139,6 +146,7 @@ class SsoClientAppPage extends Controller
    */
   public function destroy(Request $request)
   {
+    Helpers::authPermission('Masters.ClientApp.Delete');
     //
     $validator = Validator::make($request->all(), [
       //

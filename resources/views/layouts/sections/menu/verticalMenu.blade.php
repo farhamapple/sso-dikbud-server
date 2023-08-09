@@ -63,75 +63,72 @@ $configData = Helper::appClasses();
         Dashboard
       </div></a>
     </li>
-    @if (Auth::user()->role_id == '0')
     {{-- Admin Access --}}
-    <li class="menu-item {{ Request::is('user/*')? 'active open' : ''}}">
-      <a class="menu-link menu-toggle" href="javascript:void(0)"><i class="menu-icon ti ti-users"></i>
-      <div>
-        All User
-      </div></a>
-      <ul class="menu-sub">
-        <li class="menu-item {{ Request::is('user/user-show/1')? 'active' : '' }}">
-          <a class="menu-link" href="{{ route('pages-user-show', '1')}}">
-          <div>
-            User Eksternal
-          </div></a>
-        </li>
-        <li class="menu-item {{ Request::is('user/user-show/0')? 'active' : '' }}">
-          <a class="menu-link" href="{{ route('pages-user-show', '0')}}">
-          <div>
-            User Internal
-          </div></a>
-        </li>
-        <li class="menu-item {{ Request::is('user/user-inactive')? 'active' : '' }}">
-          <a class="menu-link" href="{{ route('pages-user-inactive')}}">
-          <div>
-            Account Inactive
-          </div></a>
-        </li>
-
-      </ul>
-    </li>
-
+    @if(\App\Helpers\Helpers::checkPermission("Menu.AllUser.View"))
+      <li class="menu-item {{ Request::is('user/*')? 'active open' : ''}}">
+        <a class="menu-link menu-toggle" href="javascript:void(0)"><i class="menu-icon ti ti-users"></i>
+        <div>
+          All User
+        </div></a>
+        @if(\App\Helpers\Helpers::checkPermission("Masters.User.View"))
+          <ul class="menu-sub">
+            <li class="menu-item {{ Request::is('user/user-show') ? 'active' : '' }}">
+              <a class="menu-link" href="{{ route('pages-user-show')}}">
+              <div>
+                User Active
+              </div></a>
+            </li>
+            <li class="menu-item {{ Request::is('user/user-inactive')? 'active' : '' }}">
+              <a class="menu-link" href="{{ route('pages-user-inactive')}}">
+              <div>
+                User Inactive
+              </div></a>
+            </li>
+          </ul>
+        @endif
+      </li>
+    @endif
+    @if(\App\Helpers\Helpers::checkPermission("Masters.OauthClient.View"))
     <li class="menu-item {{ Request::is('oauth-client')? 'active' : '' }}">
       <a class="menu-link" href="{{ route('oauth-client.index')}}"><i class="menu-icon ti ti-receipt"></i>
       <div>
         Oauth Client
       </div></a>
     </li>
-
+    @endif
+    @if(\App\Helpers\Helpers::checkPermission("Masters.ClientApp.View"))
     <li class="menu-item {{ Request::is('sso-client-app')? 'active' : '' }}">
       <a class="menu-link" href="{{ route('sso-client-app.index')}}"><i class="menu-icon ti ti-link"></i>
       <div>
         SSO Client App
       </div></a>
     </li>
-
-    <li class="menu-item">
+    @endif
+    @if(\App\Helpers\Helpers::checkPermission("Menu.Master.View"))
+    <li class="menu-item {{ Request::is('masters/*')? 'active open' : ''}}">
       <a class="menu-link menu-toggle" href="javascript:void(0)"><i class="menu-icon ti ti-database"></i>
       <div>
         Master Ref
       </div></a>
-      <ul class="menu-sub">
-        <li class="menu-item">
-          <a class="menu-link" href="javascript:void(0)">
-          <div>
-            Role
-          </div></a>
-        </li>
-
-      </ul>
+      @if(\App\Helpers\Helpers::checkPermission("Masters.User.View"))
+          <ul class="menu-sub">
+            <li class="menu-item {{ Request::is('masters/roles')? 'active' : '' }}">
+              <a class="menu-link" href="{{ route('master.roles.index')}}">
+              <div>
+                Role
+              </div></a>
+            </li>
+          </ul>
+        @endif
     </li>
-
-    <li class="menu-item">
-      <a class="menu-link" href="javascript:void(0)"><i class="menu-icon ti ti-history"></i>
+    @endif
+    @if(\App\Helpers\Helpers::checkPermission("LogAccess.View"))
+    <li class="menu-item {{ Request::is('sso-log-access')? 'active' : '' }}">
+      <a class="menu-link" href="{{ route('sso-log-access.index')}}"><i class="menu-icon ti ti-history"></i>
       <div>
         Log Access Token
       </div></a>
     </li>
     @endif
-
-
   </ul>
-
 </aside>

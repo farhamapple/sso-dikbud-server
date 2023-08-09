@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\pages;
 
+use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\SsoClientAppServices;
@@ -20,6 +21,7 @@ class HomePage extends Controller
   }
   public function index()
   {
+    Helpers::authPermission('Dashboard.View');
     $total_user = 0;
     $total_user_internal = 0;
     $total_user_eksternal = 0;

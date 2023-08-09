@@ -32,11 +32,9 @@ class LoginBasic extends Controller
         session(['link' => $redirect_uri]);
       }
     }
-    // die(redirect()->getUrlGenerator()->previous());
-    // session(['link' => url()->previous()]);
     // Cek
     if (Auth::check()) {
-      // Home
+    // Home
 
       return redirect(route('pages-home'));
     } else {
@@ -56,7 +54,6 @@ class LoginBasic extends Controller
     ]);
 
     $credentials = $request->only('username', 'password');
-
     //  dd(bcrypt('Admin123'));
     if (Auth::attempt($credentials)) {
       // Authentication passed...
@@ -77,11 +74,10 @@ class LoginBasic extends Controller
         if ($request->remember_me) {
           $token->expires_at = Carbon::now()->addWeeks(1);
         }
-
         $token->save();
-
-        if (session('link') != '') {
-          return redirect(session('link'));
+        $arrayParam = $request->session()->pull('client', []);
+        if (isset($arrayParam["redirect_uri"]) && $arrayParam["redirect_uri"] != '') {
+          return redirect($arrayParam["redirect_uri"]);
         } else {
           return redirect('/home');
         }

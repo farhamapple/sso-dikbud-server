@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\pages;
 
+use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\CreateUserRequest;
 use App\Models\User;
 use App\Services\UserServices;
 use Carbon\Carbon;
@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Datatables;
 
 class UserPage extends Controller
 {
@@ -22,21 +23,52 @@ class UserPage extends Controller
     $this->userServices = new UserServices();
   }
 
-  public function index($is_external_account)
+  public function index(Request $request)
   {
-    if ($is_external_account == '0') {
-      $tipe_user = 'User Internal';
-      $usersData = $this->userServices->getInternalAccount();
-      return view('content.pages.users.pages-users-internal', compact('usersData', 'tipe_user'));
-    } else {
-      $tipe_user = 'User Eksternal';
-      $usersData = $this->userServices->getEksternalAccount();
-      return view('content.pages.users.pages-users-eksternal', compact('usersData', 'tipe_user'));
-    }
+    Helpers::authPermission('Masters.User.View');
+    return view('content.pages.users.pages-users-internal');
   }
-
+  public function getDatatableUser(Request $request){
+    Helpers::authPermission('Masters.User.View');
+      $query  = User::orderBy('id', 'ASC');
+      $inputs = request()->get('search');
+      if (is_array($inputs)) {
+        $query->where(function ($query) use ($inputs) {
+            $keyword = $inputs['value'];
+            $query->whereRaw('lower("name") like (?)',["%{$keyword}%"])->orWhereRaw('"nip" like (?)',["%{$keyword}%"]); 
+        });
+      }
+      $query->orderBy('id', 'ASC');
+      $dt = Datatables::of($query);
+      $dt->addColumn('id', function ($row) {
+        return $row->id;
+      });
+      $dt->addColumn('ref', function ($row) {
+        return $row->ref;
+      });
+      $dt->addColumn('name', function ($row) {
+        return $row->name;
+      });
+      $dt->addColumn('username', function ($row) {
+        return $row->username;
+      });
+      $dt->addColumn('phone', function ($row) {
+        return $row->phone;
+      });
+      $dt->addColumn('email', function ($row) {
+        return $row->email;
+      });
+      $dt->addColumn('created_at', function ($row) {
+        return $row->created_at;
+      });
+      $dt->addColumn('updated_at', function ($row) {
+        return $row->updated_at;
+      });
+      return $dt->make(true);
+  }
   public function show(Request $request)
   {
+    Helpers::authPermission('Masters.User.View');
     $validator = Validator::make($request->all(), [
       //
       'ref' => 'required',
@@ -73,6 +105,7 @@ class UserPage extends Controller
 
   public function store(Request $request)
   {
+    Helpers::authPermission('Masters.User.Create');
     //dd($request->first_name);
     $validator = Validator::make($request->all(), [
       //
@@ -99,6 +132,7 @@ class UserPage extends Controller
 
   public function update(Request $request)
   {
+    Helpers::authPermission('Masters.User.Edit');
     $validator = Validator::make($request->all(), [
       //
       'first_name' => 'required',
@@ -122,6 +156,7 @@ class UserPage extends Controller
 
   public function goToInActiveUser(Request $request)
   {
+    Helpers::authPermission('Masters.User.View');
     $validator = Validator::make($request->all(), [
       //
       'ref' => 'required',
@@ -144,6 +179,7 @@ class UserPage extends Controller
 
   public function resendActivation(Request $request)
   {
+    Helpers::authPermission('Masters.User.Edit');
     $validator = Validator::make($request->all(), [
       //
       'ref' => 'required',
@@ -172,6 +208,7 @@ class UserPage extends Controller
 
   public function goToActiveUser(Request $request)
   {
+    Helpers::authPermission('Masters.User.Edit');
     $validator = Validator::make($request->all(), [
       //
       'ref' => 'required',
@@ -194,6 +231,7 @@ class UserPage extends Controller
 
   public function destroy(Request $request)
   {
+    Helpers::authPermission('Masters.User.Delete');
     $validator = Validator::make($request->all(), [
       //
       'ref' => 'required',

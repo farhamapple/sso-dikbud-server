@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\User;
 use Config;
 use Illuminate\Support\Str;
 
@@ -182,4 +183,18 @@ class Helpers
       }
     }
   }
+  public static function authPermission($permisison_name){
+    $aPermission = (array)User::getPermissionsAttribute();
+    if(!isset($aPermission[$permisison_name])){
+        return abort(403);
+    }
+    return true;
+}
+public static function checkPermission($permisison_name){
+    $aPermission = (array)User::getPermissionsAttribute();
+    if(!isset($aPermission[$permisison_name])){
+        return false;
+    }
+    return true;
+}
 }

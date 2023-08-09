@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="{{ asset(mix('assets/vendor/libs/node-waves/node-waves.css')) }}" />
 <link rel="stylesheet" href="{{ asset(mix('assets/vendor/libs/typeahead-js/typeahead.css')) }}" />
 
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/toastr/toastr.css') }}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 <!-- Vendor Styles -->
 @yield('vendor-style')
 
