@@ -2,10 +2,12 @@
 
 namespace App\Helpers;
 
+use App\Models\SettingsModel;
 use App\Models\User;
 use Config;
 use Illuminate\Support\Str;
-
+use Throwable;
+use GuzzleHttp\Client as GuzzleHttpClient;
 class Helpers
 {
   public static function appClasses()
@@ -189,12 +191,132 @@ class Helpers
         return abort(403);
     }
     return true;
-}
-public static function checkPermission($permisison_name){
-    $aPermission = (array)User::getPermissionsAttribute();
-    if(!isset($aPermission[$permisison_name])){
+  }
+  public static function checkPermission($permisison_name){
+      $aPermission = (array)User::getPermissionsAttribute();
+      if(!isset($aPermission[$permisison_name])){
+          return false;
+      }
+      return true;
+  }
+  public static function sendNotif($sendWa,$sendEmail,$phone,$msg){
+    try {
+        // kirim notif WA
+        if($sendWa && $phone != ""){
+            $msgWa = SettingsModel::getData('wa.templatemessage').$msg;
+            // dd($msgWa);
+            $client = new GuzzleHttpClient();
+            $response = $client->request('POST', SettingsModel::getData('wa.url').'/sendmessage', 
+            [
+                'headers' => ['Accept'     => 'application/json',],
+                'json' => ["phoneNumber"=>$phone,"message"=>$msgWa]
+            ]);
+            $response_json = json_decode($response->getBody()->getContents());
+            if ($response_json->status == 'success') {
+                return true;
+            }else{
+                return false;
+            }
+        }
+        if($sendEmail){
+            // kirim notif email
+        }
+        
+    } catch (Throwable $e) {
+        report($e);
         return false;
     }
-    return true;
-}
+    return false;
+  }
+  public static function checkStatusWa(){
+    try {
+      $client = new GuzzleHttpClient();
+      $response = $client->request('GET', SettingsModel::getData('wa.url').'/status', 
+      [
+          'headers' => ['Accept'     => 'application/json',]
+      ]);
+      $response_json = json_decode($response->getBody()->getContents());
+    } catch (Throwable $e) {
+        report($e);
+
+        return false;
+    }
+    return $response_json;
+  }
+  // data Pegawai
+  public static function getDataPegawai($nip){
+    $bearer = self::getTokenInternel();
+    $client = new GuzzleHttpClient();
+      $response = $client->request('GET', env('API_PEGAWAI').'api/hrms/pegawai/',
+      [
+          'headers' => [
+              'Accept'     => 'application/json',
+              'Authorization'=> "Bearer ".$bearer
+          ],
+          'query' => [
+            'pegawai_nip' => $nip
+        ]
+      ]);
+      $response_json = json_decode($response->getBody()->getContents());
+      return $response_json;
+  }
+  public static function getTokenInternel(){
+    $user = User::find(1);
+    $token = $user->createToken('siasn')->accessToken; 
+    return $token;
+  }
+  public static function getDataPegawaiSiasn($nip){
+    $token_apim = self::getTokenApim();
+    $token_sso = self::getTokenSsoSiasn();
+    if($token_apim != "" && $token_sso){
+      $client = new GuzzleHttpClient();
+      $response = $client->request('GET', 'https://apimws.bkn.go.id:8243/apisiasn/1.0/pns/data-utama/'.$nip,
+      [
+          'headers' => [
+              'Accept'     => 'application/json',
+              'Auth'=> "bearer ".$token_sso
+              ,'Authorization'=> "Bearer ".$token_apim
+          ],
+          'query' => [
+            'pegawai_nip' => $nip
+        ]
+      ]);
+      $response_json = json_decode($response->getBody()->getContents());
+      return $response_json;
+    }
+  }
+  public static function getTokenApim(){
+    $client = new GuzzleHttpClient();
+    $response = $client->request('POST', 'https://apimws.bkn.go.id/oauth2/token',
+    [
+        'headers' => [
+            'Content-Type'     => 'application/x-www-form-urlencoded',
+            'Authorization' => 'Basic '.base64_encode("Zds_bXon3d4Fgw3BLo3cYhl2QfQa:KpDd4kaLhw36pQYS4b1DSvbu6UAa"),
+            'Accept'     => 'application/json',
+        ],
+        'form_params' => [
+          'grant_type' => 'client_credentials'
+        ]
+    ]);
+    $response_json = json_decode($response->getBody()->getContents());
+    return $response_json->access_token ? $response_json->access_token : "";
+  }
+  public static function getTokenSsoSiasn(){
+    $client = new GuzzleHttpClient();
+    $response = $client->request('POST', 'https://sso-siasn.bkn.go.id/auth/realms/public-siasn/protocol/openid-connect/token',
+    [
+        'headers' => [
+            'Content-Type'     => 'application/x-www-form-urlencoded',
+            'Accept'     => 'application/json',        
+        ],
+        'form_params' => [
+          'client_id' => 'sdmdikbudclient',
+          'grant_type' => 'password',
+          'username' => '199506102020121015',
+          'password' => 'Rahasia123!',
+        ]
+    ]);
+    $response_json = json_decode($response->getBody()->getContents());
+    return $response_json->access_token ? $response_json->access_token : "";
+  }
 }

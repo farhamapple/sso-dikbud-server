@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\authentications;
 
+use App\Helpers\Helpers;
+use App\Http\Controllers\AuthOtpController;
 use App\Http\Controllers\Controller;
 use App\Mail\NotificationEmail;
+use App\Models\OauthAccessTokenModel;
+use App\Models\SettingsModel;
 use App\Models\User;
 use App\Services\UserServices;
 use Illuminate\Http\RedirectResponse;
@@ -13,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use GuzzleHttp\Client as GuzzleHttpClient;
 
 class LoginBasic extends Controller
 {
@@ -108,11 +113,71 @@ class LoginBasic extends Controller
       'email' => 'required|string|email',
       'username' => 'required|string|',
     ]);
+    $nomorWa = "";
+    $userData = null;
+    // cek data pegawai
+    $sumber_api = SettingsModel::getData('endpoint.pegawai');
+    if($sumber_api == "1"){
+      $dataSiasn =  Helpers::getDataPegawai($request->username);
+      $dataSiasn->data = $dataSiasn->data[0];
+    }else{
+      $dataSiasn = Helpers::getDataPegawaiSiasn($request->username);
+      $dataSiasn->data->nip = $dataSiasn->data->nipBaru;
+      $dataSiasn->data->tlp = $dataSiasn->data->noHp;
+    }
+    // dd($dataSiasn);
+    if(isset($dataSiasn->data)){
+      $username = $dataSiasn->data->nip;
+      $email = $dataSiasn->data->email;
+      $nomorWa = ($dataSiasn->data->tlp != "" && $dataSiasn->data->tlp != "0") ? $dataSiasn->data->tlp : "082260195526";
+      if($username != $request->username && $email != $request->email){
+        return redirect(route('auth-forgot-password'))->with([
+          'error' => 'Username dan email tidak cocok',
+        ]);
+      }
+      // cek ke tabel user
+      $userData = User::where('username', $request->username)->first();
+      // jika di tabel user blm ada, buatlah user baru
+      if ($userData == null) {
+        $userData = new User();
+        $userData->first_name = $dataSiasn->data->nama;
+        $userData->last_name = "";
+        $userData->name = $dataSiasn->data->nama;
+        $userData->username = $dataSiasn->data->nip;
+        $userData->nip = $dataSiasn->data->nip;
+        $userData->password = bcrypt("Data.12345New");
+        $userData->email = $dataSiasn->data->email;
+        $userData->phone = $nomorWa;
+        $userData->email_external = $dataSiasn->data->email;
+        $userData->is_active = '1';
+        $userData->is_external_account = '1';
+        $userData->role_id = '2';
+        $userData->ref = Str::uuid();
+        $userData->is_asn = "1";
+        $userData->activation_code = Str::uuid();
+        $userData->identity_number = $dataSiasn->data->nik;
+        $userData->created_by = $dataSiasn->data->nip;
+        $userData->created_at = Carbon::now()->toDateTimeString();
+        $userData->created_by = $dataSiasn->data->nip;
+        $userData->updated_by = $dataSiasn->data->nip;
+        if($userData->save()){
+          User::setDefaultRole($userData);
+        }
 
-    $userData = User::where('email', $request->email)
+      }else{
+        $userData->nip = $dataSiasn->data[0]->nip;
+        $userData->email = $dataSiasn->data[0]->email;
+        $userData->phone = $dataSiasn->data[0]->tlp;
+        $userData->email_external = $dataSiasn->data[0]->email;
+        $userData->is_active = '1';
+        $userData->updated_by = $dataSiasn->data[0]->nip;
+      }
+    }
+    if(!$userData){
+      $userData = User::where('email', $request->email)
       ->where('username', $request->username)
       ->first();
-
+    }
     if ($userData == null) {
       return redirect(route('auth-forgot-password'))->with([
         'error' => 'Data Tidak ditemukan',
@@ -121,15 +186,35 @@ class LoginBasic extends Controller
       $userData->activation_code = Str::uuid();
       $userData->updated_at = Carbon::now()->toDateTimeString();
       $userData->save();
-
       // Send Reset Link by Email
-      Mail::to($userData->email)->send(new NotificationEmail($userData));
+      // Mail::to($userData->email)->send(new NotificationEmail($userData));
+      // send link by WA
+      $message = "*Halo ".$userData->name."*, silahkan klik \n".route('auth-forgot-password-form', $userData->activation_code)." \nuntuk merubah password anda";
+      // dd($message);
+      $nomorWa = $nomorWa != "" ? $nomorWa : $userData->phone;
+      if($nomorWa != ""){
+        $dataOtp = AuthOtpController::generateOtp($userData);
+        $message .= "\natau masukan token dengan ".$dataOtp->otp;
+        $result = Helpers::sendNotif(true,false,$nomorWa,$message);
+        // if(!$result){
+        //   return redirect(route('auth-login-basic'))->with([
+        //     'error' =>
+        //       'Kirim gagal',
+        //   ]);
+        // }
+        return redirect(route('otp.verification',$userData->ref))->with([
+          'success' =>
+            'Silahkan check Email untuk Link Reset Password atau silahkan masukan OTP yang telah dikirimkan ke WA',
+        ]);
+      }else{
+        return redirect(route('auth-login-basic'))->with([
+          'error' =>
+            'User tidak ditemukan',
+        ]);
+      }
     }
 
-    return redirect(route('auth-login-basic'))->with([
-      'success' =>
-        'Please check your email, to Reset Password link <br> Silahkan check Email untuk Link Reset Password',
-    ]);
+    
   }
 
   function forgot_password_form($activation_code)
@@ -163,12 +248,13 @@ class LoginBasic extends Controller
     ]);
 
     if ($request->password != $request->confirm_password) {
-      return redirect(route('auth-forgot-password-form', $request->ref))->with([
+      return redirect(route('auth-forgot-password-form', $request->activation_code))->with([
         'error' => 'Password not Match / Password tidak sama',
       ]);
     } else {
       $newUserData = $this->userService->changePassword($request->password, $request->activation_code);
-
+      Auth::login($newUserData);
+      redirect('/hoe');
       return redirect(route('auth-login-basic'))->with([
         'success' => 'Success Reset Password <br> Berhasil melakukan Reset Password',
       ]);
@@ -178,11 +264,9 @@ class LoginBasic extends Controller
   public function logout(Request $request): RedirectResponse
   {
     Auth::logout();
-
     $request->session()->invalidate();
-
     $request->session()->regenerateToken();
-
     return redirect('/');
   }
+  
 }

@@ -1,8 +1,15 @@
 @php
 $customizerHidden = 'customizer-hide';
 @endphp
+@isset($pageConfigs)
+{!! Helper::updatePageConfig($pageConfigs) !!}
+@endisset
+@php
+$configData = Helper::appClasses();
+@endphp
 
-@extends('layouts/layoutMaster')
+@include(( 'layouts.blankLayout' ))
+
 
 @section('title', 'Authorization Request')
 

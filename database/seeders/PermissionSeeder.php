@@ -36,5 +36,7 @@ class PermissionSeeder extends Seeder
         $data = array('name' => 'Masters.Roles.Create','description' => 'akses untuk membuat roles');	DB::table("permissions")->insert($data);
         $data = array('name' => 'Masters.Roles.Edit','description' => 'akses untuk mengedit roles');	DB::table("permissions")->insert($data);
         $data = array('name' => 'Masters.Roles.Delete','description' => 'akses untuk menghapus roles');	DB::table("permissions")->insert($data);
+        // setting
+        $data = array('name' => 'General.Setting.View','description' => 'Merubah setting aplikasi');	DB::table("permissions")->insert($data);
     }
 }

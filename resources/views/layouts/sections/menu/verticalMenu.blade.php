@@ -130,5 +130,21 @@ $configData = Helper::appClasses();
       </div></a>
     </li>
     @endif
+    @if(\App\Helpers\Helpers::checkPermission("General.Setting.View"))
+    <li class="menu-item {{ Request::is('setting')? 'active' : '' }}">
+      <a class="menu-link" href="{{ route('setting.index')}}"><i class="menu-icon ti ti-lifebuoy"></i>
+      <div>
+        Setting
+      </div></a>
+    </li>
+    @endif
+    @if(\App\Helpers\Helpers::checkPermission("General.Setting.View"))
+    <li class="menu-item {{ Request::is('dokumentasi')? 'active' : '' }}">
+      <a class="menu-link" href="{{ route('setting.index')}}"><i class="menu-icon ti ti-file-description"></i>
+      <div>
+        Dokumentasi
+      </div></a>
+    </li>
+    @endif
   </ul>
 </aside>

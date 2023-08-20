@@ -14,6 +14,20 @@ $customizerHidden = 'customizer-hide';
 @section('page-style')
 <!-- Page -->
 <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">
+<style>
+
+  .indicator-progress {
+    display: none;
+  }
+  [data-kt-indicator=on] > .indicator-progress {
+    display: inline-block;
+  }
+  
+  [data-kt-indicator=on] > .indicator-label {
+    display: none;
+  }
+  
+  </style>
 @endsection
 
 @section('vendor-script')
@@ -66,8 +80,8 @@ $customizerHidden = 'customizer-hide';
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-1 pt-2">Forgot Password? 🔒</h4>
-          <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
+          <h4 class="mb-1 pt-2">Lupa Password? 🔒</h4>
+          <p class="mb-4">Silahkan masukan NIP dan Email anda, kami akan mengirimkan instruksi ke email untuk mengubah password</p>
           @if ($message = Session::get('error'))
           <div class="alert alert-danger alert-dismissible" role="alert">
             {!! $message !!}
@@ -76,6 +90,16 @@ $customizerHidden = 'customizer-hide';
           @endif
           <form id="formAuthentication" class="mb-3" action="{{ route('auth-forgot-password-send-link')}}" method="POST">
             @csrf
+            <div class="mb-3">
+              <label for="username" class="form-label">Username/NIP</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                placeholder="Enter your Username"
+                autofocus />
+            </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input
@@ -86,17 +110,11 @@ $customizerHidden = 'customizer-hide';
                 placeholder="Enter your email"
                 autofocus />
             </div>
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input
-                type="text"
-                class="form-control"
-                id="username"
-                name="username"
-                placeholder="Enter your Username"
-                autofocus />
-            </div>
-            <button class="btn btn-primary d-grid w-100">Send Reset Link</button>
+            <button type="submit" id="btn-reset" class="btn btn-primary d-grid w-100">
+              <span class="indicator-label">Send Reset Link</span>
+              <span class="indicator-progress">Please wait...
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+          </button>
           </form>
           <div class="text-center">
             <a href="{{ route('auth-login-basic')}}" class="d-flex align-items-center justify-content-center">

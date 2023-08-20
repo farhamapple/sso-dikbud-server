@@ -92,4 +92,10 @@ class User extends Authenticatable
       }
       return true;
   }
+  public static function setDefaultRole($dataUser){
+    $recordRolesUser = new UserRoleModel();
+    $recordRolesUser->user_id = $dataUser->id;
+    $recordRolesUser->role_id = 2;
+    $recordRolesUser->save();
+  }
 }

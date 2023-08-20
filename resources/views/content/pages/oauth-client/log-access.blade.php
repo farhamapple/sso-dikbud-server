@@ -38,7 +38,6 @@ $configData = Helper::appClasses();
               <th>Keterangan</th>
               <th>Revoked</th>
               <th>Create</th>
-              <th>Expires</th>
               <th>#</th>
             </tr>
           </thead>
@@ -81,11 +80,6 @@ $configData = Helper::appClasses();
             },
             {
                 "mData": "created_at",
-                "searchable": true,
-                'class': ''
-            },
-            {
-                "mData": "expires_at",
                 "searchable": true,
                 'class': ''
             },

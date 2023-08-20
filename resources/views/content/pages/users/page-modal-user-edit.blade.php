@@ -36,7 +36,7 @@
                 id="username_edit"
                 name="username"
                 class="form-control"
-                placeholder="Jika Kosong akan disamakan dengan Email" disabled/>
+                placeholder="Jika Kosong akan disamakan dengan Email" readonly/>
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label" for="modalEditUserPhone">Phone Number</label>

@@ -183,7 +183,7 @@ class UserServices
 
   public function updateUser($ref, $data)
   {
-    try {
+    // try {
       $oldData = User::where('ref', $ref)->first();
       $oldData->name = $data->first_name . ' ' . $data->last_name;
       $oldData->email = $data->email;
@@ -191,7 +191,7 @@ class UserServices
       // $oldData->password = bcrypt($data->password);
       $oldData->updated_at = Carbon::now()->toDateTimeString();
       $oldData->updated_by = Auth::user()->email;
-      $oldData->username = $data->username ? $data->username : $data->email;
+      // $oldData->username = $data->username ? $data->username : $data->email;
       $oldData->first_name = $data->first_name;
       $oldData->last_name = $data->last_name;
       $oldData->email_external = $data->email_external;
@@ -219,9 +219,9 @@ class UserServices
       $oldData->save();
 
       return $oldData;
-    } catch (Exception $e) {
-      throw new Exception('Terjadi Kesalahan saat Update User');
-    }
+    // } catch (Exception $e) {
+    //   throw new Exception('Terjadi Kesalahan saat Update User');
+    // }
   }
 
   public function updateUserToInActive($ref)

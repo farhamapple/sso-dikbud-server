@@ -32,7 +32,7 @@ class RolePermissionSeeder extends Seeder
         $data = array('role_id' => 1,'permissions_id' => 17);	DB::table("role_permissions")->insert($data);
         $data = array('role_id' => 1,'permissions_id' => 18);	DB::table("role_permissions")->insert($data);
         $data = array('role_id' => 1,'permissions_id' => 19);	DB::table("role_permissions")->insert($data);
-        $data = array('role_id' => 1,'permissions_id' => 10);	DB::table("role_permissions")->insert($data);
-        
+        $data = array('role_id' => 1,'permissions_id' => 20);	DB::table("role_permissions")->insert($data);
+        $data = array('role_id' => 2,'permissions_id' => 15);	DB::table("role_permissions")->insert($data);
     }
 }

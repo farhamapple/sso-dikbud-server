@@ -20,7 +20,7 @@
             <div class="col-12 col-md-6">
               <label class="form-label" for="first_name">New Password</label>
               <input
-                type="text"
+                type="password"
                 id="password"
                 name="password"
                 class="form-control"
@@ -29,7 +29,7 @@
             <div class="col-12 col-md-6">
               <label class="form-label" for="last_name">Repeat Password</label>
               <input
-                type="text"
+                type="password"
                 id="repeat_password"
                 name="repeat_password"
                 class="form-control"

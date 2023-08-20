@@ -23,7 +23,7 @@ return new class extends Migration {
       $table->string('address')->nullable();
       $table->string('sex')->nullable();
       $table->dateTime('birth_date')->nullable();
-      $table->string('identity_type')->default('KTP');
+      $table->string('identity_type')->default('KTP')->nullable();
       $table->string('identity_number')->nullable();
       $table->string('phone')->nullable();
       $table->string('photo_url')->nullable();
@@ -31,7 +31,7 @@ return new class extends Migration {
       $table->string('activation_code')->nullable();
       $table->timestamp('verified_at')->nullable();
       $table->string('is_active')->default('0');
-      $table->string('is_external_account')->default('1');
+      $table->string('is_external_account')->default('1')->nullable();
       $table->string('nip')->nullable();
       $table->string('simpeg_id')->nullable();
       $table

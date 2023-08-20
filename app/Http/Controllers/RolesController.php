@@ -15,7 +15,7 @@ class RolesController extends Controller
 {
     public function index(Request $request)
     {
-        Helpers::authPermission('Masters.Roles.View');
+        // Helpers::authPermission('Masters.Roles.View');
         $action  = request()->get('action');
         if ($request->ajax()) {
             $query  = RolesModel::with([]);

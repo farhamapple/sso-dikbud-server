@@ -12,7 +12,7 @@ return new class extends Migration {
   {
     Schema::table('users', function (Blueprint $table) {
       //
-      $table->string('is_asn')->default('0');
+      $table->string('is_asn')->default('0')->nullable();
       $table->string('instansi')->nullable();
       $table->string('jabatan')->nullable();
     });

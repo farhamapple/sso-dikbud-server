@@ -18,10 +18,8 @@ class LogAccessTokenController extends Controller
             $query  = OauthAccessTokenModel::with(['o_users']);
             $inputs = request()->get('search');
             if (is_array($inputs)) {
-                $query->where(function ($query) use ($inputs) {
-                    $keyword = $inputs['value'];
-                    $query->whereRaw('lower("name") like (?)',["%{$keyword}%"]); 
-                });
+                $keyword = $inputs['value'];
+                $query->whereRaw('lower("name") like (?)',["%{$keyword}%"]); 
             }
             $query->orderBy('id', 'ASC');
             $totalCount = $query->count();
@@ -40,6 +38,9 @@ class LogAccessTokenController extends Controller
             });
             $dt->addColumn('created_at', function ($row) {
                 return Carbon::parse($row->created_at)->isoFormat('D MMMM Y H:I:s');
+            });
+            $dt->addColumn('expires_at', function ($row) {
+                return Carbon::parse($row->expires_at)->isoFormat('D MMMM Y H:I:s');
             });
             $dt->addColumn('delete_url', function ($row){
                 return route("sso-log-access.delete", $row->id);

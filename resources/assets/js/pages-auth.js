@@ -4,11 +4,12 @@
 
 'use strict';
 const formAuthentication = document.querySelector('#formAuthentication');
-
+const btn_send = document.querySelector("#btn-save-setting");
 document.addEventListener('DOMContentLoaded', function (e) {
   (function () {
     // Form validation for Add new record
     if (formAuthentication) {
+      btn_send.setAttribute("data-kt-indicator", "on");
       const fv = FormValidation.formValidation(formAuthentication, {
         fields: {
           username: {
@@ -17,8 +18,9 @@ document.addEventListener('DOMContentLoaded', function (e) {
                 message: 'Please enter username'
               },
               stringLength: {
-                min: 6,
-                message: 'Username must be more than 6 characters'
+                min: 18,
+                max: 18,
+                message: 'NIP/Username 18 Karakter'
               }
             }
           },
