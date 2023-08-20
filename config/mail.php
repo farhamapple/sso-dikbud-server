@@ -1,8 +1,27 @@
 <?php
 
-return [
+// use App\Services\SettingServices;
+// class SettingEmail
+// {
+//   private $settingService;
 
-    /*
+//   public function __construct()
+//   {
+//     $this->settingService = new SettingServices();
+//   }
+
+//   public static function getMailer()
+//   {
+//     $set = new SettingServices();
+//     $data = $set->getSettingByName('MAIL_MAILER');
+//     return $data->value;
+//   }
+// }
+
+use App\Services\SettingServices;
+
+return [
+  /*
     |--------------------------------------------------------------------------
     | Default Mailer
     |--------------------------------------------------------------------------
@@ -13,9 +32,10 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+  //'default' => env('MAIL_MAILER', 'smtp'),
+  'defailt' => SettingServices::testMailer(),
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
     |--------------------------------------------------------------------------
@@ -33,60 +53,57 @@ return [
     |
     */
 
-    'mailers' => [
-        'smtp' => [
-            'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
-            'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN'),
-        ],
-
-        'ses' => [
-            'transport' => 'ses',
-        ],
-
-        'mailgun' => [
-            'transport' => 'mailgun',
-            // 'client' => [
-            //     'timeout' => 5,
-            // ],
-        ],
-
-        'postmark' => [
-            'transport' => 'postmark',
-            // 'client' => [
-            //     'timeout' => 5,
-            // ],
-        ],
-
-        'sendmail' => [
-            'transport' => 'sendmail',
-            'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
-        ],
-
-        'log' => [
-            'transport' => 'log',
-            'channel' => env('MAIL_LOG_CHANNEL'),
-        ],
-
-        'array' => [
-            'transport' => 'array',
-        ],
-
-        'failover' => [
-            'transport' => 'failover',
-            'mailers' => [
-                'smtp',
-                'log',
-            ],
-        ],
+  'mailers' => [
+    'smtp' => [
+      'transport' => 'smtp',
+      'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+      'port' => env('MAIL_PORT', 587),
+      'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+      'username' => env('MAIL_USERNAME'),
+      'password' => env('MAIL_PASSWORD'),
+      'timeout' => null,
+      'local_domain' => env('MAIL_EHLO_DOMAIN'),
     ],
 
-    /*
+    'ses' => [
+      'transport' => 'ses',
+    ],
+
+    'mailgun' => [
+      'transport' => 'mailgun',
+      // 'client' => [
+      //     'timeout' => 5,
+      // ],
+    ],
+
+    'postmark' => [
+      'transport' => 'postmark',
+      // 'client' => [
+      //     'timeout' => 5,
+      // ],
+    ],
+
+    'sendmail' => [
+      'transport' => 'sendmail',
+      'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
+    ],
+
+    'log' => [
+      'transport' => 'log',
+      'channel' => env('MAIL_LOG_CHANNEL'),
+    ],
+
+    'array' => [
+      'transport' => 'array',
+    ],
+
+    'failover' => [
+      'transport' => 'failover',
+      'mailers' => ['smtp', 'log'],
+    ],
+  ],
+
+  /*
     |--------------------------------------------------------------------------
     | Global "From" Address
     |--------------------------------------------------------------------------
@@ -97,12 +114,12 @@ return [
     |
     */
 
-    'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
-    ],
+  'from' => [
+    'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+    'name' => env('MAIL_FROM_NAME', 'Example'),
+  ],
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
     |--------------------------------------------------------------------------
@@ -113,12 +130,9 @@ return [
     |
     */
 
-    'markdown' => [
-        'theme' => 'default',
+  'markdown' => [
+    'theme' => 'default',
 
-        'paths' => [
-            resource_path('views/vendor/mail'),
-        ],
-    ],
-
+    'paths' => [resource_path('views/vendor/mail')],
+  ],
 ];

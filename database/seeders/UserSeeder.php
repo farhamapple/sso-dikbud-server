@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
       'name' => 'Admin',
       'email' => 'admin@email.com',
       'password' => bcrypt('admin123'),
-      'username' => 'admin',
+      'username' => 'admin@email.com',
       'first_name' => $faker->firstName(),
       'last_name' => $faker->lastName(),
       'email_external' => $faker->email(),
