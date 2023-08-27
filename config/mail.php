@@ -18,6 +18,7 @@
 //   }
 // }
 
+use App\Helpers\Helpers;
 use App\Services\EmailServices;
 
 return [
@@ -33,7 +34,7 @@ return [
     */
 
   //'default' => env('MAIL_MAILER', 'smtp'),
-  'defailt' => EmailServices::MailMailer(),
+  'defailt' => config('dynamic-mail.driver'),
 
   /*
     |--------------------------------------------------------------------------
@@ -67,12 +68,11 @@ return [
 
     'smtp' => [
       'transport' => 'smtp',
-      'host' => EmailServices::MailHost(),
-      'port' => EmailServices::MailPort(),
-      'encryption' => EmailServices::MailEncryption(),
-      'username' => EmailServices::MailUsername(),
-      'password' => EmailServices::MailPassword(),
-      'timeout' => null,
+      'host' => config('dynamic-mail.host'),
+      'port' => config('dynamic-mail.port'),
+      'encryption' => config('dynamic-mail.encryption'),
+      'username' => config('dynamic-mail.username'),
+      'password' => config('dynamic-mail.password'),
       'local_domain' => env('MAIL_EHLO_DOMAIN'),
     ],
 
@@ -101,7 +101,8 @@ return [
 
     'log' => [
       'transport' => 'log',
-      'channel' => EmailServices::MailLogChannel(),
+      //'channel' => EmailServices::MailLogChannel(),
+      'channel' => 'mail',
     ],
 
     'array' => [
@@ -126,9 +127,14 @@ return [
     */
 
   'from' => [
-    'address' => EmailServices::MailFromAddress(),
-    'name' => EmailServices::MailFromName(),
+    'address' => config('dynamic-mail.from.address'),
+    'name' => config('dynamic-mail.from.name'),
   ],
+
+  // 'from' => [
+  //   'address' => env('MAIL_FROM_ADDRESS'),
+  //   'name' => env('MAIL_FROM_NAME'),
+  // ],
 
   /*
     |--------------------------------------------------------------------------

@@ -39,6 +39,7 @@
     35 => 'App\\Providers\\MenuServiceProvider',
     36 => 'Laravel\\Passport\\PassportServiceProvider',
     37 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    38 => 'App\\Providers\\DynamicMailServiceProvider',
   ),
   'eager' => 
   array (
@@ -66,6 +67,7 @@
     21 => 'App\\Providers\\MenuServiceProvider',
     22 => 'Laravel\\Passport\\PassportServiceProvider',
     23 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    24 => 'App\\Providers\\DynamicMailServiceProvider',
   ),
   'deferred' => 
   array (

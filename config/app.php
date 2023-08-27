@@ -195,6 +195,7 @@ return [
     App\Providers\MenuServiceProvider::class,
     Laravel\Passport\PassportServiceProvider::class,
     Yajra\DataTables\DataTablesServiceProvider::class,
+    App\Providers\DynamicMailServiceProvider::class,
   ],
 
   /*
